@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import mainBackground from '../img/comment.gif'
 
-var {width, height} = require('Dimensions').get('window');
 
 export default class Loading2 extends Component {
 

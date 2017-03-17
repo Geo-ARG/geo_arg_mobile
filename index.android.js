@@ -5,29 +5,39 @@
  */
 
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Text, View, Alert} from 'react-native';
-var Auth0Lock = require('react-native-lock');
-var lock = new Auth0Lock({
-    clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
-    domain: 'user-login.auth0.com',
-    allowedConnections: [
-        "Username-Password-Authentication", "google-oauth2", "facebook"
-    ],
-    rememberLastLogin: true,
-    socialButtonStyle: "big",
-    theme: {},
-    languageDictionary: {
-        "title": "ARG Login"
-    },
-    language: "en"
-});
+import {AppRegistry, StyleSheet, Text, View, Alert, Navigator} from 'react-native';
+import store from './src/store/index'
+
+import Loading1 from './src/components/loading_screen/Loading1'
+import Loading2 from './src/components/loading_screen/Loading2'
+
 
 export default class geo_arg_mobile extends Component {
 
     render() {
-        lock.show()
+        // lock.show()
         return (
-            <View></View>
+            <Provider store={store}>
+              <Navigator initialRoute={{
+                  page: 'loading1',
+                  profile: '',
+                  token: '',
+              }}renderScene={(route, navigator)=>{
+                switch(route.page){
+                  case 'loading1':
+                    return <Loading1 navigator={navigator} route={route}/>
+                  case 'loading2'
+                    return <Loading1 navigator={navigator} route={route}/>
+                  case 'login'
+                    return
+                  case 'home'
+                    return
+                  default:
+                    return
+                }
+              }}
+              />
+            </Provider>
         )
     }
 }
