@@ -5,6 +5,7 @@ import {
   Image,
   Text,
 } from 'react-native';
+import Home from '../home_screen'
 
 var Auth0Lock = require('react-native-lock');
 var lock = new Auth0Lock({
@@ -34,13 +35,12 @@ export default class Loading1 extends Component {
         console.log(err);
         return;
       }
-      this.props.navigator.push({
-        name: 'home',
-        passProps: {
-          profile: profile,
-          token: token,
-        }
-      });
+      console.log(profile);
+      console.log(token)
     });
+      return(
+        <Home />
+      )
   }
+
 }

@@ -4,15 +4,19 @@ import {
   View,
   Image,
   Text,
+  BackAndroid
 } from 'react-native';
 
 
 export default class Home extends Component {
 
   render() {
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+      return true;
+    })
     return (
       <View style={styles.container}>
-               <Image source={require("../images/home.jpg")} style={styles.imgHome} />
+          <Image source={require("../images/home.jpg")} style={styles.imgHome} />
       </View>
     );
   }

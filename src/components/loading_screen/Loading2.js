@@ -11,15 +11,16 @@ import {
 export default class Loading2 extends Component {
 
   componentDidMount(){
-    setTimeout(function(){
-      this.props.navigator.push({page:"loading2"})
-    }, 2000);
+    setTimeout(()=>
+    {
+      this.props.navigator.push({page:"home"})
+    }, 5000);
   }
 
   render() {
     return (
       <View style={styles.container}>
-               <Image source={require("../images/load.gif")} style={styles.imgHome} />
+            <Image source={require("../images/load.gif")} style={styles.imgHome} />
       </View>
     );
   }
