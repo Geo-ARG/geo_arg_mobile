@@ -10,7 +10,8 @@ import store from './src/store/index'
 
 import Loading1 from './src/components/loading_screen/Loading1'
 import Loading2 from './src/components/loading_screen/Loading2'
-
+import Home from './src/components/home_screen'
+import Login from './src/components/loginform'
 
 export default class geo_arg_mobile extends Component {
 
@@ -29,11 +30,11 @@ export default class geo_arg_mobile extends Component {
                   case 'loading2'
                     return <Loading1 navigator={navigator} route={route}/>
                   case 'login'
-                    return
+                    return <Login navigator={navigator} route={route}/>
                   case 'home'
-                    return
+                    return <Home navigator={navigator} route={route}/>
                   default:
-                    return
+                    return <Loading1 navigator={navigator} route={route}/>
                 }
               }}
               />
