@@ -4,6 +4,7 @@ import {
   View,
   Image,
   Text,
+  BackAndroid
 } from 'react-native';
 import Home from '../home_screen'
 
@@ -25,8 +26,13 @@ var lock = new Auth0Lock({
 
 
 
-export default class Loading1 extends Component {
-
+export default class Login extends Component {
+  constructor(){
+    super()
+      this.state = {
+        status: false
+      }
+  }
   render() {
     lock.show({
       closable: true,
@@ -38,9 +44,9 @@ export default class Loading1 extends Component {
       console.log(profile);
       console.log(token)
     });
-      return(
-        <Home />
-      )
+    return(
+      {this.state.status===false ? <Login /> : <Home /> }
+    )
   }
 
 }

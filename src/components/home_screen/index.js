@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class Home extends Component {
 
   render() {
-    BackAndroid.addEventListener('hardwareBackPress', function() {
+    BackAndroid.addEventListener('LockBack', function() {
       return true;
     })
     return (
