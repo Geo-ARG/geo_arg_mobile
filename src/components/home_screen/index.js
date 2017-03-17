@@ -6,6 +6,8 @@ import {
   Text,
   BackAndroid
 } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 export default class Home extends Component {
@@ -15,32 +17,70 @@ export default class Home extends Component {
       return true;
     })
     return (
-      <View style={styles.container}>
-          <Image source={require("../images/home.jpg")} style={styles.imgHome} />
-      </View>
+      <Container>
+              <Header>
+                  <Left>
+                    <Image
+                      style={styles.badge2}
+                      source={require('../images/badge.png')}
+                    />
+                  </Left>
+                  <Body>
+                      <Title>ARG Home</Title>
+                  </Body>
+                  <Right />
+              </Header>
+              <Content>
+                <View style={styles.messageBox}>
+                  <Image
+                    style={styles.badge}
+                    source={require('../images/badge.png')}
+                  />
+                </View>
+
+                <Button block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}>
+                    <Text>List Event</Text>
+                    <Icon name="event" />
+                </Button>
+                <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+                    <Text>Event on Maps</Text>
+                    <Icon name="add-location" />
+                </Button>
+                <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+                    <Text>My Profile</Text>
+                    <Icon name="account-circle" />
+                </Button>
+                <Button block warning style={{marginLeft: 10, marginRight: 10}}>
+                    <Text>ARG-Help</Text>
+                    <Icon name="help" />
+                </Button>
+
+              </Content>
+          </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    imgHome:{
-      flex: 1,
-      width: null,
-      height: null,
-    },
-    buttonHome: {
-      height: 60,
-    },
-    todos: {
-      fontSize: 20,
-      textAlign: 'center',
-      marginTop: 10,
-
-    },
-    searchForm: {
-      marginTop: 20,
-    }
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#15204C',
+  },
+  messageBox: {
+    flex: 1,
+    marginTop: 10,
+    justifyContent: 'center',
+  },
+  badge: {
+    alignSelf: 'center',
+    height: 169,
+    width: 151,
+  },
+  badge2: {
+    alignSelf: 'center',
+    height: 40,
+    width: 30,
+  }
 });
