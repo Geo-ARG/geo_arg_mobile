@@ -5,7 +5,7 @@ import {
   Image,
   Text,
 } from 'react-native';
-import mainBackground from '../img/comment.gif'
+
 
 export default class Loading1 extends Component {
 

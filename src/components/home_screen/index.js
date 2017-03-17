@@ -7,19 +7,12 @@ import {
 } from 'react-native';
 
 
-
-export default class Loading2 extends Component {
-
-  componentDidMount(){
-    setTimeout(function(){
-      this.props.navigator.push({page:"loading2"})
-    }, 2000);
-  }
+export default class Home extends Component {
 
   render() {
     return (
       <View style={styles.container}>
-               <Image source={require("../images/load.gif")} style={styles.imgHome} />
+               <Image source={require("../images/home.jpg")} style={styles.imgHome} />
       </View>
     );
   }
