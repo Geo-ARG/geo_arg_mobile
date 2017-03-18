@@ -11,7 +11,7 @@ export default class Loading1 extends Component {
 
   componentDidMount(){
     setTimeout(()=>{
-      this.props.navigator.push({page:"loading2"})
+      this.props.navigator.push({page:"login"})
     }, 3000);
   }
 

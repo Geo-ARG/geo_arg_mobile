@@ -10,8 +10,6 @@ import {
 
 export default class Loading2 extends Component {
 
-
-
   componentDidMount(){
     setTimeout(()=>
     {
@@ -22,7 +20,7 @@ export default class Loading2 extends Component {
   render() {
     return (
       <View style={styles.container}>
-            <Image source={require("../images/load.gif")} style={styles.imgHome} />
+          <Image source={require("../images/load.gif")} style={styles.imgHome} />
       </View>
     );
   }
