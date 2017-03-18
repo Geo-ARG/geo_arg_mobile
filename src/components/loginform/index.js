@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  BackAndroid
+    StyleSheet,
+    View,
+    Image,
+    Text,
+    BackAndroid,
+    AsyncStorage
 } from 'react-native';
 import Home from '../home_screen'
 
@@ -24,23 +25,49 @@ var lock = new Auth0Lock({
     language: "en"
 });
 
-
-
 export default class Login extends Component {
-  render() {
-    lock.show({
-      closable: true,
-    }, (err, profile, token) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(profile);
-      console.log(token)
-    });
-    return(
-      <Home />
-    )
-  }
+    constructor() {
+        super()
+        this.state = {
+            username: '',
+            email: ''
+        }
+        this.saveData = this.saveData.bind(this)
+    }
+
+    saveData() {
+        console.log("masukkkk");
+        if (this.state.username != "") {
+            fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username: this.state.username, email: this.state.email})
+            }).then(res => res.json()).then(newDataTodos => {
+                AsyncStorage.setItem('dataUser', JSON.stringify(this.state), () => {
+                    AsyncStorage.getItem('dataUser', (err, result) => {
+                        console.log("tersimpan");
+                        console.log(result);
+                    });
+                });
+            })
+        }
+    }
+    render() {
+        lock.show({
+            closable: true
+        }, (err, profile, token) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            this.setState({username: profile.nickname, email: profile.email})
+            this.saveData()
+            console.log(this.state.username);
+            console.log(this.state.email);
+        });
+        return (<Home/>)
+    }
 
 }

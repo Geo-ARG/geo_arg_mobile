@@ -12,7 +12,7 @@ export default class Loading1 extends Component {
   componentDidMount(){
     setTimeout(()=>{
       this.props.navigator.push({page:"loading2"})
-    }, 5000);
+    }, 3000);
   }
 
   render() {
