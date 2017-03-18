@@ -27,12 +27,6 @@ var lock = new Auth0Lock({
 
 
 export default class Login extends Component {
-  constructor(){
-    super()
-      this.state = {
-        status: false
-      }
-  }
   render() {
     lock.show({
       closable: true,
@@ -45,7 +39,7 @@ export default class Login extends Component {
       console.log(token)
     });
     return(
-      {this.state.status===false ? <Login /> : <Home /> }
+      <Home />
     )
   }
 
