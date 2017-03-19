@@ -18,45 +18,45 @@ export default class Home extends Component {
     })
     return (
       <Container>
-              <Header>
-                  <Left>
-                    <Image
-                      style={styles.badge2}
-                      source={require('../images/badge.png')}
-                    />
-                  </Left>
-                  <Body>
-                      <Title>ARG Home</Title>
-                  </Body>
-                  <Right />
-              </Header>
-              <Content>
-                <View style={styles.messageBox}>
-                  <Image
-                    style={styles.badge}
-                    source={require('../images/badge.png')}
-                  />
-                </View>
+        <Header>
+          <Left>
+            <Image
+              style={styles.badge2}
+              source={require('../images/badge.png')}
+              />
+          </Left>
+          <Body>
+            <Title>ARG Home</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content>
+          <View style={styles.messageBox}>
+            <Image
+              style={styles.badge}
+              source={require('../images/badge.png')}
+              />
+          </View>
 
-                <Button block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}>
-                    <Text>List Event</Text>
-                    <Icon name="event" />
-                </Button>
-                <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
-                    <Text>Event on Maps</Text>
-                    <Icon name="add-location" />
-                </Button>
-                <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
-                    <Text>My Profile</Text>
-                    <Icon name="account-circle" />
-                </Button>
-                <Button block warning style={{marginLeft: 10, marginRight: 10}}>
-                    <Text>ARG-Help</Text>
-                    <Icon name="help" />
-                </Button>
+          <Button block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}>
+            <Text>List Event</Text>
+            <Icon name="event" />
+          </Button>
+          <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+            <Text>Event on Maps</Text>
+            <Icon name="add-location" />
+          </Button>
+          <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+            <Text>My Profile</Text>
+            <Icon name="account-circle" />
+          </Button>
+          <Button block warning style={{marginLeft: 10, marginRight: 10}}>
+            <Text>ARG-Help</Text>
+            <Icon name="help" />
+          </Button>
 
-              </Content>
-          </Container>
+        </Content>
+      </Container>
     );
   }
 }

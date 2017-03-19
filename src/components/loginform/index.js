@@ -1,98 +1,98 @@
 import React, {Component} from 'react';
 import {
-    StyleSheet,
-    View,
-    Image,
-    Text,
-    BackAndroid,
-    TouchableHighlight,
-    AsyncStorage
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  BackAndroid,
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 import Home from '../home_screen'
 
 var Auth0Lock = require('react-native-lock');
 var lock = new Auth0Lock({
-    clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
-    domain: 'user-login.auth0.com',
-    allowedConnections: [
-        "Username-Password-Authentication", "google-oauth2", "facebook"
-    ],
-    rememberLastLogin: true,
-    socialButtonStyle: "big",
-    theme: {},
-    languageDictionary: {
-        "title": "ARG Login"
-    },
-    language: "en"
+  clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
+  domain: 'user-login.auth0.com',
+  allowedConnections: [
+    "Username-Password-Authentication", "google-oauth2", "facebook"
+  ],
+  rememberLastLogin: true,
+  socialButtonStyle: "big",
+  theme: {},
+  languageDictionary: {
+    "title": "ARG Login"
+  },
+  language: "en"
 });
 
 export default class Login extends Component {
-    constructor() {
-        super()
-        this.state = {
-            username: '',
-            email: ''
-        }
-        this.saveData = this.saveData.bind(this)
-        this.loginForm = this.loginForm.bind(this)
+  constructor() {
+    super()
+    this.state = {
+      username: '',
+      email: ''
     }
+    this.saveData = this.saveData.bind(this)
+    this.loginForm = this.loginForm.bind(this)
+  }
 
-    componentWillMount(){
-      AsyncStorage.getItem('dataUser', (err, result) => {
-          if (result) {
-              this.props.navigator.push({page: 'home'})
-          }
-      });
-    }
-
-
-    saveData() {
-        if (this.state.username != "") {
-            fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username: this.state.username, email: this.state.email})
-            }).then(res => res.json()).then(newDataTodos => {
-                AsyncStorage.setItem('dataUser', JSON.stringify(this.state))
-            })
-
-        }
+  componentWillMount(){
+    AsyncStorage.getItem('dataUser', (err, result) => {
+      if (result) {
+        this.props.navigator.push({page: 'home'})
       }
+    });
+  }
 
 
-    loginForm(){
-      lock.show({
-          closable: true
-      }, (err, profile, token) => {
-          if (err) {
-              console.log(err);
-              return;
-          }
-          this.setState({username: profile.nickname, email: profile.email || ""})
-            this.saveData()
-          this.props.navigator.push({page: 'home'});
-      });
-    }
-
-    render() {
-      BackAndroid.addEventListener('LockBack', function() {
-        return true;
+  saveData() {
+    if (this.state.username != "") {
+      fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username: this.state.username, email: this.state.email})
+      }).then(res => res.json()).then(newDataTodos => {
+        AsyncStorage.setItem('dataUser', JSON.stringify(this.state))
       })
-        return (
-          <View style={styles.container}>
 
-          <TouchableHighlight
-            style={styles.signInButton}
-            underlayColor='#949494'
-            onPress={this.loginForm}>
-            <Text>Goto Game</Text>
-          </TouchableHighlight>
-            <Image source={require("../images/load.gif")} style={styles.imgHome} />
-          </View>
-        )
     }
+  }
+
+
+  loginForm(){
+    lock.show({
+      closable: true
+    }, (err, profile, token) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      this.setState({username: profile.nickname, email: profile.email || ""})
+      this.saveData()
+      this.props.navigator.push({page: 'home'});
+    });
+  }
+
+  render() {
+    BackAndroid.addEventListener('LockBack', function() {
+      return true;
+    })
+    return (
+      <View style={styles.container}>
+
+        <TouchableHighlight
+          style={styles.signInButton}
+          underlayColor='#949494'
+          onPress={this.loginForm}>
+          <Text>Goto Game</Text>
+        </TouchableHighlight>
+        <Image source={require("../images/load.gif")} style={styles.imgHome} />
+      </View>
+    )
+  }
 
 }
 
