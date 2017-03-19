@@ -15,17 +15,17 @@ export default class AppNavigator extends React.Component {
   sceneRender(route, navigator){
     switch(route.page){
       case 'loading1':
-        return <Loading1 navigator={navigator} route={route.page}/>
+        return <Loading1 navigator={navigator}/>
       case 'loading2':
-        return <Loading2 navigator={navigator} route={route.page}/>
+        return <Loading2 navigator={navigator}/>
       case 'login':
-        return <Login navigator={navigator} route={route.page}/>
+        return <Login navigator={navigator}/>
       case 'home':
-        return <Home navigator={navigator} route={route.page}/>
+        return <Home navigator={navigator}/>
       case 'game':
-        return <GameEvent navigator={navigator} route={route.page}/>
+        return <GameEvent navigator={navigator}/>
       default:
-        return <Loading1 navigator={navigator} route={route.page}/>
+        return <Loading1 navigator={navigator}/>
     }
   }
   render(){
