@@ -4,10 +4,12 @@ import { Navigator } from 'react-native';
 
 
 import store from './store/storeConfig'
+//Import from ./component/index
 import Loading1 from './components/loading_screen/Loading1'
 import Loading2 from './components/loading_screen/Loading2'
 import Home from './components/home_screen'
 import Login from './components/loginform'
+import GameEvent from './components/gameEvents'
 
 export default class AppNavigator extends React.Component {
   sceneRender(route, navigator){
@@ -20,17 +22,20 @@ export default class AppNavigator extends React.Component {
         return <Login navigator={navigator} route={route.page}/>
       case 'home':
         return <Home navigator={navigator} route={route.page}/>
+      case 'game':
+        return <GameEvent navigator={navigator} route={route.page}/>
       default:
         return <Loading1 navigator={navigator} route={route.page}/>
     }
   }
   render(){
-    <Provider store={store}>
-      <Navigator
-        initialRoute={{page: 'loading1'}}
-        renderScene= {this.sceneRender.bind(this)}
-      }}
-      />
-    </Provider>
+    return (
+      <Provider store={store}>
+        <Navigator
+          initialRoute={{page: 'loading1'}}
+          renderScene= {this.sceneRender.bind(this)}
+        />
+      </Provider>
+    )
   }
 }
