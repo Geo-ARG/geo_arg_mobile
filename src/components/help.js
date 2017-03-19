@@ -2,7 +2,7 @@ import React from 'react';
 import { View,Text } from 'react-native';
 import { Container } from 'native-base';
 
-export const Help = () => {
+export default const Help = () => {
   return (
     <View>
       <Text>
