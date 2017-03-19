@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { View, StyleSheet, ScrollView, Image, Dimensions } from 'react-native'
+import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Text, Button, Icon } from 'native-base';
 import { fetchEvents } from '../actions'
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Button,
-  Image
-} from 'react-native'
+const {height, width} = Dimensions.get('window');
 
 class ListEvent extends Component {
   constructor (props) {
@@ -23,32 +17,35 @@ class ListEvent extends Component {
 
   render () {
     return (
-      <View style={styles.events}>
-        <View style={{backgroundColor: '#daffb3'}}>
-          <Button
-            onPress={() => this.props.navigator.push({
-              page: 'home'
-            })}
-          />
-        </View>
-        <Text style={styles.title}>Events</Text>
-        <ScrollView style={styles.scroll}>
+      <Container>
+        <Content>
           {this.props.events.length < 1 ? <Image style={styles.loading} source={require('../assets/loading.gif')} /> : <Text></Text>}
           {this.props.events
             .map((eachEvents, index) => {
-             return (
-               <Text style={styles.list} key={index}>
-                 {eachEvents.title}
-               </Text>
-             )
-           })}
-        </ScrollView>
-      </View>
+              return (
+                <Card key={index} >
+                  <CardItem>
+                    <Text style={{fontSize: 30, fontWeight: 'bold'}}>{eachEvents.title}</Text>
+                  </CardItem>
+                  <CardItem content>
+                    <Text>{eachEvents.description}</Text>
+                  </CardItem>
+                </Card>
+              )
+            })}
+        </Content>
+      </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  card: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    marginBottom: 10
+  },
   scroll:{
     marginBottom: 20,
     marginLeft: 20,
@@ -68,9 +65,8 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   loading:{
-    width: 100,
-    height: 100,
-    margin: 120
+    width: width,
+    height: height
   },
   list: {
     padding: 3,
@@ -89,6 +85,22 @@ const mapStateToProps = (state) => {
     // .filter(eachEvents => eachEvents.title !== null && eachEvents.title !== '')
   }
 }
+
+/*
+<View style={{backgroundColor: '#daffb3'}}>
+  <Button
+    onPress={() => this.props.navigator.push({
+      page: 'home'
+    })}
+  />
+</View>
+<View>
+  <Text style={styles.title}>Events</Text>
+  <ScrollView style={styles.scroll}>
+
+  </ScrollView>
+</View>
+*/
 
 const mapDispatchToProps = (dispatch) => {
   return {
