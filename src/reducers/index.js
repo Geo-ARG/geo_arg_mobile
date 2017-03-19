@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
+import EventsReducer from './reducer_events.js'
 
 const rootReducers = combineReducers({
-  datanews: function() {
-    return []
-  }
+  events: EventsReducer
 })
 
 export default rootReducers

@@ -4,7 +4,7 @@ import { Navigator } from 'react-native';
 
 import store from './store/storeConfig'
 
-import { Loading1, Loading2, Home, Login, GameEvent } from './components'
+import { Loading1, Loading2, Home, Login, GameEvent, ListEvent } from './components'
 
 export default class AppNavigator extends React.Component {
   sceneRender(route, navigator){
@@ -19,6 +19,8 @@ export default class AppNavigator extends React.Component {
         return <Home navigator={navigator}/>
       case 'game':
         return <GameEvent navigator={navigator}/>
+      case 'event':
+        return <ListEvent navigator={navigator}/>
       default:
         return <Loading1 navigator={navigator}/>
     }
