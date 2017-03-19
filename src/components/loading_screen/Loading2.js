@@ -13,14 +13,14 @@ export default class Loading2 extends Component {
   componentDidMount(){
     setTimeout(()=>
     {
-      this.props.navigator.push({page:"home"})
-    }, 5000);
+      this.props.navigator.push({page:"login"})
+    }, 3000);
   }
 
   render() {
     return (
       <View style={styles.container}>
-            <Image source={require("../images/load.gif")} style={styles.imgHome} />
+          <Image source={require("../images/load.gif")} style={styles.imgHome} />
       </View>
     );
   }

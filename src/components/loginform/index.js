@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  BackAndroid
+    StyleSheet,
+    View,
+    Image,
+    Text,
+    BackAndroid,
+    TouchableHighlight,
+    AsyncStorage
 } from 'react-native';
 import Home from '../home_screen'
 
@@ -24,23 +26,95 @@ var lock = new Auth0Lock({
     language: "en"
 });
 
-
-
 export default class Login extends Component {
-  render() {
-    lock.show({
-      closable: true,
-    }, (err, profile, token) => {
-      if (err) {
-        console.log(err);
-        return;
+    constructor() {
+        super()
+        this.state = {
+            username: '',
+            email: ''
+        }
+        this.saveData = this.saveData.bind(this)
+        this.loginForm = this.loginForm.bind(this)
+    }
+
+    componentWillMount(){
+      AsyncStorage.getItem('dataUser', (err, result) => {
+          if (result) {
+              this.props.navigator.push({page: 'home'})
+          }
+      });
+    }
+
+
+    saveData() {
+        if (this.state.username != "") {
+            fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username: this.state.username, email: this.state.email})
+            }).then(res => res.json()).then(newDataTodos => {
+                AsyncStorage.setItem('dataUser', JSON.stringify(this.state))
+            })
+
+        }
       }
-      console.log(profile);
-      console.log(token)
-    });
-    return(
-      <Home />
-    )
-  }
+
+
+    loginForm(){
+      lock.show({
+          closable: true
+      }, (err, profile, token) => {
+          if (err) {
+              console.log(err);
+              return;
+          }
+          this.setState({username: profile.nickname, email: profile.email || ""})
+            this.saveData()
+          this.props.navigator.push({page: 'home'});
+      });
+    }
+
+    render() {
+      BackAndroid.addEventListener('LockBack', function() {
+        return true;
+      })
+        return (
+          <View style={styles.container}>
+
+          <TouchableHighlight
+            style={styles.signInButton}
+            underlayColor='#949494'
+            onPress={this.loginForm}>
+            <Text>Goto Game</Text>
+          </TouchableHighlight>
+            <Image source={require("../images/load.gif")} style={styles.imgHome} />
+          </View>
+        )
+    }
 
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#15204C',
+  },
+  signInButton: {
+    height: 50,
+    alignSelf: 'stretch',
+    backgroundColor: '#D9DADF',
+    margin: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgHome:{
+    flex: 1,
+    width: null,
+    height: null,
+  },
+});
