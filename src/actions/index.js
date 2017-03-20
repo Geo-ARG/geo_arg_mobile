@@ -4,25 +4,23 @@ import {SEND_LOCATION, WATCH} from '../constants'
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
 
 export const sendLocation = (coords, userId) => {
+  let body =  {
+    latitude: coords.latitude,
+    longitude: coords.longitude,
+    userId: userId
+  }
   return (dispatch) => {
-    let body =  {
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-      userId: userId
-    }
-    console.log('sendloc');
-    // fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations`, {
-    fetch(`http://localhost:3000/api/locations`)
-      // method: 'POST',
-      // headers: {
-      //   'Accept': 'application/json, text/plain, */*',
-      //   'Content-Type': 'application/json'
-      // },
-      // body: 'json='+JSON.stringify(body)
-      // })
+    console.log(body);
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+      })
     .then(response => response.json())
-    .then(location => dispatch(updateLocation(location.id)))
-    .catch (error => {console.log('Request failed', error)});
+    .then(location => {console.log(location)})
+    .catch(error => {console.log('Request failed', error)});
   }
 }
 
@@ -35,10 +33,11 @@ export const wathchLocation = (coords, locationId) => {
       latitude: coords.latitude,
       longitude: coords.longitude
     }
-    // fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/${locationId}`, {
-    fetch(`http://localhost:3000/api/locations/api/locations/${locationId}`, {
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/${locationId}`, {
       method: 'PUT',
-      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(body)
     })
   }
@@ -61,6 +60,5 @@ export const fetchEvents = () => {
         return dispatch(setEvents(resp))
       })
       .catch(err => {})
-    )
   }
 }

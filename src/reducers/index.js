@@ -4,7 +4,7 @@ import locationReducer from './locationReducer'
 import userReducer from './userReducer'
 
 const rootReducers = combineReducers({
-  events: EventsReducer
+  events: EventsReducer,
   locationId: locationReducer,
   userId: userReducer,
 })
