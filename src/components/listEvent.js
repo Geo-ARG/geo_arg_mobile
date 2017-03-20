@@ -26,25 +26,38 @@ class ListEvent extends Component {
 
   render () {
     return (
-       <Container>
-      <View style={styles.container}>
-          <Image style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
-              source={require('../assets/bglistevent.jpg')}/>
-            <View style={styles.listevent}>
-              <Carousel
-                   delay={5000}
-                   style={this.state.size}
-                   autoplay
-                   bullets={true}>
-                 <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'1%', height: '80%'}}
-                   source={require('../assets/1.jpg')} />
-                 <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'1%', height: '80%'}}
-                   source={require('../assets/2.jpg')}/>
-                 <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'1%', height: '80%'}}
-                   source={require('../assets/3.jpg')}/>
-               </Carousel>
-            </View>
-      </View>
+      <Container>
+          <View style={styles.container}>
+              <Image style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
+                  source={require('../assets/bglistevent.jpg')}/>
+                <View style={styles.listevent}>
+                  <Carousel
+                       delay={5000}
+                       style={this.state.size}
+                       autoplay
+                       bullets={true}>
+                     <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'4%', height: '80%'}}
+                       source={require('../assets/1.jpg')} />
+                     <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'4%', height: '80%'}}
+                       source={require('../assets/2.jpg')}/>
+                     <Image style={{flex: 1, marginLeft:'1%', marginRight:'1%', marginTop:'4%', height: '80%'}}
+                       source={require('../assets/3.jpg')}/>
+                   </Carousel>
+                </View>
+          </View>
+          <Footer>
+             <FooterTab style={{backgroundColor:'rgba(71, 96, 90, 0.89)',}}>
+               <Button onPress={() =>null }>
+                 {iconback}
+               </Button>
+               <Button>
+                 {iconhome}
+               </Button>
+               <Button onPress={() => null}>
+                 {iconinfo}
+               </Button>
+             </FooterTab>
+           </Footer>
      </Container>
     )
   }
@@ -53,11 +66,12 @@ class ListEvent extends Component {
 
 var styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   listevent:{
-    marginBottom: '40%'
+    marginBottom: '15%'
   }
 })
 
@@ -148,19 +162,7 @@ const mapStateToProps = (state) => {
 </Container>*/
 
 
-// <Footer >
-//    <FooterTab style={{backgroundColor:'rgba(71, 96, 90, 0.89)',}}>
-//      <Button onPress={() =>null }>
-//        {iconback}
-//      </Button>
-//      <Button>
-//        {iconhome}
-//      </Button>
-//      <Button onPress={() => null}>
-//        {iconinfo}
-//      </Button>
-//    </FooterTab>
-//  </Footer>
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
