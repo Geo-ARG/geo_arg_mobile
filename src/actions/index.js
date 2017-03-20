@@ -10,6 +10,13 @@ export const setEvents = (events) => {
   }
 }
 
+export const joinGame = (eventData) => {
+  return {
+    type: 'SET_EVENT',
+    payload: eventData
+  }
+}
+
 export const scanNearby = (latitude, longitude) => {
   let body =  {
     latitude: latitude,
