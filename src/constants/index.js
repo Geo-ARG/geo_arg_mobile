@@ -1,1 +1,2 @@
-export const SEND_LOCATION = 'SEND_USER_LOCATION'
+export const SEND_LOCATION = 'SEND_USER_LOCATION';
+export const SCAN = 'SCAN_NEARBY_USER';

@@ -1,7 +1,35 @@
 
-import {SEND_LOCATION, WATCH} from '../constants'
+import { SEND_LOCATION, SCAN } from '../constants'
 
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
+export const updateNearby = (nearby) => ({type: SCAN, nearby })
+export const setEvents = (events) => {
+  return {
+    type: 'SET_EVENTS',
+    payload: events
+  }
+}
+
+export const scanNearby = (latitude, longitude) => {
+  let body =  {
+    latitude: latitude,
+    longitude: longitude
+  }
+  return (dispatch) => {
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/scan`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+      })
+    .then(response => response.json())
+    .then(nearby => {
+      return dispatch(updateNearby(nearby))
+    })
+    .catch(error => {console.log('Request failed', error)});
+  }
+}
 
 export const sendLocation = (coords, userId) => {
   let body =  {
@@ -10,7 +38,6 @@ export const sendLocation = (coords, userId) => {
     userId: userId
   }
   return (dispatch) => {
-    console.log(body);
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations`, {
       method: 'POST',
       headers: {
@@ -19,16 +46,15 @@ export const sendLocation = (coords, userId) => {
       body: JSON.stringify(body)
       })
     .then(response => response.json())
-    .then(location => {console.log(location)})
+    .then(location => {
+      return dispatch(updateLocation(location.id))
+    })
     .catch(error => {console.log('Request failed', error)});
   }
 }
 
 export const wathchLocation = (coords, locationId) => {
   return (dispatch) => {
-    console.log('WATCH');
-    console.log(coords);
-    console.log(locationId);
     let body = {
       latitude: coords.latitude,
       longitude: coords.longitude
@@ -40,13 +66,7 @@ export const wathchLocation = (coords, locationId) => {
       },
       body: JSON.stringify(body)
     })
-  }
-}
-
-export const setEvents = (events) => {
-  return {
-    type: 'SET_EVENTS',
-    payload: events
+    .catch(err => {})
   }
 }
 
