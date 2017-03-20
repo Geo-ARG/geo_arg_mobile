@@ -18,31 +18,31 @@ export default class Loading1 extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <Image source={require("../images/loading.gif")} style={styles.imgHome} />
+        <Image source={require("../../assets/loading.gif")} style={styles.imgHome} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    imgHome:{
-      flex: 1,
-      width: null,
-      height: null,
-    },
-    buttonHome: {
-      height: 60,
-    },
-    todos: {
-      fontSize: 20,
-      textAlign: 'center',
-      marginTop: 10,
+  container: {
+    flex: 1,
+  },
+  imgHome:{
+    flex: 1,
+    width: null,
+    height: null,
+  },
+  buttonHome: {
+    height: 60,
+  },
+  todos: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 10,
 
-    },
-    searchForm: {
-      marginTop: 20,
-    }
+  },
+  searchForm: {
+    marginTop: 20,
+  }
 });
