@@ -35,7 +35,7 @@ export const sendLocation = (coords, userId) => {
   let body =  {
     latitude: coords.latitude,
     longitude: coords.longitude,
-    userId: userId
+    UserId: userId
   }
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations`, {

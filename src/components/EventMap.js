@@ -39,7 +39,7 @@ class EventMap extends React.Component {
   componentDidMount () {
     this.props.fetchEvents()
   }
-  
+
   render(){
     return(
       <View style={styles.container}>

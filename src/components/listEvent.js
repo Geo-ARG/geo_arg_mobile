@@ -97,7 +97,6 @@ const mapStateToProps = (state) => {
 <View>
   <Text style={styles.title}>Events</Text>
   <ScrollView style={styles.scroll}>
-
   </ScrollView>
 </View>
 */
