@@ -59,14 +59,12 @@ class GameEvent extends React.Component {
           })
         }
         <Text>Quest List</Text>
-        
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state.location.nearbyUser);
   return {
     location : state.location,
     userId : state.userId
