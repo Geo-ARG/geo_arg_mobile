@@ -21,7 +21,7 @@ export default class Home extends Component {
           <Left>
             <Image
               style={styles.badge2}
-              source={require('../assets/badge.png')}
+              source={require('../assets/logo.png')}
               />
           </Left>
           <Body>
@@ -33,7 +33,7 @@ export default class Home extends Component {
           <View style={styles.messageBox}>
             <Image
               style={styles.badge}
-              source={require('../assets/badge.png')}
+              source={require('../assets/logo.png')}
               />
           </View>
 
