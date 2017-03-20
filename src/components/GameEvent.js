@@ -7,7 +7,6 @@ import { sendLocation, wathchLocation, scanNearby } from '../actions'
 class GameEvent extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       latitude: 'Unknown',
       longitude: 'Unknown',
@@ -21,7 +20,7 @@ class GameEvent extends React.Component {
         if (this.props.location.locationId === 'Unknown'){
           this.props.sendLocation(position.coords, this.props.userId)
         } else {
-          this.props.wathchLocation(position.coords, this.props.locationId)
+          this.props.wathchLocation(position.coords, this.props.location.locationId)
         }
         this.setState({
           latitude: position.coords.latitude,
@@ -53,12 +52,13 @@ class GameEvent extends React.Component {
         </TouchableOpacity>
         <Text></Text>
         <Text>User Nearby</Text>
-        {this.props.location.nearbyUser.map((nearby, index) => {
+        {this.props.location < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
           return (
-            <Text key={index}>ID: {nearby.User[0].id} Username : {nearby.User[0].username}</Text>
+            <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
           )
           })
         }
+        <Text>Quest List</Text>
       </View>
     );
   }
