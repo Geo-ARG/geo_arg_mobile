@@ -48,10 +48,17 @@ class EventMap extends React.Component {
           region={this.state.region}
           onRegionChange={this.onRegionChange}
         >
-        <MapView.Marker
-          coordinate={{latitude: -6.2606807, longitude: 106.7792663}}
-          title="Hacktiv8"
-          description="Our Base Camp"/>
+        {this.props.events.map((marker, index) => {
+          let coordinates = marker.geolocation.coordinates
+          return (
+            <MapView.Marker
+              key={index}
+              coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
+              title={marker.title}
+              image={require('../assets/pokeball.png')}
+              description={`${marker.place}, ${marker.description}`}/>
+          )}
+        )}
         </MapView>
         <Text>EventMap</Text>
       </View>
@@ -60,7 +67,6 @@ class EventMap extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.events);
   return {
     events: state.events
   }
