@@ -11,8 +11,6 @@ export default class AppNavigator extends React.Component {
     switch(route.page){
       case 'loading1':
         return <Loading1 navigator={navigator}/>
-      case 'loading2':
-        return <Loading2 navigator={navigator}/>
       case 'login':
         return <Login navigator={navigator}/>
       case 'home':
@@ -31,7 +29,7 @@ export default class AppNavigator extends React.Component {
     return (
       <Provider store={store}>
         <Navigator
-          initialRoute={{page: 'map'}}
+          initialRoute={{page: 'login'}}
           renderScene= {this.sceneRender.bind(this)}
         />
       </Provider>
