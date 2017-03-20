@@ -82,18 +82,17 @@ export default class Login extends Component {
     })
     return (
       <View style={styles.container}>
-
-      <TouchableHighlight
-      style={styles.signInButton}
-      underlayColor='#949494'
-      onPress={this.loginForm}>
-      <Text>Goto Game</Text>
-      </TouchableHighlight>
-      <Image source={require("../assets/load.gif")} style={styles.imgHome} />
-      </View>
-    )
-  }
-
+            <View style={styles.buttonLogin}>
+              <TouchableHighlight
+                  style={styles.signInButton}
+                  underlayColor='#1E90FF'
+                  onPress={this.loginForm}>
+                  <Text>START GAME</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        )
+    }
 }
 
 var styles = StyleSheet.create({
