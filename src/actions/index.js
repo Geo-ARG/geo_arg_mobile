@@ -47,18 +47,20 @@ export const sendLocation = (coords, userId) => {
       })
     .then(response => response.json())
     .then(location => {
-      return dispatch(updateLocation(location.id))
+      return dispatch(updateLocation(location.Locations.id))
     })
     .catch(error => {console.log('Request failed', error)});
   }
 }
 
 export const wathchLocation = (coords, locationId) => {
+  let body = {
+    latitude: coords.latitude,
+    longitude: coords.longitude
+  }
+  console.log(body);
+  console.log(locationId);
   return (dispatch) => {
-    let body = {
-      latitude: coords.latitude,
-      longitude: coords.longitude
-    }
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/${locationId}`, {
       method: 'PUT',
       headers: {
@@ -66,8 +68,16 @@ export const wathchLocation = (coords, locationId) => {
       },
       body: JSON.stringify(body)
     })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
     .catch(err => {})
   }
+}
+
+export const fetchUserEvent = (UEId) => {
+  // return (dispatch) => {
+  //   fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents`)
+  // }
 }
 
 export const fetchEvents = () => {
