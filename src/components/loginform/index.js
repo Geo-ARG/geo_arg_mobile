@@ -5,11 +5,12 @@ import {
     Image,
     Text,
     BackAndroid,
+    Dimensions,
     TouchableHighlight,
     AsyncStorage
 } from 'react-native';
 import Home from '../home_screen'
-
+import Carousel from 'react-native-looped-carousel'
 var Auth0Lock = require('react-native-lock');
 var lock = new Auth0Lock({
     clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
@@ -26,23 +27,31 @@ var lock = new Auth0Lock({
     language: "en"
 });
 
+const { width, height } = Dimensions.get('window')
+
 export default class Login extends Component {
     constructor() {
         super()
         this.state = {
             username: '',
-            email: ''
+            email: '',
+            size: { width, height }
         }
         this.saveData = this.saveData.bind(this)
         this.loginForm = this.loginForm.bind(this)
     }
 
+    _onLayoutDidChange = (e) => {
+      const layout = e.nativeEvent.layout;
+      this.setState({size: {width: layout.width, height: layout.height}})
+    }
+
     componentWillMount(){
-      AsyncStorage.getItem('dataUser', (err, result) => {
-          if (result) {
-              this.props.navigator.push({page: 'home'})
-          }
-      });
+      // AsyncStorage.getItem('dataUser', (err, result) => {
+      //     if (result) {
+      //         this.props.navigator.push({page: 'home'})
+      //     }
+      // });
     }
 
 
@@ -81,15 +90,35 @@ export default class Login extends Component {
         return true;
       })
         return (
-          <View style={styles.container}>
+          <View style={styles.container} onLayout={this._onLayoutDidChange}>
+              <Carousel
+                 delay={5000}
+                 style={this.state.size}
+                 autoplay
+                 bullets={true}>
+               <Image style={{flex: 1, width:'100%', height:'100%'}}
+                 source={require('../images/1.jpg')} />
+               <Image style={{flex: 1, width:'100%', height:'100%'}}
+                 source={require('../images/2.jpg')}/>
+               <Image style={{flex: 1, width:'100%', height:'100%'}}
+                 source={require('../images/3.jpg')}/>
+             </Carousel>
+             <Image
+                 source={require('../images/logo.png')}
+                 style={{
+                   position:'absolute',
+                   flexDirection: 'row'
+                 }}
+             />
 
-          <TouchableHighlight
-            style={styles.signInButton}
-            underlayColor='#949494'
-            onPress={this.loginForm}>
-            <Text>Goto Game</Text>
-          </TouchableHighlight>
-            <Image source={require("../images/load.gif")} style={styles.imgHome} />
+            <View style={styles.buttonLogin}>
+              <TouchableHighlight
+                  style={styles.signInButton}
+                  underlayColor='#1E90FF'
+                  onPress={this.loginForm}>
+                  <Text>Goto Game</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         )
     }
@@ -98,15 +127,22 @@ export default class Login extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#15204C',
+    alignItems: 'center'
+  },
+  buttonLogin:{
+    position: 'absolute',
+       width: width,
+       bottom: width/3,
+       flexDirection: 'row',
+       justifyContent: 'center',
+       alignItems: 'center',
   },
   signInButton: {
     height: 50,
+    width: width/2,
     alignSelf: 'stretch',
-    backgroundColor: '#D9DADF',
+    backgroundColor: 'white',
     margin: 10,
     borderRadius: 5,
     justifyContent: 'center',
