@@ -25,7 +25,6 @@ class GameEvent extends React.Component {
 
   handleSubmit(){
     this.setState({answerMode: false})
-    console.log(this.state.userAnswer);
     this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
   }
 
@@ -38,7 +37,7 @@ class GameEvent extends React.Component {
         })
         break;
       case 'Coordinate':
-          //send state user locations
+          this.props.checkAnswer(this.state.userEventId, `${this.state.latitude}, ${this.state.logitude}`)
         break;
       case 'Photo':
           //take foto
@@ -114,7 +113,7 @@ class GameEvent extends React.Component {
                 if (quest.id === this.state.userEventId && this.state.answerMode){
                   input = (
                     <TextInput
-                      style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                      style={{height: 40, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white'}}
                       onChangeText={userAnswer => this.setState({userAnswer})}
                       value={this.state.userAnswer}
                       maxLength={25}
@@ -147,12 +146,11 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.eventData);
   return {
     location : state.location,
     userId : state.userId,
     userEvent : state.userEvent,
-    eventId : 2,
+    eventId : state.eventData > 1 ? state.eventData.id : 2,
   }
 }
 
