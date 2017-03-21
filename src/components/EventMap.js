@@ -1,22 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 import { fetchEvents } from '../actions'
+import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+const {height, width} = Dimensions.get('window');
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 400,
-    width: 400,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-   },
+const styles = {
   map: {
-    ...StyleSheet.absoluteFillObject,
+    height: height * 0.87,
+    width: width
   },
-});
+}
 
 class EventMap extends React.Component {
   constructor(props){
@@ -42,8 +39,19 @@ class EventMap extends React.Component {
 
   render(){
     return(
-      <View>
-        <View style={styles.container}>
+      <Container style={{backgroundColor: '#F5F5F5'}}>
+        <Header style={{height: height * 0.1}}>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigator.pop()}
+            >
+              <Icon size={25} color={'white'} name='arrow-back' />
+              <Title> Back</Title>
+            </Button>
+          </Left>
+        </Header>
+        <Content style={{height: height * 0.9}}>
           <MapView
             style={styles.map}
             region={this.state.region}
@@ -61,15 +69,8 @@ class EventMap extends React.Component {
             )}
           )}
           </MapView>
-          <Text>EventMap</Text>
-        </View>
-        <View>
-          <Button
-            title={'Back'}
-            onPress={() => this.props.navigator.pop()}
-          />
-        </View>
-      </View>
+        </Content>
+      </Container>
     )
   }
 }

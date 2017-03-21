@@ -7,9 +7,6 @@ const {height, width} = Dimensions.get('window');
 export default class Profile extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      size: {width, height: height}
-    }
   }
 
   render () {
