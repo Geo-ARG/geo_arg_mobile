@@ -37,7 +37,7 @@ class ListEvent extends Component {
               this.props.events.map((listevent, index) => {
                 return (
                   <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'1.5%', height: '80%'}}>
-                    <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist.jpg')} />
+                    <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist1.jpg')} />
                     <View style={{position:'absolute', alignItems: 'center', marginTop: "10%",  backgroundColor: 'white'}}>
                       <Text>Event Name: {listevent.title}</Text>
                       <Text>Task: {listevent.description}</Text>

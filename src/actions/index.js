@@ -3,7 +3,7 @@ import { SEND_LOCATION, SCAN, QUEST_LIST } from '../constants'
 
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
 export const updateNearby = (nearby) => ({type: SCAN, nearby })
-export const setQuestList = (quests) => (type: QUEST_LIST, quests)
+export const setQuestList = (quests) => ({type: QUEST_LIST, quests})
 export const setEvents = (events) => {
   return {
     type: 'SET_EVENTS',
@@ -81,8 +81,11 @@ export const wathchLocation = (coords, locationId) => {
 }
 
 export const fetchQuestList = (UserId, EventId) => {
+  console.log(UserId, EventId);
   return (dispatch) => {
-    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`, {
+      method: 'GET'
+    })
       .then(response => response.json())
       .then(quests => {
         return dispatch(setQuestList(quests))

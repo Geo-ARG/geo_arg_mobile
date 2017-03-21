@@ -62,13 +62,14 @@ class GameEvent extends React.Component {
         }
         <Text>Quest List</Text>
           {this.props.userEvent < 1 ? null : this.props.userEvent.map((quest, index) => {
+            console.log(quest);
             return (
-              <TouchableOpacity>
-                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                  <Text>{quest.completion}</Text>
-                  <Text>{quest.title}</Text>
-                  <Text>{quest.task}</Text>
-                  <Text>{quest.type}</Text>
+              <TouchableOpacity key={index}>
+                <View style={{flexDirection: 'row', flexWrap: 'wrap', height: 30}}>
+                  <Text>{quest.Quest.completion}</Text>
+                  <Text>{quest.Quest.title}</Text>
+                  <Text>{quest.Quest.task}</Text>
+                  <Text>{quest.Quest.type}</Text>
                 </View>
               </TouchableOpacity>
             )
@@ -83,7 +84,7 @@ const mapStateToProps = state => {
     location : state.location,
     userId : state.userId,
     userEvent : state.userEvent,
-    eventId : 1,
+    eventId : 2,
   }
 }
 
