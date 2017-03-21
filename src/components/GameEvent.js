@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions } from 'react-native'
-import { Card, CardItem, Button, Content, Container, Header, Left } from 'native-base'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -82,6 +82,13 @@ class GameEvent extends React.Component {
               <Text style={{color: '#FFFFFF'}}> <Icon name='arrow-back' /> Back </Text>
             </Button>
           </Left>
+          <Right>
+            <Button
+              onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
+              style={{backgroundColor: '#6fe6e2', alignSelf: 'center'}}>
+                <Text>Scan Nearby Player</Text>
+            </Button>
+          </Right>
         </Header>
         <Content style={{height: height}}>
           <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}>
@@ -90,19 +97,16 @@ class GameEvent extends React.Component {
             <Text>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text></Text>
-            <TouchableOpacity onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}>
-              <View style={{backgroundColor: '#6fe6e2'}}>
-                <Text>Scan Nearby Player</Text>
-              </View>
-            </TouchableOpacity>
             <Text></Text>
-            <Text>User Nearby</Text>
-            {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
-              return (
-                <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
-              )
-              })
-            }
+            <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
+              <ScrollView>
+                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
+                  return (
+                    <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
+                  )
+                  })
+                }
+              </ScrollView>
             <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>Quest List</Text>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
