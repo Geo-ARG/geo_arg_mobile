@@ -22,72 +22,62 @@ class ListEvent extends Component {
     this.props.fetchEvents()
   }
 
-
-
   render () {
     return (
       <Container>
-          <View style={styles.container}>
-              <Image style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
-                  source={require('../assets/bglistevent.jpg')}/>
-                <View style={styles.listevent}>
-                  <Carousel
-                       delay={5000}
-                       style={this.state.size}
-                       bullets={true}>
-                       { this.props.events.length !== 0 ?
-                         this.props.events.map((listevent, index) => {
-                           return (
-                             <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'1.5%', height: '80%'}}>
-                               <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist.jpg')} />
-                               <View style={{position:'absolute', alignItems: 'center', marginTop: "10%",  backgroundColor: 'white'}}>
-                                   <Text>Event Name: {listevent.title}</Text>
-                                   <Text>Task: {listevent.description}</Text>
-                                   <Text>Date: {listevent.date.toString().slice(0,10)}</Text>
-                                   <Text>Place: {listevent.place}</Text>
-                                   <Text>Point: {listevent.eventScore}</Text>
-                               </View>
+        <View style={styles.container}>
+          <Image style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
+          source={require('../assets/bglistevent.jpg')}/>
+        <View style={styles.listevent}>
+          <Carousel
+            delay={5000}
+            style={this.state.size}
+            bullets={true}>
+            { this.props.events.length !== 0 ?
+              this.props.events.map((listevent, index) => {
+                return (
+                  <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'1.5%', height: '80%'}}>
+                    <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist.jpg')} />
+                    <View style={{position:'absolute', alignItems: 'center', marginTop: "10%",  backgroundColor: 'white'}}>
+                      <Text>Event Name: {listevent.title}</Text>
+                      <Text>Task: {listevent.description}</Text>
+                      <Text>Date: {listevent.date.toString().slice(0,10)}</Text>
+                      <Text>Place: {listevent.place}</Text>
+                      <Text>Point: {listevent.eventScore}</Text>
+                    </View>
 
-                                 <View style={styles.buttonLogin}>
-                                  <Button onPress={()=>{
-                                      this.props.joinGame(listevent)
-                                      this.props.navigator.push({page: 'game'})
-                                    }}>
-                                      <Text style={{color: 'white', marginRight: '10%', fontSize: 20, alignItems: 'center'}}>Join Now</Text>
-                                  </Button>
-                                 </View>
-                             </View>
-                           )
-                         })
-                         : <View></View> }
-                   </Carousel>
-                </View>
+                    <View style={styles.buttonLogin}>
+                      <Button onPress={()=>{
+                          this.props.joinGame(listevent)
+                          this.props.navigator.push({page: 'game'})
+                        }}>
+                        <Text style={{color: 'white', marginRight: '10%', fontSize: 20, alignItems: 'center'}}>Join Now</Text>
+                      </Button>
+                    </View>
+                  </View>
+                )
+              })
+              : <View></View> }
+            </Carousel>
           </View>
-          <Footer>
-             <FooterTab style={{backgroundColor:'rgba(71, 96, 90, 0.89)',}}>
-               <Button onPress={() =>null }>
-                 {iconback}
-               </Button>
-               <Button>
-                 {iconhome}
-               </Button>
-               <Button onPress={() => null}>
-                 {iconinfo}
-               </Button>
-             </FooterTab>
-           </Footer>
-     </Container>
+        </View>
+        <Footer>
+          <FooterTab style={{backgroundColor:'rgba(71, 96, 90, 0.89)',}}>
+            <Button onPress={() =>null }>
+              {iconback}
+            </Button>
+            <Button>
+              {iconhome}
+            </Button>
+            <Button onPress={() => null}>
+              {iconinfo}
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
   }
 }
-// onPress={()=> {
-//   console.log(this.props);
-//   this.props.navigator.push({
-//     page: 'game'
-//   })
-//
-// }}
-/// this.props.joinGame(listevent)
 
 var styles = StyleSheet.create({
   container: {
@@ -99,12 +89,12 @@ var styles = StyleSheet.create({
     marginBottom: '15%'
   },
   buttonLogin:{
-     position: 'absolute',
-     width: width,
-     bottom: width-370,
-     flexDirection: 'row',
-     justifyContent: 'center',
-     alignItems: 'center'
+    position: 'absolute',
+    width: width,
+    bottom: width-370,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   signInButton: {
     height: 60,
