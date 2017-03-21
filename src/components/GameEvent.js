@@ -2,7 +2,7 @@ import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, wathchLocation, scanNearby } from '../actions'
+import { sendLocation, wathchLocation, scanNearby, fetchQuestList } from '../actions'
 
 class GameEvent extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class GameEvent extends React.Component {
   }
 
   componentDidMount(){
+    this.props.fetchQuestList(this.props.userId, this.props.eventId)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         if (this.props.location.locationId === 'Unknown'){
@@ -67,12 +68,14 @@ class GameEvent extends React.Component {
 const mapStateToProps = state => {
   return {
     location : state.location,
-    userId : state.userId
+    userId : state.userId,
+    userEvent : state.userevent,
+    eventId : 1
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, wathchLocation, scanNearby}, dispatch)
+  return bindActionCreators({sendLocation, wathchLocation, scanNearby, fetchQuestList}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)
