@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
-import { Card, CardItem, Button, Content, Container, Header, Left, Right } from 'native-base'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer } from '../actions'
@@ -17,7 +18,7 @@ class GameEvent extends React.Component {
       error: '',
       answerMode: false,
       userEventId: '',
-      userAnswer: ''
+      userAnswer: '',
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -91,12 +92,13 @@ class GameEvent extends React.Component {
         </Header>
         <Content style={{height: height}}>
           <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}>
-            <Text style={{ fontSize: 30}}>GAME EVENT</Text>
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+              <Progress.Pie progress={this.props.progress} size={80} />
+              <Text style={{ fontSize: 30, marginLeft: 10}}>GAME EVENT</Text>
+            </View>
             <Text>Latitude: {this.state.latitude}</Text>
             <Text>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-            <Text></Text>
-            <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
               <ScrollView>
                 {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
@@ -151,6 +153,7 @@ const mapStateToProps = state => {
     location : state.location,
     userId : state.userId,
     userEvent : state.userEvent,
+    progress : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
     eventId : state.eventData > 1 ? state.eventData.id : 2,
   }
 }
