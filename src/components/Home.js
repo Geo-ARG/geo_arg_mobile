@@ -39,11 +39,8 @@ var styles = {
 export default class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      size: {width, height: height}
-    }
   }
-
+  
   render() {
     BackAndroid.addEventListener('LockBack', function() {
       return true;

@@ -13,9 +13,6 @@ const iconback = (<Icon name="fast-rewind" size={30} color="white" />)
 class ListEvent extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      size: {width, height: height * 0.85}
-    }
   }
 
   componentDidMount () {
