@@ -1,9 +1,12 @@
 import React from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
-import { Card, CardItem } from 'native-base'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right } from 'native-base'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, wathchLocation, scanNearby, fetchQuestList } from '../actions'
+import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer } from '../actions'
+
+const {height, width} = Dimensions.get('window');
 
 class GameEvent extends React.Component {
   constructor(props) {
@@ -12,7 +15,37 @@ class GameEvent extends React.Component {
       latitude: 'Unknown',
       longitude: 'Unknown',
       error: '',
+      answerMode: false,
+      userEventId: '',
+      userAnswer: ''
     };
+    this.handleVerification = this.handleVerification.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(){
+    this.setState({answerMode: false})
+    console.log(this.state.userAnswer);
+    this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
+  }
+
+  handleVerification(quest){
+    switch (quest.Quest.type) {
+      case 'Text':
+        this.setState({
+          answerMode: true,
+          userEventId: quest.id
+        })
+        break;
+      case 'Coordinate':
+          //send state user locations
+        break;
+      case 'Photo':
+          //take foto
+        break;
+      default:
+        return
+    }
   }
 
   componentDidMount(){
@@ -22,7 +55,7 @@ class GameEvent extends React.Component {
         if (this.props.location.locationId === 'Unknown'){
           this.props.sendLocation(position.coords, this.props.userId)
         } else {
-          this.props.wathchLocation(position.coords, this.props.location.locationId)
+          this.props.watchLocation(position.coords, this.props.location.locationId)
         }
         this.setState({
           latitude: position.coords.latitude,
@@ -41,45 +74,80 @@ class GameEvent extends React.Component {
 
   render(){
     return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>GAME EVENT</Text>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-        <Text></Text>
-        <TouchableOpacity onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}>
-          <View style={{backgroundColor: '#6fe6e2'}}>
-            <Text>Scan Nearby Player</Text>
+      <Container style={{backgroundColor: '#F5F5F5'}}>
+        <Header style={{backgroundColor: '#2a3d8e', width: '100%', height:height * 0.1}}>
+          <Left>
+            <Button
+              onPress={() => this.props.navigator.pop()}>
+              <Text style={{color: '#FFFFFF'}}> <Icon name='arrow-back' /> Back </Text>
+            </Button>
+          </Left>
+          <Right>
+            <Button
+              onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
+              style={{backgroundColor: '#6fe6e2', alignSelf: 'center'}}>
+                <Text>Scan Nearby Player</Text>
+            </Button>
+          </Right>
+        </Header>
+        <Content style={{height: height}}>
+          <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}>
+            <Text style={{ fontSize: 30}}>GAME EVENT</Text>
+            <Text>Latitude: {this.state.latitude}</Text>
+            <Text>Longitude: {this.state.longitude}</Text>
+            {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+            <Text></Text>
+            <Text></Text>
+            <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
+              <ScrollView>
+                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
+                  return (
+                    <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
+                  )
+                  })
+                }
+              </ScrollView>
+            <Text></Text>
+            <Text style={{fontSize: 25, fontWeight: 'bold'}}>Quest List</Text>
+              {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
+                let input = null
+                if (quest.id === this.state.userEventId && this.state.answerMode){
+                  input = (
+                    <TextInput
+                      style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                      onChangeText={userAnswer => this.setState({userAnswer})}
+                      value={this.state.userAnswer}
+                      maxLength={25}
+                      blurOnSubmit={true}
+                      autoFocus={true}
+                      onSubmitEditing={this.handleSubmit}
+                      onBlur={() => this.setState({answerMode: false})}
+                      returnKeyType={'send'}
+                    />
+                  )
+                }
+                return (
+                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, paddingTop: 0, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
+                    <TouchableOpacity onPress={() => this.handleVerification(quest)}>
+                      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{color: '#FFFFFF'}}>{quest.Quest.completion} </Text>
+                        <Text style={{color: '#FFFFFF'}}>Title : {quest.Quest.title} </Text>
+                        <Text style={{color: '#FFFFFF'}}>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    {input}
+                  </View>
+                )
+              })}
           </View>
-        </TouchableOpacity>
-        <Text></Text>
-        <Text>User Nearby</Text>
-        {this.props.location < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
-          return (
-            <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
-          )
-          })
-        }
-        <Text>Quest List</Text>
-          {this.props.userEvent < 1 ? null : this.props.userEvent.map((quest, index) => {
-            console.log(quest);
-            return (
-              <TouchableOpacity key={index}>
-                <View style={{flexDirection: 'row', flexWrap: 'wrap', height: 30}}>
-                  <Text>{quest.Quest.completion}</Text>
-                  <Text>{quest.Quest.title}</Text>
-                  <Text>{quest.Quest.task}</Text>
-                  <Text>{quest.Quest.type}</Text>
-                </View>
-              </TouchableOpacity>
-            )
-          })}
-      </View>
+        </Content>
+      </Container>
     );
   }
 }
 
 const mapStateToProps = state => {
+  console.log(state.eventData);
   return {
     location : state.location,
     userId : state.userId,
@@ -89,7 +157,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, wathchLocation, scanNearby, fetchQuestList}, dispatch)
+  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)

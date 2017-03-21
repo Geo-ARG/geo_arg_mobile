@@ -14,7 +14,7 @@ class ListEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      size: {width, height}
+      size: {width, height: height * 0.85}
     }
   }
 
@@ -25,7 +25,7 @@ class ListEvent extends Component {
   render () {
     return (
       <Container>
-        <Header>
+        <Header style={{height: height * 0.1}}>
           <Left>
             <Button
               transparent
@@ -36,7 +36,7 @@ class ListEvent extends Component {
             </Button>
           </Left>
         </Header>
-        <Content>
+        <Content style={{height: height * 0.9}}>
           <View style={styles.container}>
             <Image
               style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
@@ -52,17 +52,17 @@ class ListEvent extends Component {
                   ?
                   this.props.events.map((listevent, index) => {
                     return (
-                      <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'1.5%', height: '80%'}}>
+                      <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'0%', height: '90%'}}>
                         <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist1.jpg')} />
-                        <View style={{position:'absolute', alignItems: 'center', marginTop: "10%",  backgroundColor: 'white'}}>
+                        <View style={{position:'absolute', alignItems: 'center', marginTop: "0%",  backgroundColor: 'white'}}>
                           <Text>Event Name: {listevent.title}</Text>
                           <Text>Task: {listevent.description}</Text>
                           <Text>Date: {listevent.date.toString().slice(0,10)}</Text>
                           <Text>Place: {listevent.place}</Text>
                           <Text>Point: {listevent.eventScore}</Text>
                         </View>
-                        <View style={styles.buttonLogin}>
-                          <Button onPress={()=>{
+                        <View>
+                          <Button style={styles.buttonLogin} onPress={()=>{
                               this.props.joinGame(listevent)
                               this.props.navigator.push({page: 'game'})
                             }}>
@@ -79,25 +79,12 @@ class ListEvent extends Component {
             </View>
           </View>
         </Content>
-        <Footer>
-          <FooterTab style={{backgroundColor:'rgba(71, 96, 90, 0.89)',}}>
-            <Button onPress={() =>null }>
-              {iconback}
-            </Button>
-            <Button>
-              {iconhome}
-            </Button>
-            <Button onPress={() => null}>
-              {iconinfo}
-            </Button>
-          </FooterTab>
-        </Footer>
       </Container>
     )
   }
 }
 
-var styles = StyleSheet.create({
+var styles = {
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -109,7 +96,7 @@ var styles = StyleSheet.create({
   buttonLogin:{
     position: 'absolute',
     width: width,
-    bottom: width-370,
+    bottom: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
@@ -124,7 +111,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+}
 
 
 const mapStateToProps = (state) => {

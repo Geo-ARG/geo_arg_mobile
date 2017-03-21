@@ -18,6 +18,12 @@ export const joinGame = (eventData) => {
   }
 }
 
+export const checkAnswer = (userEventId, userAnswer) => {
+  // return (dispatch) => {
+  //   fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/quests/useranswer`)
+  // }
+}
+
 export const scanNearby = (latitude, longitude) => {
   let body =  {
     latitude: latitude,
@@ -61,7 +67,7 @@ export const sendLocation = (coords, userId) => {
   }
 }
 
-export const wathchLocation = (coords, locationId) => {
+export const watchLocation = (coords, locationId) => {
   let body = {
     latitude: coords.latitude,
     longitude: coords.longitude

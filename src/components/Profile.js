@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class Profile extends React.Component {
   render () {
     return (
-      <Container>
+      <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header>
           <Left>
             <Button
