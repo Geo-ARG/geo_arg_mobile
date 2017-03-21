@@ -92,39 +92,44 @@ export default class Login extends Component {
     })
     return (
       <View style={styles.container} onLayout={this._onLayoutDidChange}>
-            <Carousel
-               delay={5000}
-               style={this.state.size}
-               autoplay
-               bullets={true}>
-             <Image style={{flex: 1, width:'100%', height:'100%'}}
-               source={require('../assets/1.jpg')} />
-             <Image style={{flex: 1, width:'100%', height:'100%'}}
-               source={require('../assets/2.jpg')}/>
-             <Image style={{flex: 1, width:'100%', height:'100%'}}
-               source={require('../assets/3.jpg')}/>
-           </Carousel>
-           <Image
-               source={require('../assets/logo.png')}
-               style={{
-                 position:'absolute',
-                 flexDirection: 'row'
-               }}
-           />
-           <View style={styles.buttonLogin}>
-              <TouchableHighlight
-                  style={styles.signInButton}
-                  underlayColor='#1E90FF'
-                  onPress={this.loginForm}>
-                <Text>Goto Game</Text>
-              </TouchableHighlight>
-            </View>
+        <Carousel
+           delay={5000}
+           style={this.state.size}
+           autoplay
+           bullets={true}
+        >
+          <Image
+            style={{flex: 1, width:'100%', height:'100%'}}
+            source={require('../assets/1.jpg')}
+          />
+          <Image
+            style={{flex: 1, width:'100%', height:'100%'}}
+            source={require('../assets/2.jpg')}
+          />
+          <Image
+            style={{flex: 1, width:'100%', height:'100%'}}
+            source={require('../assets/3.jpg')}
+          />
+        </Carousel>
+        <Image
+          source={require('../assets/logo.png')}
+          style={{
+            position:'absolute',
+            flexDirection: 'row'
+          }}
+        />
+        <View style={styles.buttonLogin}>
+          <TouchableHighlight
+              style={styles.signInButton}
+              underlayColor='#1E90FF'
+              onPress={this.loginForm}>
+            <Text>Goto Game</Text>
+          </TouchableHighlight>
         </View>
-        )
-    }
-
+      </View>
+    )
+  }
 }
-
 
 var styles = StyleSheet.create({
   container:{

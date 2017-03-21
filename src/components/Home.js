@@ -37,15 +37,30 @@ export default class Home extends Component {
               />
           </View>
 
-          <Button block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}>
+          <Button
+            block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}
+            onPress={() => this.props.navigator.push({
+              page: 'event'
+            })}
+          >
             <Text>List Event</Text>
             <Icon name="event" />
           </Button>
-          <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+          <Button
+            block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            onPress={() => this.props.navigator.push({
+              page: 'map'
+            })}
+          >
             <Text>Event on Maps</Text>
             <Icon name="add-location" />
           </Button>
-          <Button block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}>
+          <Button
+            block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            onPress={() => this.props.navigator.push({
+              page: 'event'
+            })}
+          >
             <Text>My Profile</Text>
             <Icon name="account-circle" />
           </Button>
