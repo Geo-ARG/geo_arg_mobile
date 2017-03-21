@@ -12,12 +12,13 @@ class GameEvent extends React.Component {
       latitude: 'Unknown',
       longitude: 'Unknown',
       error: '',
+      answerMode: 'false'
     };
     this.handleVerification = this.handleVerification.bind(this)
   }
 
-  handleVerification(){
-    console.log('verify');
+  handleVerification(quest){
+    console.log(quest);
   }
 
   componentDidMount(){
@@ -65,15 +66,15 @@ class GameEvent extends React.Component {
           )
           })
         }
+        <Text></Text>
         <Text>Quest List</Text>
           {this.props.userEvent < 1 ? null : this.props.userEvent.map((quest, index) => {
             return (
-              <TouchableOpacity key={index} onPress={this.handleVerification}>
-                <View style={{flexDirection: 'row', flexWrap: 'wrap', height: 30}}>
-                  <Text>{quest.Quest.completion}</Text>
-                  <Text>{quest.Quest.title}</Text>
-                  <Text>{quest.Quest.task}</Text>
-                  <Text>{quest.Quest.type}</Text>
+              <TouchableOpacity key={index} onPress={() => this.handleVerification(quest)}>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                  <Text>{quest.Quest.completion} </Text>
+                  <Text>Title : {quest.Quest.title} </Text>
+                  <Text>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
                 </View>
               </TouchableOpacity>
             )
