@@ -1,11 +1,11 @@
-import { CURRENTUE } from '../constants'
+import { QUEST_LIST } from '../constants'
 
-export default (state = 19, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case CURRENTUE:
-        return state
+    case QUEST_LIST:
+        return action.quests
       break;
     default:
-
+      return state
   }
 }
