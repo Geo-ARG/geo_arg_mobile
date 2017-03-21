@@ -1,4 +1,4 @@
-const eventDataReducer = (state = [] , action) => {
+export default (state = [] , action) => {
   switch (action.type) {
     case 'SET_EVENT':
       return action.payload
@@ -6,5 +6,3 @@ const eventDataReducer = (state = [] , action) => {
       return state
   }
 }
-
-export default eventDataReducer

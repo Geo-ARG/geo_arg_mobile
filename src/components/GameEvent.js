@@ -1,13 +1,13 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
+import { Card, CardItem } from 'native-base'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, wathchLocation, scanNearby } from '../actions'
+import { sendLocation, wathchLocation, scanNearby, fetchQuestList } from '../actions'
 
 class GameEvent extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       latitude: 'Unknown',
       longitude: 'Unknown',
@@ -16,12 +16,13 @@ class GameEvent extends React.Component {
   }
 
   componentDidMount(){
+    this.props.fetchQuestList(this.props.userId, this.props.eventId)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         if (this.props.location.locationId === 'Unknown'){
           this.props.sendLocation(position.coords, this.props.userId)
         } else {
-          this.props.wathchLocation(position.coords, this.props.locationId)
+          this.props.wathchLocation(position.coords, this.props.location.locationId)
         }
         this.setState({
           latitude: position.coords.latitude,
@@ -53,12 +54,26 @@ class GameEvent extends React.Component {
         </TouchableOpacity>
         <Text></Text>
         <Text>User Nearby</Text>
-        {this.props.location.nearbyUser.map((nearby, index) => {
+        {this.props.location < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
           return (
-            <Text key={index}>ID: {nearby.User[0].id} Username : {nearby.User[0].username}</Text>
+            <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
           )
           })
         }
+        <Text>Quest List</Text>
+          {this.props.userEvent < 1 ? null : this.props.userEvent.map((quest, index) => {
+            console.log(quest);
+            return (
+              <TouchableOpacity key={index}>
+                <View style={{flexDirection: 'row', flexWrap: 'wrap', height: 30}}>
+                  <Text>{quest.Quest.completion}</Text>
+                  <Text>{quest.Quest.title}</Text>
+                  <Text>{quest.Quest.task}</Text>
+                  <Text>{quest.Quest.type}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          })}
       </View>
     );
   }
@@ -67,12 +82,14 @@ class GameEvent extends React.Component {
 const mapStateToProps = state => {
   return {
     location : state.location,
-    userId : state.userId
+    userId : state.userId,
+    userEvent : state.userEvent,
+    eventId : 2,
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, wathchLocation, scanNearby}, dispatch)
+  return bindActionCreators({sendLocation, wathchLocation, scanNearby, fetchQuestList}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)

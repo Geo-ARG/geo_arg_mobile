@@ -1,8 +1,9 @@
 
-import { SEND_LOCATION, SCAN } from '../constants'
+import { SEND_LOCATION, SCAN, QUEST_LIST } from '../constants'
 
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
 export const updateNearby = (nearby) => ({type: SCAN, nearby })
+export const setQuestList = (quests) => ({type: QUEST_LIST, quests})
 export const setEvents = (events) => {
   return {
     type: 'SET_EVENTS',
@@ -54,18 +55,18 @@ export const sendLocation = (coords, userId) => {
       })
     .then(response => response.json())
     .then(location => {
-      return dispatch(updateLocation(location.id))
+      return dispatch(updateLocation(location.Locations.id))
     })
     .catch(error => {console.log('Request failed', error)});
   }
 }
 
 export const wathchLocation = (coords, locationId) => {
+  let body = {
+    latitude: coords.latitude,
+    longitude: coords.longitude
+  }
   return (dispatch) => {
-    let body = {
-      latitude: coords.latitude,
-      longitude: coords.longitude
-    }
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/${locationId}`, {
       method: 'PUT',
       headers: {
@@ -73,7 +74,20 @@ export const wathchLocation = (coords, locationId) => {
       },
       body: JSON.stringify(body)
     })
+    .then(response => response.json())
+    .then(data => {console.log(data);})
     .catch(err => {})
+  }
+}
+
+export const fetchQuestList = (UserId, EventId) => {
+  return (dispatch) => {
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
+      .then(response => response.json())
+      .then(quests => {
+        return dispatch(setQuestList(quests))
+      })
+      .catch(error => {console.log('Request failed', error)});
   }
 }
 
