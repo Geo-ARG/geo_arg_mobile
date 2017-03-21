@@ -61,7 +61,7 @@ export const sendLocation = (coords, userId) => {
   }
 }
 
-export const wathchLocation = (coords, locationId) => {
+export const watchLocation = (coords, locationId) => {
   let body = {
     latitude: coords.latitude,
     longitude: coords.longitude
