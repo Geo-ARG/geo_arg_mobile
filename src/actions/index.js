@@ -81,11 +81,8 @@ export const wathchLocation = (coords, locationId) => {
 }
 
 export const fetchQuestList = (UserId, EventId) => {
-  console.log(UserId, EventId);
   return (dispatch) => {
-    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`, {
-      method: 'GET'
-    })
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
       .then(response => response.json())
       .then(quests => {
         return dispatch(setQuestList(quests))
