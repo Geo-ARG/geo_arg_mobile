@@ -37,7 +37,7 @@ class GameEvent extends React.Component {
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(this.state.userEventId, `${this.state.latitude}, ${this.state.logitude}`)
+          this.props.checkAnswer(quest.id, `${this.state.latitude}, ${this.state.longitude}`)
         break;
       case 'Photo':
           //take foto
@@ -100,7 +100,7 @@ class GameEvent extends React.Component {
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
               <ScrollView>
                 {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
-                  return (
+                  return nearbyUser.Users[0].id === this.props.UserId ? null : (
                     <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
                   )
                   })
@@ -109,7 +109,7 @@ class GameEvent extends React.Component {
             <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>Quest List</Text>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
-                let input = null
+                let input
                 if (quest.id === this.state.userEventId && this.state.answerMode){
                   input = (
                     <TextInput
@@ -125,13 +125,14 @@ class GameEvent extends React.Component {
                     />
                   )
                 }
+                let complete = quest.completion ? {color: 'lightgreen'} : {color: '#FFFFFF'}
                 return (
                   <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, paddingTop: 0, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
                     <TouchableOpacity onPress={() => this.handleVerification(quest)}>
                       <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{color: '#FFFFFF'}}>{quest.Quest.completion} </Text>
-                        <Text style={{color: '#FFFFFF'}}>Title : {quest.Quest.title} </Text>
-                        <Text style={{color: '#FFFFFF'}}>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
+                        <Text style={complete}>{quest.completion} </Text>
+                        <Text style={complete}>Title : {quest.Quest.title} </Text>
+                        <Text style={complete}>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
                       </View>
                     </TouchableOpacity>
                     {input}
