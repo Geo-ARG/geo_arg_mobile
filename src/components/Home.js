@@ -36,7 +36,6 @@ export default class Home extends Component {
               source={require('../assets/logo.png')}
               />
           </View>
-
           <Button
             block warning style={{ marginBottom: 10, marginTop: 10, marginLeft: 10, marginRight: 10}}
             onPress={() => this.props.navigator.push({
@@ -58,17 +57,21 @@ export default class Home extends Component {
           <Button
             block warning style={{ marginBottom: 10, marginLeft: 10, marginRight: 10}}
             onPress={() => this.props.navigator.push({
-              page: 'event'
+              page: 'profile'
             })}
           >
             <Text>My Profile</Text>
             <Icon name="account-circle" />
           </Button>
-          <Button block warning style={{marginLeft: 10, marginRight: 10}}>
+          <Button 
+            block warning style={{marginLeft: 10, marginRight: 10}}
+            onPress={() => this.props.navigator.push({
+              page: 'help'
+            })}
+          >
             <Text>ARG-Help</Text>
             <Icon name="help" />
           </Button>
-
         </Content>
       </Container>
     );

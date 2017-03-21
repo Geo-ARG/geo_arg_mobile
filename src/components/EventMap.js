@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
 import MapView from 'react-native-maps'
 import { fetchEvents } from '../actions'
 
@@ -42,25 +42,33 @@ class EventMap extends React.Component {
 
   render(){
     return(
-      <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          region={this.state.region}
-          onRegionChange={this.onRegionChange}
-        >
-        {this.props.events.map((marker, index) => {
-          let coordinates = marker.geolocation.coordinates
-          return (
-            <MapView.Marker
-              key={index}
-              coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
-              title={marker.title}
-              image={require('../assets/pokeball.png')}
-              description={`${marker.place}, ${marker.description}`}/>
+      <View>
+        <View style={styles.container}>
+          <MapView
+            style={styles.map}
+            region={this.state.region}
+            onRegionChange={this.onRegionChange}
+          >
+          {this.props.events.map((marker, index) => {
+            let coordinates = marker.geolocation.coordinates
+            return (
+              <MapView.Marker
+                key={index}
+                coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
+                title={marker.title}
+                image={require('../assets/pokeball.png')}
+                description={`${marker.place}, ${marker.description}`}/>
+            )}
           )}
-        )}
-        </MapView>
-        <Text>EventMap</Text>
+          </MapView>
+          <Text>EventMap</Text>
+        </View>
+        <View>
+          <Button
+            title={'Back'}
+            onPress={() => this.props.navigator.pop()}
+          />
+        </View>
       </View>
     )
   }
