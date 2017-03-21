@@ -12,8 +12,8 @@ class GameEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      latitude: 'Unknown',
-      longitude: 'Unknown',
+      latitude: 0,
+      longitude: 0,
       error: '',
       answerMode: false,
       userEventId: '',

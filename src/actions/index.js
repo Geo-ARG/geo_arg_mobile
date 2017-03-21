@@ -20,6 +20,7 @@ export const joinGame = (eventData) => {
 }
 
 export const checkAnswer = (userEventId, userAnswer) => {
+  console.log('check');
   let body =  {
     userAnswer
   }
@@ -30,6 +31,7 @@ export const checkAnswer = (userEventId, userAnswer) => {
     })
       .then(response => response.json())
       .then(quest => {
+        console.log(quest);
         return dispatch(verifyQuest(quest))
       })
       .catch(error => {console.log('Request failed', error)});
@@ -51,6 +53,7 @@ export const scanNearby = (latitude, longitude) => {
       })
     .then(response => response.json())
     .then(nearby => {
+      console.log(nearby);
       return dispatch(updateNearby(nearby))
     })
     .catch(error => {console.log('Request failed', error)});
