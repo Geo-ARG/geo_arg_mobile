@@ -31,8 +31,8 @@ class ListEvent extends Component {
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon name='arrow-back' />
-              <Title>Back</Title>
+              <Icon size={25} color={'white'} name='arrow-back' />
+              <Title> Back</Title>
             </Button>
           </Left>
         </Header>

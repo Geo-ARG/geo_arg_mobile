@@ -1,26 +1,34 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+const {height, width} = Dimensions.get('window');
 
 export default class Help extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      size: {width, height: height}
+    }
+  }
+
   render () {
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header>
+        <Header style={{height: height * 0.1}}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon name='arrow-back' />
-              <Title>Back</Title>
+              <Icon size={25} color={'white'} name='arrow-back' />
+              <Title> Back</Title>
             </Button>
           </Left>
         </Header>
-        <Content>
+        <Content style={{height: height * 0.9}}>
           <View>
-            <Text>
+            <Text style={{marginRight: 20, marginLeft: 20, marginTop: 20, textAlign: 'justify'}}>
               Lorem ipsum dolor sit amet, vide discere petentium at has, an aliquid maiestatis vix. Et vocent appetere mea, offendit delicatissimi vel ea, duo unum nonumes electram ne. Cetero ornatus ex quo, vim ut dolorum scribentur. Ne semper aperiri dignissim vim. Duo harum mentitum ocurreret ad. Clita cotidieque ei usu.
               Eros eleifend concludaturque ex sed, cibo appetere ne eum. Qui clita vivendum dissentias te. No unum equidem fastidii sea, consul electram eu pri. Elitr homero expetenda ex has, tota iudicabit dignissim qui ad. Perpetua moderatius id vis, platonem pericula inciderint eos no.
               Mea an probo dicam. Mei debet disputando ne. No quo tamquam posidonium, pro id nibh labores. Ludus nostrud legimus nec ut, ne mea agam verterem, iracundia mnesarchum incorrupte cu quo. Ut solum deserunt gloriatur quo, sed commodo suavitate contentiones ex, percipit definitiones vix ei. Id vis quis quaeque, nam no wisi maiestatis necessitatibus.
