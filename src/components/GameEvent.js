@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
-import { Card, CardItem, Button, Content, Container, Header, Left, Right } from 'native-base'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image } from 'react-native'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer } from '../actions'
@@ -12,12 +13,12 @@ class GameEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      latitude: 'Unknown',
-      longitude: 'Unknown',
+      latitude: 0,
+      longitude: 0,
       error: '',
       answerMode: false,
       userEventId: '',
-      userAnswer: ''
+      userAnswer: '',
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,7 +38,7 @@ class GameEvent extends React.Component {
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(this.state.userEventId, `${this.state.latitude}, ${this.state.logitude}`)
+          this.props.checkAnswer(quest.id, `${this.state.latitude}, ${this.state.longitude}`)
         break;
       case 'Photo':
           //take foto
@@ -91,16 +92,17 @@ class GameEvent extends React.Component {
         </Header>
         <Content style={{height: height}}>
           <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}>
-            <Text style={{ fontSize: 30}}>GAME EVENT</Text>
+            <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+              <Progress.Pie progress={this.props.progress} size={80} />
+              <Text style={{ fontSize: 30, marginLeft: 10}}>GAME EVENT</Text>
+            </View>
             <Text>Latitude: {this.state.latitude}</Text>
             <Text>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-            <Text></Text>
-            <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
               <ScrollView>
                 {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
-                  return (
+                  return nearbyUser.Users[0].id === this.props.UserId ? null : (
                     <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
                   )
                   })
@@ -109,7 +111,7 @@ class GameEvent extends React.Component {
             <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>Quest List</Text>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
-                let input = null
+                let input
                 if (quest.id === this.state.userEventId && this.state.answerMode){
                   input = (
                     <TextInput
@@ -125,13 +127,16 @@ class GameEvent extends React.Component {
                     />
                   )
                 }
+                let complete = quest.completion ? {color: 'lightgreen'} : {color: '#FFFFFF'}
                 return (
-                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, paddingTop: 0, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
+                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
                     <TouchableOpacity onPress={() => this.handleVerification(quest)}>
-                      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{color: '#FFFFFF'}}>{quest.Quest.completion} </Text>
-                        <Text style={{color: '#FFFFFF'}}>Title : {quest.Quest.title} </Text>
-                        <Text style={{color: '#FFFFFF'}}>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
+                      <View style={{justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}>
+                        <View>
+                          <Text style={complete}>Title : {quest.Quest.title} </Text>
+                          <Text style={complete}>Description : {quest.Quest.task} </Text>
+                          <Text style={complete}>Type : {quest.Quest.type} </Text>
+                        </View>
                       </View>
                     </TouchableOpacity>
                     {input}
@@ -150,6 +155,7 @@ const mapStateToProps = state => {
     location : state.location,
     userId : state.userId,
     userEvent : state.userEvent,
+    progress : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
     eventId : state.eventData > 1 ? state.eventData.id : 2,
   }
 }

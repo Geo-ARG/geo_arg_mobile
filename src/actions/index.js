@@ -1,10 +1,10 @@
 
-import { SEND_LOCATION, SCAN, QUEST_LIST } from '../constants'
+import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST } from '../constants'
 
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
 export const updateNearby = (nearby) => ({type: SCAN, nearby })
 export const setQuestList = (quests) => ({type: QUEST_LIST, quests})
-export const verifyQuest = (quest) => ({type: VERIFY_QUEST})
+export const verifyQuest = (quest) => ({type: VERIFY_QUEST, quest})
 export const setEvents = (events) => {
   return {
     type: 'SET_EVENTS',
@@ -57,6 +57,7 @@ export const scanNearby = (latitude, longitude) => {
       })
     .then(response => response.json())
     .then(nearby => {
+      console.log(nearby);
       return dispatch(updateNearby(nearby))
     })
     .catch(error => {console.log('Request failed', error)});
