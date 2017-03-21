@@ -13,9 +13,6 @@ const iconback = (<Icon name="fast-rewind" size={30} color="white" />)
 class ListEvent extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      size: {width, height: height * 0.85}
-    }
   }
 
   componentDidMount () {
@@ -31,8 +28,8 @@ class ListEvent extends Component {
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon name='arrow-back' />
-              <Title>Back</Title>
+              <Icon size={25} color={'white'} name='arrow-back' />
+              <Title> Back</Title>
             </Button>
           </Left>
         </Header>

@@ -12,6 +12,12 @@ export const setEvents = (events) => {
   }
 }
 
+export const clearEvents = () => {
+  return {
+    type: 'CLEAR_EVENTS'
+  }
+}
+
 export const joinGame = (eventData) => {
   return {
     type: 'SET_EVENT',

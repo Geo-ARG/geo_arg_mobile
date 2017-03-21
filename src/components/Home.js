@@ -4,14 +4,43 @@ import { Container, Header, Title, Content, Button, Left, Right, Body } from 'na
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const {height, width} = Dimensions.get('window');
 
+var styles = {
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#15204C',
+  },
+  button: {
+    borderRadius:10,
+    backgroundColor: '#e6ffff',
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  messageBox: {
+    flex: 1,
+    marginTop: 10,
+    justifyContent: 'center',
+  },
+  badge: {
+    alignSelf: 'center',
+    height: 169,
+    width: 151,
+  },
+  headerIcon: {
+    alignSelf: 'center',
+    height: 60,
+    width: 60,
+    marginTop: 5
+  }
+}
+
 export default class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      size: {width, height: height * 0.85}
-    }
   }
-
+  
   render() {
     BackAndroid.addEventListener('LockBack', function() {
       return true;
@@ -30,7 +59,7 @@ export default class Home extends Component {
           </Body>
           <Right />
         </Header>
-        <Content style={{height: height * 0.9, backgroundColor: 'grey'}}>
+        <Content style={{height: height * 0.9, backgroundColor: '#009999'}}>
           <View style={styles.messageBox}>
             <Image
               style={styles.badge}
@@ -38,68 +67,43 @@ export default class Home extends Component {
             />
           </View>
           <Button
-            block warning style={{borderRadius:10, marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            block warning style={styles.button}
             onPress={() => this.props.navigator.push({
               page: 'event'
             })}
           >
-            <Text>List Event</Text>
-            <Icon name="event" />
+            <Text style={{fontSize: 20}}>Events </Text>
+            <Icon size={20} name="event" />
           </Button>
           <Button
-            block warning style={{borderRadius:10, marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            block warning style={styles.button}
             onPress={() => this.props.navigator.push({
               page: 'map'
             })}
           >
-            <Text>Event on Maps</Text>
-            <Icon name="add-location" />
+            <Text style={{fontSize: 20}}>Map </Text>
+            <Icon size={20} name="add-location" />
           </Button>
           <Button
-            block warning style={{borderRadius:10, marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            block warning style={styles.button}
             onPress={() => this.props.navigator.push({
               page: 'profile'
             })}
           >
-            <Text>My Profile</Text>
-            <Icon name="account-circle" />
+            <Text style={{fontSize: 20}}>My Profile </Text>
+            <Icon size={20} name="account-circle" />
           </Button>
           <Button
-            block warning style={{borderRadius:10, marginBottom: 10, marginLeft: 10, marginRight: 10}}
+            block warning style={styles.button}
             onPress={() => this.props.navigator.push({
               page: 'help'
             })}
           >
-            <Text>ARG-Help</Text>
-            <Icon name="help" />
+            <Text style={{fontSize: 20}}>How to Play </Text>
+            <Icon size={20} name="help" />
           </Button>
         </Content>
       </Container>
     );
   }
 }
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#15204C',
-  },
-  messageBox: {
-    flex: 1,
-    marginTop: 10,
-    justifyContent: 'center',
-  },
-  badge: {
-    alignSelf: 'center',
-    height: 169,
-    width: 151,
-  },
-  headerIcon: {
-    alignSelf: 'center',
-    height: 60,
-    width: 60,
-    marginTop: 5
-  }
-});
