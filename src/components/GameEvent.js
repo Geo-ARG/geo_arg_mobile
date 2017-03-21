@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
+import { Card, CardItem } from 'native-base'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { sendLocation, wathchLocation, scanNearby, fetchQuestList } from '../actions'
@@ -60,6 +61,18 @@ class GameEvent extends React.Component {
           })
         }
         <Text>Quest List</Text>
+          {this.props.userEvent < 1 ? null : this.props.userEvent.map((quest, index) => {
+            return (
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                  <Text>{quest.completion}</Text>
+                  <Text>{quest.title}</Text>
+                  <Text>{quest.task}</Text>
+                  <Text>{quest.type}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          })}
       </View>
     );
   }
@@ -69,8 +82,8 @@ const mapStateToProps = state => {
   return {
     location : state.location,
     userId : state.userId,
-    userEvent : state.userevent,
-    eventId : 1
+    userEvent : state.userEvent,
+    eventId : 1,
   }
 }
 
