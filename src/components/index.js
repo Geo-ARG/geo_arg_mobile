@@ -4,7 +4,7 @@ import GameEvent from './GameEvent'
 import Home from './Home'
 import ListEvent from './ListEvent'
 import Login from './Login'
-// import UserProfile from './UserProfile'
+// import Profile from './Profile'
 // import cadangan from './cadangan'
 export { Loading1, Loading2 } from './LoadingScreens'
 export { GameEvent, Home, Login, ListEvent, EventMap }
