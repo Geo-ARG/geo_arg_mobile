@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image } from 'react-native'
 import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
@@ -129,12 +129,14 @@ class GameEvent extends React.Component {
                 }
                 let complete = quest.completion ? {color: 'lightgreen'} : {color: '#FFFFFF'}
                 return (
-                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, paddingTop: 0, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
+                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
                     <TouchableOpacity onPress={() => this.handleVerification(quest)}>
-                      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={complete}>{quest.completion} </Text>
-                        <Text style={complete}>Title : {quest.Quest.title} </Text>
-                        <Text style={complete}>Description : {quest.Quest.task} Type : {quest.Quest.type}</Text>
+                      <View style={{justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}>
+                        <View>
+                          <Text style={complete}>Title : {quest.Quest.title} </Text>
+                          <Text style={complete}>Description : {quest.Quest.task} </Text>
+                          <Text style={complete}>Type : {quest.Quest.type} </Text>
+                        </View>
                       </View>
                     </TouchableOpacity>
                     {input}
