@@ -47,10 +47,10 @@ var styles = {
     flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginBottom:'0.3%', height: '90%'
   },
   eventsCardView: {
-    flex: 1, width: '100%', height: '100%'
+    flex: 1, width: '100%', height: '100%', marginTop: 5
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 50
+    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 60
   },
   listEventTitle: {
     fontSize: 30, color: '#FFF'

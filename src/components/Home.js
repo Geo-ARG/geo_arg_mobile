@@ -46,7 +46,7 @@ export default class Home extends Component {
       return true;
     })
     return (
-      <Container>
+      <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
           <Left>
             <Image
