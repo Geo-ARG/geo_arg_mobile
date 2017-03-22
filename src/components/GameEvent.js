@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId } from '../actions'
 
-
 const {height, width} = Dimensions.get('window');
 
 class GameEvent extends React.Component {
@@ -18,33 +17,32 @@ class GameEvent extends React.Component {
       longitude: 0,
       error: '',
       answerMode: false,
-      userEventId: '',
+      currentEventId: '',
       userAnswer: '',
       progressCircle: true,
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
   }
 
   handleSubmit(){
     this.setState({answerMode: false})
-    this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
+    this.props.checkAnswer(this.state.currentEventId, this.state.userAnswer)
   }
 
-  handleVerification(userEvent){
-    switch (userEvent.Quest.type) {
+  handleVerification(currentEvent){
+    switch (currentEvent.Quest.type) {
       case 'Text':
         this.setState({
           answerMode: true,
-          userEventId: userEvent.id
+          currentEventId: currentEvent.id
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(userEvent.id, this.props.location.locationId)
+          this.props.checkAnswer(currentEvent.id, this.props.location.locationId)
         break;
       case 'Photo':
-        this.props.setCameraId(userEvent.id)
+        this.props.setCameraId(currentEvent.id)
         this.props.navigator.push({page: 'cameraon'})
         break;
       default:
@@ -118,9 +116,9 @@ class GameEvent extends React.Component {
               </ScrollView>
             <Text></Text>
             <Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>Quest List</Text>
-              {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
+              {this.props.currentEvent.length < 1 ? null : this.props.currentEvent.map((quest, index) => {
                 let input
-                if (quest.id === this.state.userEventId && this.state.answerMode){
+                if (quest.id === this.state.currentEventId && this.state.answerMode){
                   input = (
                     <TextInput
                       style={{height: 40, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white'}}
@@ -159,12 +157,13 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.profileUser, state.eventData);
   return {
-    location : state.location,
-    userId : state.userId,
-    userEvent : state.userEvent,
-    progress : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
-    eventId : state.eventData > 1 ? state.eventData.id : 2,
+    location     : state.location,
+    userId       : state.profileUser.id,
+    currentEvent    : state.currentEvent,
+    // progress  : state.currentEvent.length === 0 ? 0 : state.currentEvent.filter(x => x.completion).length / state.currentEvent.length,
+    eventId      : state.eventData
   }
 }
 

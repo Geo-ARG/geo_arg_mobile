@@ -17,14 +17,14 @@ class Profile extends React.Component {
   }
 
   componentWillMount(){
-      var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
-      console.log(idUserLogin);
-      this.props.getUserEventByIdUser(idUserLogin)
+      // var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
+      // console.log(idUserLogin);
+      // this.props.getUserEventByIdUser(idUserLogin)
   }
 
   render () {
-    console.log(this.props.listEventUser);
-    var hasil = JSON.parse(this.props.listUserLogin)
+    // console.log(this.props.listEventUser);
+    // var hasil = JSON.parse(this.props.listUserLogin)
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -40,8 +40,6 @@ class Profile extends React.Component {
         </Header>
         <Content style={{height: height * 0.9}}>
           <View>
-            <Text>{hasil.User.id}</Text>
-              <Text>{hasil.User.username}</Text>
           </View>
         </Content>
       </Container>
@@ -52,8 +50,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    listEventUser: state.listEventUser,
-    listUserLogin: state.listUserLogin
+    listEventUser: state.profileUser.userEvent,
+    listUserLogin: state.profileUser.userData
   }
 }
 

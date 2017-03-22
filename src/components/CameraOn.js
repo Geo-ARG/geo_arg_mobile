@@ -1,14 +1,5 @@
-'use strict';
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-  BackAndroid
-} from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableHighlight, View, BackAndroid } from 'react-native';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Camera from 'react-native-camera';
@@ -16,8 +7,27 @@ import { RNS3 } from 'react-native-aws3'
 import { bindActionCreators } from 'redux'
 import { updateAnswerPhoto } from  '../actions'
 
-class CameraOn extends Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: 'orange',
+    borderRadius: 5,
+    color: 'white',
+    padding: 10,
+    margin: 40
+  }
+})
 
+class CameraOn extends Component {
   render() {
     BackAndroid.addEventListener('hardwareBackPress', ()=> {
       this.props.navigator.pop()
@@ -60,7 +70,7 @@ class CameraOn extends Component {
           if (response.status !== 201) {
             throw new Error('Failed to upload image to S3', response);
           }
-          
+
           this.props.updateAnswerPhoto(this.props.questCameraId, response.body.postResponse.location)
           if(response.body.postResponse.location){
               this.props.navigator.pop()
@@ -70,26 +80,6 @@ class CameraOn extends Component {
       .catch(err => console.error(err));
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: 'orange',
-    borderRadius: 5,
-    color: 'white',
-    padding: 10,
-    margin: 40
-  }
-})
 
 const mapStateToProps = state => {
   return  {
