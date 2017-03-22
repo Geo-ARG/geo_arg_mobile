@@ -1,15 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  Dimensions,
-  BackAndroid,
-  TouchableHighlight,
-  AsyncStorage
-} from 'react-native';
+import React, { Component } from 'react';
+import { connect} from 'react-redux'
+import { StyleSheet, View, Image, Text, Dimensions, BackAndroid, TouchableHighlight, AsyncStorage } from 'react-native';
 import Carousel from 'react-native-looped-carousel'
 import Home from './'
 import { saveUserLogin, saveData } from '../actions'
@@ -70,7 +61,6 @@ class Login extends Component {
       email: '',
       size: { width, height }
     }
-    this.saveData = this.saveData.bind(this)
     this.loginForm = this.loginForm.bind(this)
   }
 
@@ -82,7 +72,7 @@ class Login extends Component {
   componentWillMount(){
     AsyncStorage.getItem('dataUser', (err, result) => {
       if (result) {
-        this.props.saveUserLogin(result)
+        this.props.saveUserLogin(JSON.parse(result))
         this.props.navigator.push({page: 'home'})
       }
     });
@@ -148,7 +138,7 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
   saveUserLogin: (dataUserLogin) => dispatch(saveUserLogin(dataUserLogin)),
-  saveData: () => dispatch(saveData(dataUserLogin))
+  saveData: (username, email) => dispatch(saveData(username, email))
 })
 
 export default connect(null, mapDispatchToProps)(Login)

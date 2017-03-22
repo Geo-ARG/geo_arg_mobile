@@ -9,7 +9,7 @@ import profileUserReducer from './profileUserReducer'
 const rootReducers = combineReducers({
   events        : listEventsReducer,
   location      : locationReducer,
-  eventData     : currentEventReducer,
+  currentEvent  : currentEventReducer,
   userEvent     : userEventReducer,
   questCameraId : questReducer,
   profileUser   : profileUserReducer,
