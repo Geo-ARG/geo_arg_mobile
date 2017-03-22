@@ -17,10 +17,7 @@ var styles = {
     height: height * 0.1
   },
   content: {
-    height: height * 0.9, justifyContent: 'center', paddingTop: 20
-  },
-  loading: {
-    height: height, width: width
+    height: height * 0.9, paddingTop: 0, marginTop: 0
   },
   backgroundImage:{
     flex: 1, width:'100%', height:'100%', position:'absolute'
@@ -33,6 +30,9 @@ var styles = {
   },
   carousel: {
     height: height * 0.87, width: width
+  },
+  loading: {
+    height: height * 0.9, width: width
   },
   gameEventButton:{
     width: width, height: height * 0.08, bottom: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
