@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 import MapView from 'react-native-maps'
-import { fetchEvents, clearEvents } from '../actions'
+import { fetchEvents } from '../actions'
 import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -42,10 +42,6 @@ class EventMap extends React.Component {
     this.props.fetchEvents()
   }
 
-  componentWillUnmount () {
-    this.props.clearEvents()
-  }
-
   render(){
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
@@ -60,29 +56,32 @@ class EventMap extends React.Component {
             </Button>
           </Left>
         </Header>
+
         <Content style={{height: height * 0.9}}>
-          {this.props.events.length < 1
-            ?
-            <Image style={styles.loading} source={require('../assets/loading.gif')} />
-            :
-            <MapView
-              style={styles.map}
-              region={this.state.region}
-              onRegionChange={this.onRegionChange}
-            >
-            {this.props.events.map((marker, index) => {
-              let coordinates = marker.geolocation.coordinates
-              return (
-                <MapView.Marker
-                  key={index}
-                  coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
-                  title={marker.title}
-                  image={require('../assets/pokeball.png')}
-                  description={`${marker.place}, ${marker.description}`}/>
-              )}
+          <MapView
+            style={styles.map}
+            region={this.state.region}
+            onRegionChange={this.onRegionChange}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            loadingEnabled={true}
+          >
+          {this.props.events.map((marker, index) => {
+            let coordinates = marker.geolocation.coordinates
+            return (
+              <MapView.Marker
+                key={index}
+                coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
+                title={marker.title}
+                image={require('../assets/pokeball.png')}
+                description={`${marker.place}, ${marker.description}`}/>
             )}
-            </MapView>
-          }
+          )}
+          </MapView>
+
+          <View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', top: 10, width: width,  padding: 20}}>
+            <Text>Find events here</Text>
+          </View>
         </Content>
       </Container>
     )
@@ -96,7 +95,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ fetchEvents, clearEvents }, dispatch)
+  return bindActionCreators({ fetchEvents }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventMap)
