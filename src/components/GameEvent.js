@@ -105,9 +105,9 @@ class GameEvent extends React.Component {
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
               <ScrollView>
-                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearbyUser, index) => {
-                  return nearbyUser.Users[0].id === this.props.UserId ? null : (
-                    <Text key={index}>ID: {nearbyUser.Users[0].id} Username : {nearbyUser.Users[0].username}</Text>
+                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
+                  return nearby.Users[0].id === this.props.UserId ? null : (
+                    <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
                   )
                   })
                 }
