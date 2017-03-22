@@ -41,7 +41,10 @@ export const checkAnswer = (userEventId, userAnswer) => {
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/${userEventId}/quests/useranswer`, {
       method: 'PUT',
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      },
     })
       .then(response => response.json())
       .then(quest => {
