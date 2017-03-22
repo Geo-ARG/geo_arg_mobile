@@ -12,6 +12,18 @@ export const joinGame       = (eventData)       => ({type: SET_EVENT, payload: e
 export const showEventUser  = (resultEventUser) => ({type: EVENT_DATA_PROFILE, payload: resultEventUser})
 export const saveUserLogin  = (dataUserLogin)   => ({type: SAVE_USER_LOGIN, payload: dataUserLogin})
 
+export const createGame = (UserId, EventId) => {
+  return (dispatch) => {
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({UserId, EventId})
+    }).catch(error => {console.log('Request failed', error)});
+  }
+}
+
 export const saveData = (username, email) => {
   return (dispatch) => {
     if (username != "") {
@@ -114,7 +126,6 @@ export const watchLocation = (coords, locationId) => {
 }
 
 export const fetchQuestList = (UserId, EventId) => {
-  console.log(UserId, EventId);
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
       .then(response => response.json())
