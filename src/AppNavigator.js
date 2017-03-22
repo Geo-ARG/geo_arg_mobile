@@ -4,7 +4,7 @@ import { Navigator } from 'react-native';
 
 import store from './store/storeConfig'
 
-import { Loading1, Loading2, Home, Login, GameEvent, ListEvent, EventMap, Profile, Help } from './components'
+import { Loading1, Loading2, Home, Login, GameEvent, ListEvent, EventMap, Profile, Help, CameraOn } from './components'
 
 export default class AppNavigator extends React.Component {
   sceneRender(route, navigator){
@@ -25,6 +25,8 @@ export default class AppNavigator extends React.Component {
         return <Profile navigator={navigator}/>
       case 'help':
         return <Help navigator={navigator}/>
+      case 'cameraon':
+        return <CameraOn navigator={navigator}/>
       default:
         return <Loading1 navigator={navigator}/>
     }
@@ -33,7 +35,7 @@ export default class AppNavigator extends React.Component {
     return (
       <Provider store={store}>
         <Navigator
-          initialRoute={{page: 'home'}}
+          initialRoute={{page: 'event'}}
           renderScene= {this.sceneRender.bind(this)}
         />
       </Provider>

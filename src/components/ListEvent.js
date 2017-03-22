@@ -13,6 +13,9 @@ const iconback = (<Icon name="fast-rewind" size={30} color="white" />)
 class ListEvent extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      size: { width, height }
+    }
   }
 
   componentDidMount () {
@@ -41,7 +44,7 @@ class ListEvent extends Component {
             />
             <View style={styles.listevent}>
               <Carousel
-                delay={5000}
+                delay={6000}
                 style={this.state.size}
                 bullets={true}
               >
@@ -49,7 +52,7 @@ class ListEvent extends Component {
                   ?
                   this.props.events.map((listevent, index) => {
                     return (
-                      <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'0%', height: '90%'}}>
+                      <View key={index} style={{flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'0.1%', height: '85%'}}>
                         <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist1.jpg')} />
                         <View style={{position:'absolute', alignItems: 'center', marginTop: "0%",  backgroundColor: 'white'}}>
                           <Text>Event Name: {listevent.title}</Text>
@@ -59,7 +62,7 @@ class ListEvent extends Component {
                           <Text>Point: {listevent.eventScore}</Text>
                         </View>
                         <View>
-                          <Button style={styles.buttonLogin} onPress={()=>{
+                          <Button style={styles.joinNow} onPress={()=>{
                               this.props.joinGame(listevent)
                               this.props.navigator.push({page: 'game'})
                             }}>
@@ -88,25 +91,15 @@ var styles = {
     marginTop: 0
   },
   listevent:{
-    marginBottom: '15%'
+    height: height*86.3/100
   },
-  buttonLogin:{
+  joinNow:{
     position: 'absolute',
     width: width,
     bottom: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  signInButton: {
-    height: 60,
-    width: width,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgb(138, 208, 49)',
-    margin: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
   }
 }
 

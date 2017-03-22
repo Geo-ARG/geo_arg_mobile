@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer } from '../actions'
 
+
 const {height, width} = Dimensions.get('window');
 
 class GameEvent extends React.Component {
@@ -22,6 +23,7 @@ class GameEvent extends React.Component {
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
   }
 
   handleSubmit(){
@@ -41,7 +43,8 @@ class GameEvent extends React.Component {
           this.props.checkAnswer(quest.id, `${this.state.latitude}, ${this.state.longitude}`)
         break;
       case 'Photo':
-          //take foto
+        console.log("masuk");
+        this.props.navigator.push({page: 'cameraon'})
         break;
       default:
         return
