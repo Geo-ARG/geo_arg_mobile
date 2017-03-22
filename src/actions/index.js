@@ -1,10 +1,12 @@
 
-import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST } from '../constants'
+import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST, SELECT_QUEST } from '../constants'
 
 export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
 export const updateNearby = (nearby) => ({type: SCAN, nearby })
 export const setQuestList = (quests) => ({type: QUEST_LIST, quests})
 export const verifyQuest = (quest) => ({type: VERIFY_QUEST, quest})
+export const setCameraId = (usereventid) => ({type: SELECT_QUEST, usereventid})
+
 export const setEvents = (events) => {
   return {
     type: 'SET_EVENTS',
@@ -126,5 +128,16 @@ export const fetchEvents = () => {
         return dispatch(setEvents(resp))
       })
       .catch(err => {})
+  }
+}
+
+
+export const updateAnswerPhoto = (idevent, answeruser) => {
+  return (dispatch) => {
+    fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/'+idevent, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({userAnswer: answeruser})
+    })
   }
 }

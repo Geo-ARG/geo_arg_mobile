@@ -9,12 +9,14 @@ import {
   View,
   BackAndroid
 } from 'react-native';
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3'
+import { bindActionCreators } from 'redux'
+import { updateAnswerPhoto } from  '../actions'
 
-
-export default class CameraOn extends Component {
+class CameraOn extends Component {
 
   render() {
     BackAndroid.addEventListener('hardwareBackPress', ()=> {
@@ -41,8 +43,6 @@ export default class CameraOn extends Component {
       .then((data) => {
         var nameImage = new Date()
         var imageKey = Math.floor(Math.random()*100)
-        console.log("Test");
-        console.log(data)
         const file = {
           uri: data.path,
           name: `${nameImage}${imageKey/3}.jpg`,
@@ -60,7 +60,9 @@ export default class CameraOn extends Component {
           if (response.status !== 201) {
             throw new Error('Failed to upload image to S3', response);
           }
-          console.log('*** BODY ***', response.body);
+          console.log(this.props.questCameraId);
+          this.props.updateAnswerPhoto(this.props.questCameraId, response.body.postResponse.location)
+
         })
       })
       .catch(err => console.error(err));
@@ -86,3 +88,15 @@ const styles = StyleSheet.create({
     margin: 40
   }
 })
+
+const mapStateToProps = state => {
+  return  {
+    questCameraId : state.questCameraId
+  }
+}
+
+const mapDisPatchToProps = (dispatch) => {
+  return bindActionCreators({updateAnswerPhoto}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDisPatchToProps)(CameraOn)

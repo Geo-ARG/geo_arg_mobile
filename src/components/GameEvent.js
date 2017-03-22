@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer } from '../actions'
+import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId } from '../actions'
 
 
 const {height, width} = Dimensions.get('window');
@@ -31,18 +31,19 @@ class GameEvent extends React.Component {
     this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
   }
 
-  handleVerification(quest){
-    switch (quest.Quest.type) {
+  handleVerification(userEvent){
+    switch (userEvent.Quest.type) {
       case 'Text':
         this.setState({
           answerMode: true,
-          userEventId: quest.id
+          userEventId: userEvent.id
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(quest.id, `${this.state.latitude}, ${this.state.longitude}`)
+          this.props.checkAnswer(userEvent.id, `${this.state.latitude}, ${this.state.longitude}`)
         break;
       case 'Photo':
+        this.props.setCameraId(userEvent.id)
         this.props.navigator.push({page: 'cameraon'})
         break;
       default:
@@ -163,7 +164,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer}, dispatch)
+  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)
