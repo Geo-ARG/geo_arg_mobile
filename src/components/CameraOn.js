@@ -60,9 +60,11 @@ class CameraOn extends Component {
           if (response.status !== 201) {
             throw new Error('Failed to upload image to S3', response);
           }
-          console.log(this.props.questCameraId);
+          
           this.props.updateAnswerPhoto(this.props.questCameraId, response.body.postResponse.location)
-
+          if(response.body.postResponse.location){
+              this.props.navigator.pop()
+          }
         })
       })
       .catch(err => console.error(err));
