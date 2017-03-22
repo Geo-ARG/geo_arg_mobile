@@ -5,18 +5,18 @@ import userReducer from './userReducer'
 import eventDataReducer from './eventDataReducer'
 import userEventReducer from './userEventReducer'
 import questReducer from './questReducer'
-import eventDataProfile from './event_data_profile'
+import ProfileReducer from './profileReducer'
 import saveUserLogin from './save_user_login'
 
 const rootReducers = combineReducers({
-  events: EventsReducer,
-  location: locationReducer,
-  userId: userReducer,
-  eventData: eventDataReducer,
-  userEvent: userEventReducer,
+  events        : EventsReducer,
+  location      : locationReducer,
+  userId        : userReducer,
+  eventData     : eventDataReducer,
+  userEvent     : userEventReducer,
   questCameraId : questReducer,
-  listEventUser: eventDataProfile,
-  listUserLogin: saveUserLogin
+  profileUser   : ProfileReducer,
+  listUserLogin : saveUserLogin
 })
 
 export default rootReducers
