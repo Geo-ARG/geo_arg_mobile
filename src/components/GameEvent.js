@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId } from '../actions'
+import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame } from '../actions'
 
 const {height, width} = Dimensions.get('window');
 
@@ -48,6 +48,10 @@ class GameEvent extends React.Component {
       default:
         return
     }
+  }
+
+  componentWillMount(){
+    this.props.createGame(this.props.userId, this.props.currentEventId)
   }
 
   componentDidMount(){
@@ -157,6 +161,7 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.userEvent);
   return {
     location : state.location,
     userId : state.profileUser.userData.User.id,
@@ -167,7 +172,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId}, dispatch)
+  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)
