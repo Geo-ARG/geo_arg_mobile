@@ -6,6 +6,7 @@ import MapView from 'react-native-maps'
 import { fetchEvents, clearEvents } from '../actions'
 import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const {height, width} = Dimensions.get('window');
 
 const styles = {

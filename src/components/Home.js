@@ -14,7 +14,7 @@ var styles = {
   button: {
     borderRadius:10,
     backgroundColor: '#e6ffff',
-    marginBottom: 10,
+    marginTop: 25,
     marginLeft: 10,
     marginRight: 10
   },
@@ -40,7 +40,7 @@ export default class Home extends Component {
   constructor (props) {
     super(props)
   }
-  
+
   render() {
     BackAndroid.addEventListener('LockBack', function() {
       return true;

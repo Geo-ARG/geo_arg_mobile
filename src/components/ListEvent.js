@@ -4,40 +4,69 @@ import { View, StyleSheet, ScrollView, Image, Dimensions, TouchableHighlight } f
 import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Title, Text, Button, Header, Footer, FooterTab} from 'native-base';
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
-const {height, width} = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const iconhome = (<Icon name="home" size={30} color="white" />)
-const iconinfo = (<Icon name="info" size={30} color="white" />)
-const iconback = (<Icon name="fast-rewind" size={30} color="white" />)
+
+const {height, width} = Dimensions.get('window');
 
 var styles = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    flex: 1, justifyContent: 'center',
+  },
+  header: {
+    height: height * 0.1
+  },
+  content: {
+    height: height * 0.9, justifyContent: 'center', paddingTop: 20
   },
   loading: {
-    height: height,
-    width: width,
-    top: 0
+    height: height, width: width, top: 0
+  },
+  backgroundImage:{
+    flex: 1, width:'100%', height:'100%', position:'absolute'
+  },
+  swipeView: {
+    width: width, padding: 10, backgroundColor: '#353535'
+  },
+  swipeText: {
+    color: '#FFFFFF', textAlign: 'center'
+  },
+  carousel: {
+    height: height * 0.87, width: width
   },
   gameEventButton:{
-    width: width,
-    height: height * 0.08,
-    bottom: 0,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: width, height: height * 0.08, bottom: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
+  },
+  gameEventButtonText: {
+    color: 'white', marginRight: '10%', fontSize: 20, alignItems: 'center'
   },
   signInButton: {
-    height: 60,
-    width: width,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgb(138, 208, 49)',
-    margin: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+    height: 60, width: width, alignSelf: 'stretch', backgroundColor: 'rgb(138, 208, 49)', margin: 10, borderRadius: 5, justifyContent: 'center', alignItems: 'center'
+  },
+  eventsView: {
+    flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'0.2%', height: '90%'
+  },
+  eventsCardView: {
+    flex: 1, width: '100%', height: '100%'
+  },
+  listEventView: {
+    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 0
+  },
+  listEventTitle: {
+    fontSize: 25, color: '#FFF'
+  },
+  listEventDescription: {
+    color: '#DDD', marginTop: 10
+  },
+  listEventDate: {
+    color: '#DDD'
+  },
+  listEventPlace: {
+    color: '#DDD', marginBottom: 20
+  },
+  listEventScore: {
+    backgroundColor: 'orange', padding: 5, justifyContent: 'center', borderRadius: 8
+  },
+
 }
 
 class ListEvent extends Component {
@@ -59,7 +88,7 @@ class ListEvent extends Component {
   render () {
     return (
       <Container>
-        <Header style={{height: height * 0.1}}>
+        <Header style={styles.header}>
           <Left>
             <Button
               transparent
@@ -70,20 +99,20 @@ class ListEvent extends Component {
             </Button>
           </Left>
         </Header>
-        <View style={{height: height * 0.9, justifyContent: 'center', paddingTop: 20}}>
+        <View style={styles.content}>
           <Image
-            style={{flex: 1, width:'100%', height:'100%', position:'absolute'}}
+            style={styles.backgroundImage}
             source={require('../assets/bglistevent.jpg')}
           />
           <View>
             {this.props.events.length > 1
             ?
-            <View style={{width: width, padding: 10, backgroundColor: '#353535'}}><Text style={{color: '#FFFFFF', textAlign: 'center'}}>Swipe Events Left or Right</Text></View>
+            <View style={styles.swipeView}><Text style={styles.swipeText}>Swipe Events Left or Right</Text></View>
             :
             false}
             <Carousel
               delay={5000}
-              style={{height: height * 0.87, width: width}}
+              style={styles.carousel}
               bullets={false}
             >
               {this.props.events.length < 1
@@ -92,21 +121,21 @@ class ListEvent extends Component {
                 :
                 this.props.events.map((listevent, index) => {
                   return (
-                    <View key={index} style={{flex: 1, marginLeft:'0%', marginRight:'0%', borderRightColor: '#FFFFFF', borderRightWidth: 3, borderLeftColor: '#FFFFFF', borderLeftWidth: 3, marginTop:'0%', height: '90%'}}>
-                      <Image style={{flex: 1, width: '100%', height: '100%'}} source={require('../assets/bglist1.jpg')} />
-                      <View style={{alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 0}}>
-                        <Text style={{fontSize: 25, color: '#FFF'}}>{listevent.title}</Text>
-                        <Text style={{color: '#DDD', marginTop: 10}}>{listevent.description}</Text>
-                        <Text style={{color: '#DDD'}}>Date: {listevent.date.toString().slice(0,10)}</Text>
-                        <Text style={{color: '#DDD', marginBottom: 20}}>Place: {listevent.place}</Text>
-                        <View style={{ backgroundColor: 'orange', padding: 5, justifyContent: 'center', borderRadius: 8}}><Text style={{color: 'black'}}>{listevent.eventScore} pts</Text></View>
+                    <View key={index} style={styles.eventsView}>
+                      <Image style={styles.eventsCardView} source={require('../assets/bglist1.jpg')} />
+                      <View style={styles.listEventView}>
+                        <Text style={styles.listEventTitle}>{listevent.title}</Text>
+                        <Text style={styles.listEventDescription}>{listevent.description}</Text>
+                        <Text style={styles.listEventDate}>Date: {listevent.date.toString().slice(0,10)}</Text>
+                        <Text style={styles.listEventPlace}>Place: {listevent.place}</Text>
+                        <View style={styles.listEventScore}><Text style={{color: 'black'}}>{listevent.eventScore} pts</Text></View>
                       </View>
                       <View>
                         <Button style={styles.gameEventButton} onPress={()=>{
                             this.props.joinGame(listevent)
                             this.props.navigator.push({page: 'game'})
                           }}>
-                          <Text style={{color: 'white', marginRight: '10%', fontSize: 20, alignItems: 'center'}}>Join Now</Text>
+                          <Text style={styles.gameEventButtonText}>Join Now</Text>
                         </Button>
                       </View>
                     </View>
