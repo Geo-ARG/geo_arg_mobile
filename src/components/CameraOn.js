@@ -17,10 +17,10 @@ import { RNS3 } from 'react-native-aws3'
 export default class CameraOn extends Component {
 
   render() {
-    // BackAndroid.addEventListener('hardwareBackPress', function() {
-    //
-    //   return false;
-    // })
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
 
           <View style={styles.container}>

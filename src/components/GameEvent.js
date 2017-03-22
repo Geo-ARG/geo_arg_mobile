@@ -43,7 +43,6 @@ class GameEvent extends React.Component {
           this.props.checkAnswer(quest.id, `${this.state.latitude}, ${this.state.longitude}`)
         break;
       case 'Photo':
-        console.log("masuk");
         this.props.navigator.push({page: 'cameraon'})
         break;
       default:
