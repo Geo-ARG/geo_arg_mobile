@@ -50,31 +50,32 @@ var styles = {
     flex: 1, width: '100%', height: '100%'
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 25
+    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 50
   },
   listEventTitle: {
-    fontSize: 25, color: '#FFF'
+    fontSize: 30, color: '#FFF'
   },
   listEventDescription: {
-    color: '#DDD', marginTop: 10
+    fontSize: 20, color: '#DDD', marginTop: 10
   },
   listEventDate: {
-    color: '#DDD'
+    fontSize: 20, color: '#DDD'
   },
   listEventPlace: {
-    color: '#DDD', marginBottom: 20
+    fontSize: 20, color: '#DDD', marginBottom: 20
   },
   listEventScore: {
-    backgroundColor: 'orange', padding: 5, justifyContent: 'center', borderRadius: 8
+    backgroundColor: '#F5D76E', padding: 5, justifyContent: 'center', borderRadius: 8
   },
-
+  listEventScoreText: {fontSize: 20, color: 'white', padding: 10, fontWeight: 'bold'}
 }
 
 class ListEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      size: { width, height }
+      size: { width, height },
+      month: ''
     }
   }
 
@@ -121,15 +122,16 @@ class ListEvent extends Component {
                 <Image style={styles.loading} source={catImage} />
                 :
                 this.props.events.map((listevent, index) => {
+                  let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (
                     <View key={index} style={styles.eventsView}>
                       <Image style={styles.eventsCardView} source={require('../assets/bglist1.jpg')} />
                       <View style={styles.listEventView}>
                         <Text style={styles.listEventTitle}>{listevent.title}</Text>
                         <Text style={styles.listEventDescription}>{listevent.description}</Text>
-                        <Text style={styles.listEventDate}>Date: {listevent.date.toString().slice(0,10)}</Text>
+                        <Text style={styles.listEventDate}>Date: {formattedDate[0]}, {formattedDate[2]} {formattedDate[1]} {formattedDate[3]}</Text>
                         <Text style={styles.listEventPlace}>Place: {listevent.place}</Text>
-                        <View style={styles.listEventScore}><Text style={{color: 'black', padding: 10,}}>{listevent.eventScore} pts</Text></View>
+                        <View style={styles.listEventScore}><Text style={styles.listEventScoreText}>{listevent.eventScore} pts</Text></View>
                       </View>
                       <View>
                         <Button style={styles.gameEventButton} onPress={()=>{
