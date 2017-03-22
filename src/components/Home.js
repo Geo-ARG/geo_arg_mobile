@@ -5,23 +5,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const {height, width} = Dimensions.get('window');
 
 var styles = {
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#15204C',
-  },
   button: {
     borderRadius:10,
     backgroundColor: '#e6ffff',
-    marginTop: 25,
-    marginLeft: 10,
-    marginRight: 10
+    marginTop: 20,
+    height: height * 0.1,
+    width: width * 0.8,
+    alignSelf: 'center'
   },
-  messageBox: {
-    flex: 1,
+  iconView: {
     marginTop: 10,
-    justifyContent: 'center',
   },
   badge: {
     alignSelf: 'center',
@@ -31,8 +24,16 @@ var styles = {
   headerIcon: {
     alignSelf: 'center',
     height: 60,
-    width: 60,
-    marginTop: 5
+    width: 60
+  },
+  content: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  backgroundImg: {
+    width: width,
+    height: height
   }
 }
 
@@ -59,49 +60,55 @@ export default class Home extends Component {
           </Body>
           <Right />
         </Header>
-        <Content style={{height: height * 0.9, backgroundColor: '#009999'}}>
-          <View style={styles.messageBox}>
-            <Image
-              style={styles.badge}
-              source={require('../assets/logo.png')}
-            />
+        <Content style={{height: height * 0.9}}>
+          <Image
+            style={styles.backgroundImg}
+            source={require('../assets/pokemon12.jpg')}
+          />
+          <View style={styles.content}>
+            <View style={styles.iconView}>
+              <Image
+                style={styles.badge}
+                source={require('../assets/logo.png')}
+              />
+            </View>
+            <Button
+              block warning style={styles.button}
+              onPress={() => this.props.navigator.push({
+                page: 'event'
+              })}
+            >
+              <Text style={{fontSize: 20}}>Browse All Events </Text>
+              <Icon size={20} name="event" />
+            </Button>
+            <Button
+              block warning style={styles.button}
+              onPress={() => this.props.navigator.push({
+                page: 'map'
+              })}
+            >
+              <Text style={{fontSize: 20}}>Search Event Around You </Text>
+              <Icon size={20} name="add-location" />
+            </Button>
+            <Button
+              block warning style={styles.button}
+              onPress={() => this.props.navigator.push({
+                page: 'profile'
+              })}
+            >
+              <Text style={{fontSize: 20}}>My Profile </Text>
+              <Icon size={20} name="account-circle" />
+            </Button>
+            <Button
+              block warning style={styles.button}
+              onPress={() => this.props.navigator.push({
+                page: 'help'
+              })}
+            >
+              <Text style={{fontSize: 20}}>How to Play </Text>
+              <Icon size={20} name="help" />
+            </Button>
           </View>
-          <Button
-            block warning style={styles.button}
-            onPress={() => this.props.navigator.push({
-              page: 'event'
-            })}
-          >
-            <Text style={{fontSize: 20}}>Browse All Events </Text>
-            <Icon size={20} name="event" />
-          </Button>
-          <Button
-            block warning style={styles.button}
-            onPress={() => this.props.navigator.push({
-              page: 'map'
-            })}
-          >
-            <Text style={{fontSize: 20}}>Search Event Around You </Text>
-            <Icon size={20} name="add-location" />
-          </Button>
-          <Button
-            block warning style={styles.button}
-            onPress={() => this.props.navigator.push({
-              page: 'profile'
-            })}
-          >
-            <Text style={{fontSize: 20}}>My Profile </Text>
-            <Icon size={20} name="account-circle" />
-          </Button>
-          <Button
-            block warning style={styles.button}
-            onPress={() => this.props.navigator.push({
-              page: 'help'
-            })}
-          >
-            <Text style={{fontSize: 20}}>How to Play </Text>
-            <Icon size={20} name="help" />
-          </Button>
         </Content>
       </Container>
     );
