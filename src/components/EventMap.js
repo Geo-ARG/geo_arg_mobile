@@ -69,6 +69,7 @@ class EventMap extends React.Component {
               style={styles.map}
               region={this.state.region}
               onRegionChange={this.onRegionChange}
+              showsMyLocationButton={true}
             >
             {this.props.events.map((marker, index) => {
               let coordinates = marker.geolocation.coordinates
