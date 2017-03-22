@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image } from 'react-native'
-import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar } from 'native-base'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
@@ -20,6 +20,7 @@ class GameEvent extends React.Component {
       answerMode: false,
       userEventId: '',
       userAnswer: '',
+      progressCircle: true,
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -40,7 +41,7 @@ class GameEvent extends React.Component {
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(userEvent.id, `${this.state.latitude}, ${this.state.longitude}`)
+          this.props.checkAnswer(userEvent.id, this.props.location.locationId)
         break;
       case 'Photo':
         this.props.setCameraId(userEvent.id)
@@ -53,6 +54,9 @@ class GameEvent extends React.Component {
 
   componentDidMount(){
     this.props.fetchQuestList(this.props.userId, this.props.eventId)
+    setTimeout(() => {
+      this.setState({progressCircle: false})
+    }, 1800)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         if (this.props.location.locationId === 'Unknown'){
@@ -83,27 +87,27 @@ class GameEvent extends React.Component {
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}>
-              <Text style={{color: '#FFFFFF'}}> <Icon name='arrow-back' /> Back </Text>
+              <Icon size={25} color={'white'} name='arrow-back' />
+              <Title> Back</Title>
             </Button>
           </Left>
           <Right>
             <Button
               onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
-              style={{backgroundColor: 'orange', alignSelf: 'center'}}>
-                <Text style={{ color: 'white'}}>Scan Nearby Player</Text>
+              style={{backgroundColor: '#00ccff', alignSelf: 'center', borderRadius: 8}}>
+                <Text style={{ color: 'white', paddingLeft: 10, paddingRight: 10 }}>Scan Nearby Player</Text>
             </Button>
           </Right>
         </Header>
         <Content style={{height: height}}>
           <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
-              <Progress.Pie progress={this.props.progress} size={80} />
-              <Text style={{ fontSize: 30, marginLeft: 10}}>GAME EVENT</Text>
-            </View>
+            <Text style={{ fontSize: 30, marginLeft: 10, fontWeight: 'bold'}}>GAME EVENT</Text>
+            <Text style={{marginTop: 10}}>Progress: </Text>
+            <Progress.Circle style={{marginBottom: 10, marginTop: 10}} progress={this.props.progress} size={80} showsText={true} indeterminate={this.state.progressCircle}/>
             <Text>Latitude: {this.state.latitude}</Text>
-            <Text>Longitude: {this.state.longitude}</Text>
+            <Text style={{marginBottom: 10}}>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-            <Text style={{fontSize: 25, fontWeight: 'bold'}}>User Nearby</Text>
+            <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}>User Nearby</Text>
               <ScrollView>
                 {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
                   return nearby.Users[0].id === this.props.UserId ? null : (
@@ -113,7 +117,7 @@ class GameEvent extends React.Component {
                 }
               </ScrollView>
             <Text></Text>
-            <Text style={{fontSize: 25, fontWeight: 'bold'}}>Quest List</Text>
+            <Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>Quest List</Text>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
                 let input
                 if (quest.id === this.state.userEventId && this.state.answerMode){
@@ -131,15 +135,15 @@ class GameEvent extends React.Component {
                     />
                   )
                 }
-                let complete = quest.completion ? {color: 'gray'} : {color: '#FFFFFF'}
+                let complete = quest.completion ? {color: '#4d6600', textAlign: 'center'} : {color: '#ecffb3', textAlign: 'center'}
                 return (
-                  <View key={index} style={{ backgroundColor: 'orange', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
-                    <TouchableOpacity onPress={() => this.handleVerification(quest)}>
+                  <View key={index} style={{ backgroundColor: '#00cc99', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
+                    <TouchableOpacity onPress={() => this.handleVerification(quest)} disabled={quest.completion}>
                       <View style={{justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}>
                         <View>
-                          <Text style={complete}>Title : {quest.Quest.title} </Text>
-                          <Text style={complete}>Description : {quest.Quest.task} </Text>
-                          <Text style={complete}>Type : {quest.Quest.type} </Text>
+                          <Text style={complete}>{quest.Quest.title} </Text>
+                          <Text style={complete}>{quest.Quest.task} </Text>
+                          <Text style={complete}>Submit Type : {quest.Quest.type} </Text>
                         </View>
                       </View>
                     </TouchableOpacity>
