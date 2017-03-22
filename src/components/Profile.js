@@ -4,6 +4,7 @@ import { Container, Header, Left, Button, Title, Content, Footer } from 'native-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
 const {height, width} = Dimensions.get('window');
+import {bindActionCreators} from 'redux'
 import { getUserEventByIdUser } from '../actions'
 
 
@@ -18,22 +19,22 @@ class Profile extends React.Component {
   }
 
   componentWillMount(){
+    var that = this
     AsyncStorage.getItem('dataUser', (err, result) => {
       if (result) {
-        this.setState({
-          id: result.id,
-          username: result.id,
-          token: result.token
+        var JsonResult = JSON.parse(result)
+        that.setState({
+          id: JsonResult[0].id,
+          username: JsonResult[0].username,
         })
-        this.props.getUserEventByIdUser(result.id)
+        console.log(this.state.id);
+        // this.props.getUserEventByIdUser(JsonResult[0].id)
       }
     })
   }
 
   render () {
-    console.log("testing");
-    console.log(this.state);
-    console.log(this.props.listUserProfile);
+    // console.log(this.props.listEventUser);
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -61,6 +62,7 @@ class Profile extends React.Component {
       </Container>
     )
   }
+
 }
 
 const mapStateToProps = (state) => {
@@ -70,8 +72,12 @@ const mapStateToProps = (state) => {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-  getUserEventByIdUser: (userId) => dispatch(getUserEventByIdUser(userId))
-})
+// const mapDispatchToProps = dispatch => ({
+//   getUserEventByIdUser: (userId) => dispatch(getUserEventByIdUser(userId))
+// })
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({getUserEventByIdUser}, dispatch)
+}
 
 export default connect (mapStateToProps, mapDispatchToProps)(Profile)

@@ -65,11 +65,11 @@ export default class Login extends Component {
         },
         body: JSON.stringify({username: this.state.username, email: this.state.email})
       }).then(res => res.json()).then(newDataUser => {
-
         AsyncStorage.setItem('dataUser', JSON.stringify(newDataUser))
       })
 
     }
+
   }
 
 
