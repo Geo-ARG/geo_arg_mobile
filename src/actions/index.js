@@ -14,6 +14,7 @@ export const setEvents = (events) => {
   }
 }
 
+
 export const clearEvents = () => {
   return {
     type: 'CLEAR_EVENTS'
@@ -32,6 +33,14 @@ export const showEventUser = (resultEventUser) => {
       type: 'EVENT_DATA_PROFILE',
       payload: resultEventUser
     }
+}
+
+
+export const saveUserLogin = (dataUserLogin) =>{
+  return {
+    type: 'SAVE_USER_LOGIN',
+    payload: dataUserLogin
+  }
 }
 
 export const checkAnswer = (userEventId, userAnswer) => {
@@ -152,10 +161,10 @@ export const updateAnswerPhoto = (idevent, answeruser) => {
   }
 }
 
-export const getUserEventByIdUser = (userId) => {
+export const getUserEventByIdUser = (idUserLogin) => {
   return (dispatch) => {
-    fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/'+userId, {
-    }).then(res = res.json())
+    fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/'+idUserLogin, {
+    }).then(res => res.json())
     .then(resultEventUser => {
       dispatch(showEventUser(resultEventUser))
     })

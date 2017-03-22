@@ -10,7 +10,9 @@ import {
   AsyncStorage
 } from 'react-native';
 import Home from './'
+import {connect} from 'react-redux'
 import Carousel from 'react-native-looped-carousel'
+import {saveUserLogin} from '../actions'
 var Auth0Lock = require('react-native-lock');
 var lock = new Auth0Lock({
   clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
@@ -30,7 +32,7 @@ var lock = new Auth0Lock({
 
 const { width, height } = Dimensions.get('window')
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super()
     this.state = {
@@ -48,11 +50,12 @@ export default class Login extends Component {
    }
 
   componentWillMount(){
-    // AsyncStorage.getItem('dataUser', (err, result) => {
-    //   if (result) {
-    //     this.props.navigator.push({page: 'home'})
-    //   }
-    // });
+    AsyncStorage.getItem('dataUser', (err, result) => {
+      if (result) {
+        this.props.saveUserLogin(result)
+        this.props.navigator.push({page: 'home'})
+      }
+    });
   }
 
 
@@ -65,10 +68,10 @@ export default class Login extends Component {
         },
         body: JSON.stringify({username: this.state.username, email: this.state.email})
       }).then(res => res.json()).then(newDataUser => {
-
-        AsyncStorage.setItem('dataUser', JSON.stringify(newDataUser))
+        AsyncStorage.setItem('dataUser', JSON.stringify(newDataUser),()=>{
+          this.props.saveUserLogin(newDataUser)
+        })
       })
-
     }
   }
 
@@ -162,3 +165,10 @@ var styles = StyleSheet.create({
     height: null,
   },
 });
+
+
+const mapDispatchToProps = dispatch => ({
+    saveUserLogin: (dataUserLogin) => dispatch(saveUserLogin(dataUserLogin))
+})
+
+export default connect(null, mapDispatchToProps)(Login)

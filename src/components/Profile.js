@@ -4,36 +4,27 @@ import { Container, Header, Left, Button, Title, Content, Footer } from 'native-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
 const {height, width} = Dimensions.get('window');
+import {bindActionCreators} from 'redux'
 import { getUserEventByIdUser } from '../actions'
 
 
 class Profile extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      id: "",
-      username: "",
-      token: ""
+    this.state={
+      listUserLogin: ""
     }
   }
 
   componentWillMount(){
-    AsyncStorage.getItem('dataUser', (err, result) => {
-      if (result) {
-        this.setState({
-          id: result.id,
-          username: result.id,
-          token: result.token
-        })
-        this.props.getUserEventByIdUser(result.id)
-      }
-    })
+      var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
+      console.log(idUserLogin);
+      this.props.getUserEventByIdUser(idUserLogin)
   }
 
   render () {
-    console.log("testing");
-    console.log(this.state);
-    console.log(this.props.listUserProfile);
+    console.log(this.props.listEventUser);
+    var hasil = JSON.parse(this.props.listUserLogin)
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -49,29 +40,25 @@ class Profile extends React.Component {
         </Header>
         <Content style={{height: height * 0.9}}>
           <View>
-            <Text style={{marginRight: 20, marginLeft: 20, marginTop: 20, textAlign: 'justify'}}>
-              Lorem ipsum dolor sit amet, vide discere petentium at has, an aliquid maiestatis vix. Et vocent appetere mea, offendit delicatissimi vel ea, duo unum nonumes electram ne. Cetero ornatus ex quo, vim ut dolorum scribentur. Ne semper aperiri dignissim vim. Duo harum mentitum ocurreret ad. Clita cotidieque ei usu.
-              Eros eleifend concludaturque ex sed, cibo appetere ne eum. Qui clita vivendum dissentias te. No unum equidem fastidii sea, consul electram eu pri. Elitr homero expetenda ex has, tota iudicabit dignissim qui ad. Perpetua moderatius id vis, platonem pericula inciderint eos no.
-              Mea an probo dicam. Mei debet disputando ne. No quo tamquam posidonium, pro id nibh labores. Ludus nostrud legimus nec ut, ne mea agam verterem, iracundia mnesarchum incorrupte cu quo. Ut solum deserunt gloriatur quo, sed commodo suavitate contentiones ex, percipit definitiones vix ei. Id vis quis quaeque, nam no wisi maiestatis necessitatibus.
-              Ea sea populo appetere, pri impetus delenit fastidii eu, nam partem soluta et. Nec quot nibh autem ad, vis sint natum fierent in. Ad falli dicit quodsi eam, veri quas nostrum per te. Ex quem soleat luptatum eam, cum velit aliquam appetere no, has ex harum oblique recusabo.
-              Admodum scaevola consequuntur his te. Id ipsum melius est, ius ex eirmod dolores mandamus. His ut aliquip democritum. Rebum constituto eu cum. Iudico oratio deserunt pro eu, eum ne dicat utamur integre.
-            </Text>
+            <Text>{hasil.User.id}</Text>
+              <Text>{hasil.User.username}</Text>
           </View>
         </Content>
       </Container>
     )
   }
+
 }
 
 const mapStateToProps = (state) => {
   return {
-    listEventUser: state.listEventUser
+    listEventUser: state.listEventUser,
+    listUserLogin: state.listUserLogin
   }
 }
 
-
-const mapDispatchToProps = dispatch => ({
-  getUserEventByIdUser: (userId) => dispatch(getUserEventByIdUser(userId))
-})
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({getUserEventByIdUser}, dispatch)
+}
 
 export default connect (mapStateToProps, mapDispatchToProps)(Profile)
