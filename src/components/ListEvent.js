@@ -121,29 +121,6 @@ class ListEvent extends Component {
   }
 }
 
-<<<<<<< HEAD
-var styles = {
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginTop: 0
-  },
-  listevent:{
-    height: height*86.3/100
-  },
-  joinNow:{
-    position: 'absolute',
-    width: width,
-    bottom: 0,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-}
-
-
-=======
->>>>>>> Edit list event
 const mapStateToProps = (state) => {
   return {
     events: state.events
