@@ -114,6 +114,7 @@ export const watchLocation = (coords, locationId) => {
 }
 
 export const fetchQuestList = (UserId, EventId) => {
+  console.log(UserId, EventId);
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
       .then(response => response.json())
