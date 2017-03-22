@@ -5,6 +5,7 @@ import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Title, Text,
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import catImage from '../assets/loading.gif'
 
 const {height, width} = Dimensions.get('window');
 
@@ -19,7 +20,7 @@ var styles = {
     height: height * 0.9, justifyContent: 'center', paddingTop: 20
   },
   loading: {
-    height: height, width: width, top: 0
+    height: height, width: width
   },
   backgroundImage:{
     flex: 1, width:'100%', height:'100%', position:'absolute'
@@ -43,13 +44,13 @@ var styles = {
     height: 60, width: width, alignSelf: 'stretch', backgroundColor: 'rgb(138, 208, 49)', margin: 10, borderRadius: 5, justifyContent: 'center', alignItems: 'center'
   },
   eventsView: {
-    flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginTop:'0.2%', height: '90%'
+    flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginBottom:'0.3%', height: '90%'
   },
   eventsCardView: {
     flex: 1, width: '100%', height: '100%'
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 0
+    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 25
   },
   listEventTitle: {
     fontSize: 25, color: '#FFF'
@@ -117,7 +118,7 @@ class ListEvent extends Component {
             >
               {this.props.events.length < 1
                 ?
-                <Image style={styles.loading} source={require('../assets/loading.gif')} />
+                <Image style={styles.loading} source={catImage} />
                 :
                 this.props.events.map((listevent, index) => {
                   return (
@@ -128,7 +129,7 @@ class ListEvent extends Component {
                         <Text style={styles.listEventDescription}>{listevent.description}</Text>
                         <Text style={styles.listEventDate}>Date: {listevent.date.toString().slice(0,10)}</Text>
                         <Text style={styles.listEventPlace}>Place: {listevent.place}</Text>
-                        <View style={styles.listEventScore}><Text style={{color: 'black'}}>{listevent.eventScore} pts</Text></View>
+                        <View style={styles.listEventScore}><Text style={{color: 'black', padding: 10,}}>{listevent.eventScore} pts</Text></View>
                       </View>
                       <View>
                         <Button style={styles.gameEventButton} onPress={()=>{

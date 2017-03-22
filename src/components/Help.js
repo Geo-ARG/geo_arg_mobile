@@ -24,13 +24,42 @@ export default class Help extends React.Component {
           </Left>
         </Header>
         <Content style={{height: height * 0.9}}>
-          <View>
-            <Text style={{marginRight: 20, marginLeft: 20, marginTop: 20, textAlign: 'justify'}}>
-              Lorem ipsum dolor sit amet, vide discere petentium at has, an aliquid maiestatis vix. Et vocent appetere mea, offendit delicatissimi vel ea, duo unum nonumes electram ne. Cetero ornatus ex quo, vim ut dolorum scribentur. Ne semper aperiri dignissim vim. Duo harum mentitum ocurreret ad. Clita cotidieque ei usu.
-              Eros eleifend concludaturque ex sed, cibo appetere ne eum. Qui clita vivendum dissentias te. No unum equidem fastidii sea, consul electram eu pri. Elitr homero expetenda ex has, tota iudicabit dignissim qui ad. Perpetua moderatius id vis, platonem pericula inciderint eos no.
-              Mea an probo dicam. Mei debet disputando ne. No quo tamquam posidonium, pro id nibh labores. Ludus nostrud legimus nec ut, ne mea agam verterem, iracundia mnesarchum incorrupte cu quo. Ut solum deserunt gloriatur quo, sed commodo suavitate contentiones ex, percipit definitiones vix ei. Id vis quis quaeque, nam no wisi maiestatis necessitatibus.
-              Ea sea populo appetere, pri impetus delenit fastidii eu, nam partem soluta et. Nec quot nibh autem ad, vis sint natum fierent in. Ad falli dicit quodsi eam, veri quas nostrum per te. Ex quem soleat luptatum eam, cum velit aliquam appetere no, has ex harum oblique recusabo.
-              Admodum scaevola consequuntur his te. Id ipsum melius est, ius ex eirmod dolores mandamus. His ut aliquip democritum. Rebum constituto eu cum. Iudico oratio deserunt pro eu, eum ne dicat utamur integre.
+          <View style={{marginRight: 20, marginLeft: 20, marginTop: 20}}>
+            <Text style={{fontSize: 40, textAlign: 'center', fontWeight: 'bold', marginBottom: 20}}>
+              Geo-ARG Guides
+            </Text>
+            <Text style={{fontSize: 25, textAlign: 'justify', marginBottom: 10, fontWeight: 'bold'}}>
+              Game objectives:
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              1. Find events near you and join them (you need to be near enough to be able to join the event)
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              2. Complete chain of quests that provided in each event.
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              3. Compete with your friends to get highest score and most achievements
+            </Text>
+            <Text style={{fontSize: 24, textAlign: 'justify', marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>
+              Type of Quests:
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify', fontWeight: 'bold'}}>
+              Text:
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              Submit secret answer to complete the quest
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify', fontWeight: 'bold'}}>
+              Coordinate:
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              Go to a specific place to complete the quest
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify', fontWeight: 'bold'}}>
+              Photo:
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'justify'}}>
+              Submit a photo and wait for admin to verify and complete the quest
             </Text>
           </View>
         </Content>

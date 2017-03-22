@@ -72,7 +72,7 @@ export default class Home extends Component {
               page: 'event'
             })}
           >
-            <Text style={{fontSize: 20}}>Events </Text>
+            <Text style={{fontSize: 20}}>Browse All Events </Text>
             <Icon size={20} name="event" />
           </Button>
           <Button
@@ -81,7 +81,7 @@ export default class Home extends Component {
               page: 'map'
             })}
           >
-            <Text style={{fontSize: 20}}>Map </Text>
+            <Text style={{fontSize: 20}}>Search Event Around You </Text>
             <Icon size={20} name="add-location" />
           </Button>
           <Button
