@@ -83,9 +83,9 @@ class ListEvent extends Component {
     this.props.fetchEvents()
   }
 
-  componentWillUnmount () {
-    this.props.clearEvents()
-  }
+  // componentWillUnmount () {
+  //   this.props.clearEvents()
+  // }
 
   render () {
     return (
@@ -117,10 +117,7 @@ class ListEvent extends Component {
               style={styles.carousel}
               bullets={false}
             >
-              {this.props.events.length < 1
-                ?
-                <Image style={styles.loading} source={catImage} />
-                :
+              {
                 this.props.events.map((listevent, index) => {
                   let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (

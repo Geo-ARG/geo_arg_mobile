@@ -6,6 +6,7 @@ import Home from './'
 import { saveUserLogin, saveData } from '../actions'
 
 const Auth0Lock = require('react-native-lock');
+const { width, height } = Dimensions.get('window')
 const lock = new Auth0Lock({
   clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
   domain: 'user-login.auth0.com',
@@ -21,36 +22,25 @@ const lock = new Auth0Lock({
   language: "en"
 });
 
-const { width, height } = Dimensions.get('window')
 var styles = StyleSheet.create({
   container:{
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  buttonLogin:{
-     position: 'absolute',
-        width: width,
-        bottom: width/3,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-  },
   signInButton: {
-    height: 50,
-    width: width/2,
-    alignSelf: 'stretch',
-    backgroundColor: 'white',
+    backgroundColor: '#f2ffe6',
     margin: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20
   },
-  imgHome:{
+  imgHome: {
     flex: 1,
     width: null,
     height: null,
-  },
+  }
 });
 
 class Login extends Component {
@@ -70,12 +60,12 @@ class Login extends Component {
    }
 
   componentWillMount(){
-    AsyncStorage.getItem('dataUser', (err, result) => {
-      if (result) {
-        this.props.saveUserLogin(JSON.parse(result))
-        this.props.navigator.push({page: 'home'})
-      }
-    });
+    // AsyncStorage.getItem('dataUser', (err, result) => {
+    //   if (result) {
+    //     this.props.saveUserLogin(JSON.parse(result))
+    //     this.props.navigator.push({page: 'home'})
+    //   }
+    // });
   }
 
   loginForm(){
@@ -101,34 +91,47 @@ class Login extends Component {
            delay={5000}
            style={this.state.size}
            autoplay
-           bullets={true}
         >
           <Image
             style={{flex: 1, width:'100%', height:'100%'}}
-            source={require('../assets/1.jpg')}
+            source={require('../assets/pokemon5.jpg')}
           />
           <Image
             style={{flex: 1, width:'100%', height:'100%'}}
-            source={require('../assets/2.jpg')}
+            source={require('../assets/pokemon6.jpg')}
           />
           <Image
             style={{flex: 1, width:'100%', height:'100%'}}
-            source={require('../assets/3.jpg')}
+            source={require('../assets/pokemon2.jpg')}
+          />
+          <Image
+            style={{flex: 1, width:'100%', height:'100%'}}
+            source={require('../assets/pokemon3.jpg')}
+          />
+          <Image
+            style={{flex: 1, width:'100%', height:'100%'}}
+            source={require('../assets/pokemon7.jpg')}
           />
         </Carousel>
-        <Image
-          source={require('../assets/logo.png')}
+        <View
           style={{
-            position:'absolute',
-            flexDirection: 'row'
-          }}
-        />
-        <View style={styles.buttonLogin}>
+            backgroundColor: 'rgba(0,0,0,.5)',
+            width: width * 0.9,
+            height: height * 0.5,
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            borderRadius: 15
+          }}>
+          <Image
+            source={require('../assets/logo.png')}
+          />
           <TouchableHighlight
-              style={styles.signInButton}
-              underlayColor='#1E90FF'
-              onPress={this.loginForm}>
-            <Text>Goto Game</Text>
+            style={styles.signInButton}
+            underlayColor='#f2ffe6'
+            onPress={this.loginForm}
+          >
+            <Text style={{fontSize: 25, color: '#316600', fontWeight: 'bold'}}>START!</Text>
           </TouchableHighlight>
         </View>
       </View>
