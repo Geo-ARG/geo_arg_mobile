@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import {
   StyleSheet,
   View,
@@ -9,12 +10,12 @@ import {
   TouchableHighlight,
   AsyncStorage
 } from 'react-native';
-import Home from './'
-import {connect} from 'react-redux'
 import Carousel from 'react-native-looped-carousel'
-import {saveUserLogin} from '../actions'
-var Auth0Lock = require('react-native-lock');
-var lock = new Auth0Lock({
+import Home from './'
+import { saveUserLogin, saveData } from '../actions'
+
+const Auth0Lock = require('react-native-lock');
+const lock = new Auth0Lock({
   clientId: 'xZAFgD4PIqldvAzGrhaNZpWHswGIrC25',
   domain: 'user-login.auth0.com',
   allowedConnections: [
@@ -29,8 +30,37 @@ var lock = new Auth0Lock({
   language: "en"
 });
 
-
 const { width, height } = Dimensions.get('window')
+var styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonLogin:{
+     position: 'absolute',
+        width: width,
+        bottom: width/3,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+  },
+  signInButton: {
+    height: 50,
+    width: width/2,
+    alignSelf: 'stretch',
+    backgroundColor: 'white',
+    margin: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgHome:{
+    flex: 1,
+    width: null,
+    height: null,
+  },
+});
 
 class Login extends Component {
   constructor() {
@@ -58,24 +88,6 @@ class Login extends Component {
     });
   }
 
-
-  saveData() {
-    if (this.state.username != "") {
-      fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username: this.state.username, email: this.state.email})
-      }).then(res => res.json()).then(newDataUser => {
-        AsyncStorage.setItem('dataUser', JSON.stringify(newDataUser),()=>{
-          this.props.saveUserLogin(newDataUser)
-        })
-      })
-    }
-  }
-
-
   loginForm(){
     lock.show({
       closable: true
@@ -84,8 +96,7 @@ class Login extends Component {
         console.log(err);
         return;
       }
-      this.setState({username: profile.nickname, email: profile.email || ""})
-      this.saveData()
+      this.props.saveData(profile.nickname, profile.email)
       this.props.navigator.push({page: 'home'});
     });
   }
@@ -135,40 +146,9 @@ class Login extends Component {
   }
 }
 
-var styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonLogin:{
-     position: 'absolute',
-        width: width,
-        bottom: width/3,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-  },
-  signInButton: {
-    height: 50,
-    width: width/2,
-    alignSelf: 'stretch',
-    backgroundColor: 'white',
-    margin: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imgHome:{
-    flex: 1,
-    width: null,
-    height: null,
-  },
-});
-
-
 const mapDispatchToProps = dispatch => ({
-    saveUserLogin: (dataUserLogin) => dispatch(saveUserLogin(dataUserLogin))
+  saveUserLogin: (dataUserLogin) => dispatch(saveUserLogin(dataUserLogin)),
+  saveData: () => dispatch(saveData(dataUserLogin))
 })
 
 export default connect(null, mapDispatchToProps)(Login)

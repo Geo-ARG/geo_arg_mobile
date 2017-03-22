@@ -1,45 +1,32 @@
 
-import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST, SELECT_QUEST } from '../constants'
+import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST, SELECT_QUEST, SET_EVENTS, CLEAR_EVENTS, SET_EVENT, EVENT_DATA_PROFILE, SAVE_USER_LOGIN } from '../constants'
 
-export const updateLocation = (locationId) => ({type: SEND_LOCATION, locationId })
-export const updateNearby = (nearby) => ({type: SCAN, nearby })
-export const setQuestList = (quests) => ({type: QUEST_LIST, quests})
-export const verifyQuest = (quest) => ({type: VERIFY_QUEST, quest})
-export const setCameraId = (usereventid) => ({type: SELECT_QUEST, usereventid})
+export const updateLocation = (locationId) => ({type: SEND_LOCATION, payload: locationId })
+export const updateNearby = (nearby) => ({type: SCAN, payload: nearby })
+export const setQuestList = (quests) => ({type: QUEST_LIST, payload: quests})
+export const verifyQuest = (quest) => ({type: VERIFY_QUEST, payload: quest})
+export const setCameraId = (usereventid) => ({type: SELECT_QUEST, payload: usereventid})
+export const setEvents = (events) => ({type: SET_EVENTS, payload: events})
+export const clearEvents = () => ({type: CLEAR_EVENTS})
+export const joinGame = (eventData) => ({type: SET_EVENT, payload: eventData})
+export const showEventUser = (resultEventUser) => ({type: EVENT_DATA_PROFILE, payload: resultEventUser})
+export const saveUserLogin = (dataUserLogin) => ({type: SAVE_USER_LOGIN, payload: dataUserLogin})
 
-export const setEvents = (events) => {
-  return {
-    type: 'SET_EVENTS',
-    payload: events
-  }
-}
-
-
-export const clearEvents = () => {
-  return {
-    type: 'CLEAR_EVENTS'
-  }
-}
-
-export const joinGame = (eventData) => {
-  return {
-    type: 'SET_EVENT',
-    payload: eventData
-  }
-}
-
-export const showEventUser = (resultEventUser) => {
-    return {
-      type: 'EVENT_DATA_PROFILE',
-      payload: resultEventUser
+export const saveData = (username, email) => {
+  return (dispatch) => {
+    if (username != "") {
+      fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username: username, email: email})
+      }).then(res => res.json()).then(newDataUser => {
+        AsyncStorage.setItem('dataUser', JSON.stringify(newDataUser),()=>{
+          return dispatch(saveUserLogin(newDataUser))
+        })
+      })
     }
-}
-
-
-export const saveUserLogin = (dataUserLogin) =>{
-  return {
-    type: 'SAVE_USER_LOGIN',
-    payload: dataUserLogin
   }
 }
 
