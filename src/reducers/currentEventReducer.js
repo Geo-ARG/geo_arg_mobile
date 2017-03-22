@@ -1,6 +1,8 @@
+import { SET_EVENT } from '../constants'
+
 export default (state = [] , action) => {
   switch (action.type) {
-    case 'SAVE_USER_LOGIN':
+    case SET_EVENT:
       return action.payload
     default:
       return state

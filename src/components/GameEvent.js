@@ -24,7 +24,6 @@ class GameEvent extends React.Component {
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
   }
 
   handleSubmit(){
@@ -161,10 +160,10 @@ class GameEvent extends React.Component {
 const mapStateToProps = state => {
   return {
     location : state.location,
-    userId : state.userId,
+    userId : state.profileUser.id,
     userEvent : state.userEvent,
     progress : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
-    eventId : state.eventData > 1 ? state.eventData.id : 2,
+    eventId : state.eventData
   }
 }
 

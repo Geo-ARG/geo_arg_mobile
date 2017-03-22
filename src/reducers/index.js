@@ -1,22 +1,18 @@
 import { combineReducers } from 'redux'
-import EventsReducer from './reducer_events.js'
+import listEventsReducer from './listEventsReducer'
 import locationReducer from './locationReducer'
-import userReducer from './userReducer'
-import eventDataReducer from './eventDataReducer'
+import currentEventReducer from './currentEventReducer'
 import userEventReducer from './userEventReducer'
 import questReducer from './questReducer'
-import ProfileReducer from './profileReducer'
-import saveUserLogin from './save_user_login'
+import profileUserReducer from './profileUserReducer'
 
 const rootReducers = combineReducers({
-  events        : EventsReducer,
+  events        : listEventsReducer,
   location      : locationReducer,
-  userId        : userReducer,
-  eventData     : eventDataReducer,
+  eventData     : currentEventReducer,
   userEvent     : userEventReducer,
   questCameraId : questReducer,
-  profileUser   : ProfileReducer,
-  listUserLogin : saveUserLogin
+  profileUser   : profileUserReducer,
 })
 
 export default rootReducers
