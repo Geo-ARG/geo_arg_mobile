@@ -81,6 +81,7 @@ class GameEvent extends React.Component {
         <Header style={{backgroundColor: '#2a3d8e', width: '100%', height:height * 0.1}}>
           <Left>
             <Button
+              transparent
               onPress={() => this.props.navigator.pop()}>
               <Text style={{color: '#FFFFFF'}}> <Icon name='arrow-back' /> Back </Text>
             </Button>
@@ -88,8 +89,8 @@ class GameEvent extends React.Component {
           <Right>
             <Button
               onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
-              style={{backgroundColor: '#6fe6e2', alignSelf: 'center'}}>
-                <Text>Scan Nearby Player</Text>
+              style={{backgroundColor: 'orange', alignSelf: 'center'}}>
+                <Text style={{ color: 'white'}}>Scan Nearby Player</Text>
             </Button>
           </Right>
         </Header>
@@ -130,9 +131,9 @@ class GameEvent extends React.Component {
                     />
                   )
                 }
-                let complete = quest.completion ? {color: 'lightgreen'} : {color: '#FFFFFF'}
+                let complete = quest.completion ? {color: 'gray'} : {color: '#FFFFFF'}
                 return (
-                  <View key={index} style={{ backgroundColor: '#353535', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
+                  <View key={index} style={{ backgroundColor: 'orange', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}>
                     <TouchableOpacity onPress={() => this.handleVerification(quest)}>
                       <View style={{justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}>
                         <View>

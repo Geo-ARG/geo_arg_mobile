@@ -5,6 +5,7 @@ import userReducer from './userReducer'
 import eventDataReducer from './eventDataReducer'
 import userEventReducer from './userEventReducer'
 import questReducer from './questReducer'
+import eventDataProfile from './event_data_profile'
 
 const rootReducers = combineReducers({
   events: EventsReducer,
@@ -13,6 +14,7 @@ const rootReducers = combineReducers({
   eventData: eventDataReducer,
   userEvent: userEventReducer,
   questCameraId : questReducer,
+  listEventUser: eventDataProfile
 })
 
 export default rootReducers

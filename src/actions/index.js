@@ -27,6 +27,13 @@ export const joinGame = (eventData) => {
   }
 }
 
+export const showEventUser = (resultEventUser) => {
+    return {
+      type: 'EVENT_DATA_PROFILE',
+      payload: resultEventUser
+    }
+}
+
 export const checkAnswer = (userEventId, userAnswer) => {
   let body =  {
     userAnswer
@@ -138,6 +145,16 @@ export const updateAnswerPhoto = (idevent, answeruser) => {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({userAnswer: answeruser})
+    })
+  }
+}
+
+export const getUserEventByIdUser = (userId) => {
+  return (dispatch) => {
+    fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/'+userId, {
+    }).then(res = res.json())
+    .then(resultEventUser => {
+      dispatch(showEventUser(resultEventUser))
     })
   }
 }

@@ -1,15 +1,39 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, AsyncStorage } from 'react-native';
 import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux'
 const {height, width} = Dimensions.get('window');
+import { getUserEventByIdUser } from '../actions'
 
-export default class Profile extends React.Component {
+
+class Profile extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      id: "",
+      username: "",
+      token: ""
+    }
+  }
+
+  componentWillMount(){
+    AsyncStorage.getItem('dataUser', (err, result) => {
+      if (result) {
+        this.setState({
+          id: result.id,
+          username: result.id,
+          token: result.token
+        })
+        this.props.getUserEventByIdUser(result.id)
+      }
+    })
   }
 
   render () {
+    console.log("testing");
+    console.log(this.state);
+    console.log(this.props.listUserProfile);
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -38,3 +62,16 @@ export default class Profile extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    listEventUser: state.listEventUser
+  }
+}
+
+
+const mapDispatchToProps = dispatch => ({
+  getUserEventByIdUser: (userId) => dispatch(getUserEventByIdUser(userId))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(Profile)
