@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator } from 'react-native'
 import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
@@ -105,7 +105,10 @@ class GameEvent extends React.Component {
             <Button
               onPress={this.handleScan}
               style={{backgroundColor: '#00ccff', alignSelf: 'center', borderRadius: 8}}>
+              {this.state.scanning ?
+                <ActivityIndicator animating={true} style={{alignItems: 'center', justifyContent: 'center', padding: 8, height: 80}} size="large"/> :
                 <Text style={{ color: 'white', paddingLeft: 10, paddingRight: 10 }}>Scan Nearby Player</Text>
+              }
             </Button>
           </Right>
         </Header>
