@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator, Alert } from 'react-native'
 import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
@@ -88,11 +88,11 @@ class GameEvent extends React.Component {
   componentWillReceiveProps(nextprops){
     if(nextprops.progressCircle === 1){
       Alert.alert(
-        'Alert Title',
-        'My Alert Msg',
-        [{text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')}], 
+        'Mission Completed',
+        'Conglaturation on finishing this Event \n Check Your Achievement on Profile',
+        [{text: 'To My Profile', onPress: () => console.log('Profile')},
+        {text: 'Back To Home', onPress: () => console.log('Home')},
+        {text: 'Join Another Event', onPress: () => console.log('ListEvent')}],
         { cancelable: false }
       )
     }
