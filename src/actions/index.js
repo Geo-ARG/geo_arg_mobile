@@ -70,7 +70,6 @@ export const scanNearby = (latitude, longitude) => {
       })
     .then(response => response.json())
     .then(nearby => {
-      console.log(nearby);
       return dispatch(updateNearby(nearby))
     })
     .catch(error => {console.log('Request failed', error)});
@@ -112,9 +111,7 @@ export const watchLocation = (coords, locationId) => {
       },
       body: JSON.stringify(body)
     })
-    .then(response => response.json())
-    .then(data => {console.log(data);})
-    .catch(err => {})
+    .catch(error => {console.log('Request failed', error)});
   }
 }
 

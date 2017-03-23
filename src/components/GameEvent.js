@@ -35,7 +35,7 @@ class GameEvent extends React.Component {
   handleScan(){
     this.props.scanNearby(this.state.latitude, this.state.longitude)
     this.setState({scanning: true})
-    setTimeout(()=>{this.setState({scanning: false})}, 5000)
+    setTimeout(()=>{this.setState({scanning: false})}, 3000)
   }
 
   handleVerification(userEvent){
@@ -86,15 +86,15 @@ class GameEvent extends React.Component {
   }
 
   componentWillReceiveProps(nextprops){
-    if(nextprops.progressCircle === 1){
-      Alert.alert(
-        'Mission Completed',
-        'Conglaturation on finishing this Event \n Check Your Achievement on Profile',
-        [{text: 'To My Profile', onPress: () => console.log('Profile')},
-        {text: 'Back To Home', onPress: () => console.log('Home')},
-        {text: 'Join Another Event', onPress: () => console.log('ListEvent')}],
+    if(nextprops.progress === 1){
+      setTimeout(()=>{Alert.alert(
+        'Conglaturations',
+        'This Mission is Completed',
+        [{text: 'To My Profile', onPress: () => this.props.navigator.push({page: 'profile'})},
+        {text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})},
+        {text: 'Join Another Event', onPress: () => this.props.navigator.push({page: 'event'})}],
         { cancelable: false }
-      )
+      )}, 1000)
     }
   }
 
@@ -135,7 +135,8 @@ class GameEvent extends React.Component {
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}>User Nearby</Text>
             <ScrollView>
-              {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
+              {this.props.location.nearbyUser.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
+                if(typeof nearby.Users[0] === 'object')
                 return nearby.Users[0].id === this.props.UserId ? null : (
                   <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
                 )
