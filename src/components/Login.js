@@ -60,24 +60,27 @@ class Login extends Component {
    }
 
   componentWillMount(){
-    // AsyncStorage.getItem('dataUser', (err, result) => {
-    //   if (result) {
-    //     this.props.saveUserLogin(JSON.parse(result))
-    //     this.props.navigator.push({page: 'home'})
-    //   }
-    // });
+    AsyncStorage.removeItem('dataUser')
   }
 
   loginForm(){
-    lock.show({
-      closable: true
-    }, (err, profile, token) => {
-      if (err) {
-        console.log(err);
-        return;
+    AsyncStorage.getItem('dataUser', (err, result) => {
+      if (result) {
+        this.props.saveUserLogin(JSON.parse(result))
+        this.props.navigator.push({page: 'home'})
       }
-      this.props.saveData(profile.nickname, profile.email)
-      this.props.navigator.push({page: 'home'});
+      else {
+        lock.show({
+          closable: true
+        }, (err, profile, token) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          this.props.saveData(profile.nickname, profile.email)
+          this.props.navigator.push({page: 'home'});
+        });
+      }
     });
   }
 
@@ -116,12 +119,11 @@ class Login extends Component {
         <View
           style={{
             backgroundColor: 'rgba(0,0,0,.5)',
-            width: width * 0.9,
-            height: height * 0.5,
+            width: width,
+            height: height,
             alignItems: 'center',
             justifyContent: 'center',
-            position: 'absolute',
-            borderRadius: 15
+            position: 'absolute'
           }}>
           <Image
             source={require('../assets/logo.png')}
