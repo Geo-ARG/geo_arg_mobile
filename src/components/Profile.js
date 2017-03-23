@@ -25,12 +25,9 @@ class Profile extends React.Component {
   logout(){
     AsyncStorage.removeItem('dataUser')
     this.props.navigator.popToTop()
-
   }
 
   render () {
-    console.log(this.props.listEventUser);
-console.log(this.props.listEventUser.length);
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -46,7 +43,7 @@ console.log(this.props.listEventUser.length);
           <Right>
             <Button
               transparent
-              onPress={() => this.logout}>
+              onPress={() => this.logout()}>
               <Icon size={25} color={'white'} name='power-settings-new' />
               <Title> Logout</Title>
             </Button>
