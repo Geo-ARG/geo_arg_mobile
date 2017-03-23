@@ -83,10 +83,6 @@ class ListEvent extends Component {
     this.props.fetchEvents()
   }
 
-  // componentWillUnmount () {
-  //   this.props.clearEvents()
-  // }
-
   render () {
     return (
       <Container>
@@ -117,7 +113,7 @@ class ListEvent extends Component {
               style={styles.carousel}
               bullets={false}
             >
-              {
+              {this.props.events.length < 1 ? '' :
                 this.props.events.map((listevent, index) => {
                   let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (
@@ -139,6 +135,7 @@ class ListEvent extends Component {
                         </Button>
                       </View>
                     </View>
+
                   )
                 })
               }
