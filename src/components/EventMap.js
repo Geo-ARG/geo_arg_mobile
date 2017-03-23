@@ -33,7 +33,7 @@ class EventMap extends React.Component {
     this.state = {
       region: {
         latitude: -6.262996976002624,
-        longitude: 106.78477082401513,
+        longitude: 106.78270787000658,
         latitudeDelta: 0.012930741167222592,
         longitudeDelta: 0.009000487625598907
       }
@@ -50,6 +50,7 @@ class EventMap extends React.Component {
   }
 
   render(){
+    console.log(this.state.region);
     BackAndroid.addEventListener('hardwareBackPress', ()=> {
       this.props.navigator.pop()
       return true

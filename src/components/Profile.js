@@ -8,6 +8,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { height, width } = Dimensions.get('window');
 
+const styles = {
+  header: {
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
+  },
+  content: {
+    height: height * 0.9
+  }
+}
+
 class Profile extends React.Component {
   constructor (props) {
     super(props)
@@ -17,12 +27,12 @@ class Profile extends React.Component {
     this.logout = this.logout.bind(this)
   }
 
-  componentWillMount(){
-      var idUserLogin = this.props.listUserLogin.User.id
-      this.props.getUserEventByIdUser(idUserLogin)
+  componentWillMount() {
+    // let idUserLogin = this.props.listUserLogin.User.id
+    // this.props.getUserEventByIdUser(idUserLogin)
   }
 
-  logout(){
+  logout() {
     AsyncStorage.removeItem('dataUser')
     this.props.navigator.resetTo({page: 'loading1'})
   }
@@ -34,12 +44,12 @@ class Profile extends React.Component {
     })
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1, backgroundColor: '#cc6600'}}>
+        <Header style={styles.header}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
-            >
+              >
               <Icon size={35} color={'white'} name='arrow-back' />
               <Title style={{fontSize: 25}}> Back</Title>
             </Button>
@@ -54,41 +64,40 @@ class Profile extends React.Component {
           </Right>
         </Header>
         <ListItem thumbnail>
-            <Left>
-                <Thumbnail square size={50} source={require('../assets/player.gif')} />
-            </Left>
-            <Body>
-                <Text>{this.props.listUserLogin.User.username}</Text>
-            </Body>
-            <Right>
+          <Left>
+            <Thumbnail square size={50} source={require('../assets/player.gif')} />
+          </Left>
+          <Body>
 
-            </Right>
+          </Body>
+          <Right></Right>
         </ListItem>
-        <Content style={{height: height * 0.9}}>
+        <Content style={styles.content}>
           {this.props.listEventUser.length < 1 ? <Text></Text> :
-            this.props.listEventUser.map((eventUser,index)=>{
+            this.props.listEventUser.map((eventUser,index) => {
               return (
                 <ListItem key={index} thumbnail>
-                    <Left>
-                        { eventUser.completion ? <Thumbnail square size={80} source={require('../assets/harta.png')} /> :
-                          <Thumbnail square size={80} source={require('../assets/harta2.jpg')} />
-                        }
-
-                    </Left>
-                    <Body>
-                        <Text>At {eventUser.Event.place}</Text>
-                        <Text note>{eventUser.Quest.title}</Text>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                          {eventUser.completion ? <Text>Complete</Text> :
-                            <Text>UnComplete</Text>
-                          }
-                        </Button>
-                    </Right>
+                  <Left>
+                    {eventUser.completion
+                      ?
+                      <Thumbnail square size={80} source={require('../assets/harta.png')} />
+                      :
+                      <Thumbnail square size={80} source={require('../assets/harta2.jpg')} />
+                    }
+                  </Left>
+                  <Body>
+                    <Text>At {eventUser.Event.place}</Text>
+                    <Text note>{eventUser.Quest.title}</Text>
+                  </Body>
+                  <Right>
+                    <Button transparent>
+                      {eventUser.completion ? <Text>Complete</Text> :
+                        <Text>UnComplete</Text>
+                      }
+                    </Button>
+                  </Right>
                 </ListItem>
               )
-
             })
           }
         </Content>
@@ -97,6 +106,7 @@ class Profile extends React.Component {
   }
 }
 
+// <Text>{this.props.listUserLogin.User.username}</Text>
 const mapStateToProps = (state) => {
   return {
     listEventUser: state.profileUser.userEvent,
@@ -105,7 +115,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({getUserEventByIdUser}, dispatch)
+  return bindActionCreators({ getUserEventByIdUser }, dispatch)
 }
 
 export default connect (mapStateToProps, mapDispatchToProps)(Profile)
