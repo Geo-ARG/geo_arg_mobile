@@ -183,7 +183,6 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.location);
   return {
     location : state.location,
     userId : state.profileUser.userData.User.id,
