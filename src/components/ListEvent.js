@@ -59,18 +59,18 @@ let styles = {
     alignItems: 'center', padding: 10, width: width, height: height, marginTop: 5, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
   },
   listEventTitle: {
-    fontSize: 30, color: '#FFF'
+    fontSize: 30, color: '#FFF', textAlign: 'center', marginBottom: 20,
   },
   listEventDescription: {
-    fontSize: 25, color: '#FFF', marginTop: 10
+    fontSize: 25, color: '#FFF', textAlign: 'center', marginBottom: 20
   },
   listEventDate: {
-    fontSize: 25, color: '#FFF'
+    fontSize: 25, color: '#FFF', textAlign: 'center'
   },
   listEventPlace: {
-    fontSize: 25, color: '#FFF', marginBottom: 15
+    fontSize: 25, color: '#FFF', marginBottom: 15, textAlign: 'center'
   },
-  listEventScore: {fontSize: 25, color: '#F5D76E', padding: 10, fontWeight: 'bold'}
+  listEventScore: {fontSize: 25, color: '#F5D76E', padding: 10, fontWeight: 'bold', textAlign: 'center'}
 }
 
 class ListEvent extends Component {

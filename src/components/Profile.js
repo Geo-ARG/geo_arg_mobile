@@ -58,7 +58,7 @@ class Profile extends React.Component {
             <Button
               transparent
               onPress={() => this.logout()}>
-              <Icon size={25} color={'white'} name='power-settings-new' />
+              <Icon size={35} color={'white'} name='power-settings-new' />
               <Title style={{fontSize: 25}}> Logout</Title>
             </Button>
           </Right>
