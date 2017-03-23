@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Image, BackAndroid } from 'react-native'
 import MapView from 'react-native-maps'
 import { fetchEvents } from '../actions'
-import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Right, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const {height, width} = Dimensions.get('window');
@@ -17,6 +17,13 @@ const styles = {
   loading: {
     height: height * 0.9,
     width: width
+  },
+  header: {
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
+  },
+  content: {
+    height: height * 0.9
   }
 }
 
@@ -25,10 +32,10 @@ class EventMap extends React.Component {
     super(props)
     this.state = {
       region: {
-        latitude: -6.2606807,
-        longitude: 106.7792663,
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1
+        latitude: -6.262996976002624,
+        longitude: 106.78270787000658,
+        latitudeDelta: 0.012930741167222592,
+        longitudeDelta: 0.009000487625598907
       }
     }
     this.onRegionChange = this.onRegionChange.bind(this)
@@ -43,21 +50,28 @@ class EventMap extends React.Component {
   }
 
   render(){
+    console.log(this.state.region);
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1}}>
+        <Header style={styles.header}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Title style={{fontSize: 25}}>Events Around You</Title>
+          </Right>
         </Header>
-
-        <Content style={{height: height * 0.9}}>
+        <Content style={styles.content}>
           <MapView
             style={styles.map}
             region={this.state.region}
@@ -71,17 +85,13 @@ class EventMap extends React.Component {
             return (
               <MapView.Marker
                 key={index}
-                coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
+                coordinate={{latitude: coordinates[0], longitude: coordinates[1]}}
                 title={marker.title}
-                image={require('../assets/pokeball.png')}
-                description={`${marker.place}, ${marker.description}`}/>
+                description={`${marker.place}, ${marker.description}`}
+              />
             )}
           )}
           </MapView>
-
-          <View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', top: 10, width: width,  padding: 20}}>
-            <Text>Find events here</Text>
-          </View>
         </Content>
       </Container>
     )

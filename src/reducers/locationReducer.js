@@ -1,7 +1,7 @@
 import { SEND_LOCATION, SCAN } from '../constants'
 
 const initialData = {
-  locationId: 526,
+  locationId: 0,
   nearbyUser : []
 }
 

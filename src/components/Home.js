@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, BackAndroid, Dimensions } from 'react-native';
+import { View, Image, Text, BackAndroid, Dimensions } from 'react-native';
 import { Container, Header, Title, Content, Button, Left, Right, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 var styles = {
   button: {
@@ -111,7 +111,7 @@ export default class Home extends Component {
                 })}
               >
                 <Icon size={60} color="white" name="add-location" />
-                <Text style={styles.buttonText}>Search Event Around You </Text>
+                <Text style={styles.buttonText}>Search Events Around You </Text>
               </Button>
             </View>
             <View style={styles.buttonRow}>
