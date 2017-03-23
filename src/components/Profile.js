@@ -18,9 +18,8 @@ class Profile extends React.Component {
   }
 
   componentWillMount(){
-      // var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
-      // console.log(idUserLogin);
-      // this.props.getUserEventByIdUser(idUserLogin)
+      var idUserLogin = this.props.listUserLogin.User.id
+      this.props.getUserEventByIdUser(idUserLogin)
   }
 
   logout(){
@@ -30,8 +29,8 @@ class Profile extends React.Component {
   }
 
   render () {
-    // console.log(this.props.listEventUser);
-    // var hasil = JSON.parse(this.props.listUserLogin)
+    console.log(this.props.listEventUser);
+console.log(this.props.listEventUser.length);
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -58,43 +57,39 @@ class Profile extends React.Component {
                 <Thumbnail square size={50} source={require('../assets/player.gif')} />
             </Left>
             <Body>
-                <Text>@Username</Text>
+                <Text>{this.props.listUserLogin.User.username}</Text>
             </Body>
             <Right>
 
             </Right>
         </ListItem>
         <Content style={{height: height * 0.9}}>
-                  <ListItem thumbnail>
-                      <Left>
-                          <Thumbnail square size={80} source={require('../assets/harta.png')} />
-                      </Left>
-                      <Body>
-                          <Text>@Event PIM</Text>
-                          <Text note>Dapatkan Foto Baliho Mall</Text>
-                      </Body>
-                      <Right>
-                          <Button transparent>
-                              <Text>Complete</Text>
-                          </Button>
-                      </Right>
-                  </ListItem>
-
-                  <ListItem thumbnail>
-                      <Left>
+          {this.props.listEventUser.length < 1 ? "" :
+            this.props.listEventUser.map((eventUser,index)=>{
+              return (
+                <ListItem key={index} thumbnail>
+                    <Left>
+                        { eventUser.completion ? <Thumbnail square size={80} source={require('../assets/harta.png')} /> :
                           <Thumbnail square size={80} source={require('../assets/harta2.jpg')} />
-                      </Left>
-                      <Body>
-                          <Text>@Event PIM</Text>
-                          <Text note>Dapatkan Foto Baliho Mall</Text>
-                      </Body>
-                      <Right>
-                          <Button transparent>
-                              <Text>UnComplete</Text>
-                          </Button>
-                      </Right>
-                  </ListItem>
+                        }
 
+                    </Left>
+                    <Body>
+                        <Text>At {eventUser.Event.place}</Text>
+                        <Text note>{eventUser.Quest.title}</Text>
+                    </Body>
+                    <Right>
+                        <Button transparent>
+                          {eventUser.completion ? <Text>Complete</Text> :
+                            <Text>UnComplete</Text>
+                          }
+                        </Button>
+                    </Right>
+                </ListItem>
+              )
+
+            })
+          }
         </Content>
       </Container>
     )
