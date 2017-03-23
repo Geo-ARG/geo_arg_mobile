@@ -92,6 +92,10 @@ export default class Help extends React.Component {
   }
 
   render () {
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={styles.header}>

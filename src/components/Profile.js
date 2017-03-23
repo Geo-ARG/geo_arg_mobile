@@ -28,6 +28,10 @@ class Profile extends React.Component {
   }
 
   render () {
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1, backgroundColor: '#cc6600'}}>
@@ -91,7 +95,6 @@ class Profile extends React.Component {
       </Container>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

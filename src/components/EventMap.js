@@ -50,7 +50,10 @@ class EventMap extends React.Component {
   }
 
   render(){
-    console.log(this.state.region);
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={styles.header}>

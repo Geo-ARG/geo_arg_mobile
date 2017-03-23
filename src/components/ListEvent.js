@@ -84,6 +84,10 @@ class ListEvent extends Component {
   }
 
   render () {
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
       <Container>
         <Header style={styles.header}>
