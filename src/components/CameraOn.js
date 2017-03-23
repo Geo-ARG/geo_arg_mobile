@@ -6,6 +6,7 @@ import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3'
 import { bindActionCreators } from 'redux'
 import { updateAnswerPhoto } from  '../actions'
+require('dotenv').config()
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +71,6 @@ class CameraOn extends Component {
         if (response.status !== 201) {
           throw new Error('Failed to upload image to S3', response);
         }
-
         this.props.updateAnswerPhoto(this.props.questCameraId, response.body.postResponse.location)
         if(response.body.postResponse.location){
           this.props.navigator.pop()

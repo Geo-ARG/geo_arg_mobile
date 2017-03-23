@@ -43,13 +43,10 @@ export const saveData = (username, email) => {
 }
 
 export const checkAnswer = (userEventId, userAnswer) => {
-  let body =  {
-    userAnswer
-  }
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/${userEventId}/quests/useranswer`, {
       method: 'PUT',
-      body: JSON.stringify(body),
+      body: JSON.stringify({userAnswer}),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -63,17 +60,13 @@ export const checkAnswer = (userEventId, userAnswer) => {
 }
 
 export const scanNearby = (latitude, longitude) => {
-  let body =  {
-    latitude: latitude,
-    longitude: longitude
-  }
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/scan`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify({latitude, longitude})
       })
     .then(response => response.json())
     .then(nearby => {
