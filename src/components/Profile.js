@@ -28,8 +28,8 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    // let idUserLogin = this.props.listUserLogin.User.id
-    // this.props.getUserEventByIdUser(idUserLogin)
+    let idUserLogin = this.props.listUserLogin.User.id
+    this.props.getUserEventByIdUser(idUserLogin)
   }
 
   logout() {
@@ -68,7 +68,7 @@ class Profile extends React.Component {
             <Thumbnail square size={50} source={require('../assets/player.gif')} />
           </Left>
           <Body>
-
+            <Text>{this.props.listUserLogin.User.username}</Text>
           </Body>
           <Right></Right>
         </ListItem>
@@ -106,7 +106,6 @@ class Profile extends React.Component {
   }
 }
 
-// <Text>{this.props.listUserLogin.User.username}</Text>
 const mapStateToProps = (state) => {
   return {
     listEventUser: state.profileUser.userEvent,
