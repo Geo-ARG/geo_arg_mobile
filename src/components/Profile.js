@@ -30,14 +30,14 @@ class Profile extends React.Component {
   render () {
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1}}>
+        <Header style={{height: height * 0.1, backgroundColor: '#cc6600'}}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
           <Right>

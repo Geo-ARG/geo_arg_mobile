@@ -14,7 +14,8 @@ var styles = {
     flex: 1, justifyContent: 'center',
   },
   header: {
-    height: height * 0.1
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
   },
   content: {
     height: height * 0.9, paddingTop: 0, marginTop: 0
@@ -50,7 +51,7 @@ var styles = {
     flex: 1, width: '100%', height: '100%', marginTop: 5
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 60
+    alignItems: 'center', padding: 10, width: width, height: height, marginTop: 2, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
   },
   listEventTitle: {
     fontSize: 30, color: '#FFF'
@@ -92,8 +93,8 @@ class ListEvent extends Component {
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
         </Header>

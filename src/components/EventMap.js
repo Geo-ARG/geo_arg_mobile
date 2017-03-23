@@ -32,10 +32,10 @@ class EventMap extends React.Component {
     super(props)
     this.state = {
       region: {
-        latitude: -6.2606807,
-        longitude: 106.7792663,
-        latitudeDelta: 0.03,
-        longitudeDelta: 0.01
+        latitude: -6.262996976002624,
+        longitude: 106.78477082401513,
+        latitudeDelta: 0.012930741167222592,
+        longitudeDelta: 0.009000487625598907
       }
     }
     this.onRegionChange = this.onRegionChange.bind(this)
@@ -50,6 +50,7 @@ class EventMap extends React.Component {
   }
 
   render(){
+    console.log(this.state.region);
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={styles.header}>
@@ -80,7 +81,6 @@ class EventMap extends React.Component {
                 key={index}
                 coordinate={{latitude: coordinates[0], longitude: coordinates[1]}}
                 title={marker.title}
-                image={require('../assets/pokeball.png')}
                 description={`${marker.place}, ${marker.description}`}/>
             )}
           )}
