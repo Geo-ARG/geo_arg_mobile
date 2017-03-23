@@ -134,7 +134,6 @@ class GameEvent extends React.Component {
       this.props.navigator.pop()
       return true
     })
-    console.log(this.props.eventData);
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={styles.header}>
@@ -160,7 +159,7 @@ class GameEvent extends React.Component {
         </Header>
         <Content style={styles.content}>
           <View style={styles.contentView}>
-            <Text style={styles.eventTitleText}>GAME EVENT</Text>
+            <Text style={styles.eventTitleText}>{this.props.currentEvent.title}</Text>
             <Text style={styles.progressText}>Progress: </Text>
             <Progress.Circle style={styles.progressCircle} progress={this.props.progress} size={80} showsText={true} indeterminate={this.state.progressCircle}/>
             <Text style={styles.latitudeText}>Latitude: {this.state.latitude}</Text>

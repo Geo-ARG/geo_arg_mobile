@@ -129,9 +129,9 @@ class ListEvent extends Component {
                   return (
                     <View key={index} style={styles.eventsView}>
                       { (index+1) % 2 === 0 ? (
-                        <Image style={styles.eventsCardView} source={eventBg1} />)
+                        <Image style={styles.eventsCardView} source={eventBg2} />)
                           :
-                        (<Image style={styles.eventsCardView} source={eventBg3} />)
+                        (<Image style={styles.eventsCardView} source={eventBg4} />)
                       }
                       <View style={styles.listEventView}>
                         <Text style={styles.listEventTitle}>{listevent.title}</Text>
