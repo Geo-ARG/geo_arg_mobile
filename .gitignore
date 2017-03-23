@@ -53,3 +53,4 @@ fastlane/Preview.html
 fastlane/screenshots
 
 arg-geo-key.keystore
+cameraOptionsConfig.js
