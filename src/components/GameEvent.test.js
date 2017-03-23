@@ -7,7 +7,7 @@ import GameEvent from './GameEvent'
 const middlewares = []
 const mockStore = configureStore(middlewares)
 
-test('test', () => {
+it('renders correctly', () => {
   const tree = renderer.create(
     <Provider store={mockStore([])}>
       <GameEvent />
