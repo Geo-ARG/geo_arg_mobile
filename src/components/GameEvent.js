@@ -69,7 +69,7 @@ class GameEvent extends React.Component {
     }, 2000)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
-        if (this.props.location.locationId === 'Unknown'){
+        if (this.props.location.locationId === 0){
           this.props.sendLocation(position.coords, this.props.userId)
         } else {
           this.props.watchLocation(position.coords, this.props.location.locationId)
@@ -183,6 +183,7 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.location);
   return {
     location : state.location,
     userId : state.profileUser.userData.User.id,

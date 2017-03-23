@@ -27,8 +27,8 @@ class EventMap extends React.Component {
       region: {
         latitude: -6.2606807,
         longitude: 106.7792663,
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1
+        latitudeDelta: 0.03,
+        longitudeDelta: 0.01
       }
     }
     this.onRegionChange = this.onRegionChange.bind(this)
@@ -71,7 +71,7 @@ class EventMap extends React.Component {
             return (
               <MapView.Marker
                 key={index}
-                coordinate={{latitude: coordinates[0], longitude: coordinates[1]+0.002}}
+                coordinate={{latitude: coordinates[0], longitude: coordinates[1]}}
                 title={marker.title}
                 image={require('../assets/pokeball.png')}
                 description={`${marker.place}, ${marker.description}`}/>

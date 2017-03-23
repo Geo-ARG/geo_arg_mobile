@@ -62,8 +62,8 @@ class CameraOn extends Component {
         keyPrefix: 'photos/',
         bucket: 'arg-images',
         region: 'ap-southeast-1',
-        accessKey: 'AKIAIPMFPQKDD5GZMRFQ',
-        secretKey: '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',
+        accessKey: 'AKIAIUDIQ74DSKRHRPRQ',
+        secretKey: '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',
         successActionStatus: 201
       }
       RNS3.put(file, options).then(response => {
