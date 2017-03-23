@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Image, BackAndroid } from 'react-native'
 import MapView from 'react-native-maps'
 import { fetchEvents } from '../actions'
 import { Container, Header, Left, Right, Button, Title, Content, Footer } from 'native-base';

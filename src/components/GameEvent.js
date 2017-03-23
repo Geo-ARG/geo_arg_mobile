@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator, Alert } from 'react-native'
-import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title, BackAndroid } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'

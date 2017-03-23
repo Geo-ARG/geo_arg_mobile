@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Image, Dimensions } from 'react-native'
+import { View, Image, Dimensions, BackAndroid } from 'react-native'
 import { Container, Content, Left, Right, Body, Title, Text, Button, Header } from 'native-base';
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
