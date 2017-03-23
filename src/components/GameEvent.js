@@ -166,15 +166,17 @@ class GameEvent extends React.Component {
             <Text style={styles.longitudeText}>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text style={styles.userNearbyText}>User Nearby</Text>
-            <ScrollView>
+            <View>
               {this.props.location.nearbyUser.length < 1 ? <Text>No other user nearby</Text> : this.props.location.nearbyUser.map((nearby, index) => {
-                if(typeof nearby.Users[0] === 'object')
-                  return nearby.Users[0].id === this.props.UserId ? null : (
+                if(typeof nearby.Users[0] === 'object'){
+                  return nearby.Users[0].id === this.props.userId ? null : (
                     <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
                   )
+                }
               })}
-            </ScrollView>
+            </View>
             <Text style={styles.questListText}>Quest List</Text>
+              <View>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
                 let input
                 if (quest.id === this.state.userEventId && this.state.answerMode){
@@ -208,6 +210,7 @@ class GameEvent extends React.Component {
                   </View>
                 )
               })}
+              </View>
           </View>
         </Content>
       </Container>
