@@ -6,6 +6,8 @@ import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
+import bg2 from '../assets/pokemon2.jpg'
+import bg1 from '../assets/pokemon2.jpg'
 
 const { height, width } = Dimensions.get('window');
 
@@ -36,39 +38,36 @@ var styles = {
     height: height * 0.9, width: width
   },
   gameEventButton:{
-    width: width, height: height * 0.08, bottom: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
+    width: width, height: height * 0.085, backgroundColor: '#cc6600', bottom: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
   },
   gameEventButtonText: {
-    color: 'white', marginRight: '10%', fontSize: 20, alignItems: 'center'
+    color: 'white', alignSelf: 'center', justifyContent: 'center', fontSize: 20, alignItems: 'center'
   },
   signInButton: {
     height: 60, width: width, alignSelf: 'stretch', backgroundColor: 'rgb(138, 208, 49)', margin: 10, borderRadius: 5, justifyContent: 'center', alignItems: 'center'
   },
   eventsView: {
-    flex: 1, marginLeft:'0.1%', marginRight:'0.1%', marginBottom:'0.3%', height: '90%'
+    flex: 1, marginLeft:'0.2%', marginRight:'0.2%', marginBottom:'0.2%', height: '90%'
   },
   eventsCardView: {
     flex: 1, width: '100%', height: '100%', marginTop: 5
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height, marginTop: 2, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
+    alignItems: 'center', padding: 10, width: width, height: height, marginTop: 5, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
   },
   listEventTitle: {
     fontSize: 30, color: '#FFF'
   },
   listEventDescription: {
-    fontSize: 20, color: '#DDD', marginTop: 10
+    fontSize: 25, color: '#FFF', marginTop: 10
   },
   listEventDate: {
-    fontSize: 20, color: '#DDD'
+    fontSize: 25, color: '#FFF'
   },
   listEventPlace: {
-    fontSize: 20, color: '#DDD', marginBottom: 20
+    fontSize: 25, color: '#FFF', marginBottom: 15
   },
-  listEventScore: {
-    backgroundColor: '#F5D76E', padding: 5, justifyContent: 'center', borderRadius: 8
-  },
-  listEventScoreText: {fontSize: 20, color: 'white', padding: 10, fontWeight: 'bold'}
+  listEventScore: {fontSize: 25, color: '#F5D76E', padding: 10, fontWeight: 'bold'}
 }
 
 class ListEvent extends Component {
@@ -107,7 +106,7 @@ class ListEvent extends Component {
         <View style={styles.content}>
           <Image
             style={styles.backgroundImage}
-            source={require('../assets/bglistevent.jpg')}
+            source={bg1}
           />
           <View>
             {this.props.events.length > 1
@@ -119,19 +118,20 @@ class ListEvent extends Component {
               delay={5000}
               style={styles.carousel}
               bullets={false}
+              autoplay
             >
               {this.props.events.length < 1 ? '' :
                 this.props.events.map((listevent, index) => {
                   let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (
                     <View key={index} style={styles.eventsView}>
-                      <Image style={styles.eventsCardView} source={require('../assets/bglist1.jpg')} />
+                      <Image style={styles.eventsCardView} source={bg2} />
                       <View style={styles.listEventView}>
                         <Text style={styles.listEventTitle}>{listevent.title}</Text>
                         <Text style={styles.listEventDescription}>{listevent.description}</Text>
                         <Text style={styles.listEventDate}>Date: {formattedDate[0]}, {formattedDate[2]} {formattedDate[1]} {formattedDate[3]}</Text>
                         <Text style={styles.listEventPlace}>Place: {listevent.place}</Text>
-                        <View style={styles.listEventScore}><Text style={styles.listEventScoreText}>{listevent.eventScore} pts</Text></View>
+                        <Text style={styles.listEventScore}>{listevent.eventScore} pts</Text>
                       </View>
                       <View>
                         <Button style={styles.gameEventButton} onPress={()=>{
