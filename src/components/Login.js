@@ -35,8 +35,8 @@ var styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingRight: 30,
     paddingLeft: 30
   },
@@ -44,6 +44,23 @@ var styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
+  },
+  play: {
+    fontSize: 25, color: 'white', fontWeight: 'bold'
+  },
+  playView: {
+    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+  },
+  backgroundView: {
+    backgroundColor: 'rgba(0,0,0,.5)',
+    width: width,
+    height: height,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute'
+  },
+  image: {
+    flex: 1, width:'100%', height:'100%'
   }
 });
 
@@ -100,35 +117,27 @@ class Login extends Component {
            autoplay
         >
           <Image
-            style={{flex: 1, width:'100%', height:'100%'}}
+            style={styles.image}
             source={require('../assets/pokemon5.jpg')}
           />
           <Image
-            style={{flex: 1, width:'100%', height:'100%'}}
+            style={styles.image}
             source={require('../assets/pokemon6.jpg')}
           />
           <Image
-            style={{flex: 1, width:'100%', height:'100%'}}
+            style={styles.image}
             source={require('../assets/pokemon2.jpg')}
           />
           <Image
-            style={{flex: 1, width:'100%', height:'100%'}}
+            style={styles.image}
             source={require('../assets/pokemon3.jpg')}
           />
           <Image
-            style={{flex: 1, width:'100%', height:'100%'}}
+            style={styles.image}
             source={require('../assets/pokemon7.jpg')}
           />
         </Carousel>
-        <View
-          style={{
-            backgroundColor: 'rgba(0,0,0,.5)',
-            width: width,
-            height: height,
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'absolute'
-          }}>
+        <View style={styles.backgroundView}>
           <Image
             source={require('../assets/logo.png')}
           />
@@ -137,9 +146,9 @@ class Login extends Component {
             underlayColor='#F4B350'
             onPress={this.loginForm}
           >
-            <View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={styles.playView}>
               <Icon size={60} color="white" name="videogame-asset" />
-              <Text style={{fontSize: 25, color: 'white', fontWeight: 'bold'}}>PLAY!</Text>
+              <Text style={styles.play}>PLAY!</Text>
             </View>
           </TouchableHighlight>
         </View>

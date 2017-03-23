@@ -17,6 +17,13 @@ const styles = {
   loading: {
     height: height * 0.9,
     width: width
+  },
+  header: {
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
+  },
+  content: {
+    height: height * 0.9
   }
 }
 
@@ -45,19 +52,19 @@ class EventMap extends React.Component {
   render(){
     return(
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1}}>
+        <Header style={styles.header}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
         </Header>
 
-        <Content style={{height: height * 0.9}}>
+        <Content style={styles.content}>
           <MapView
             style={styles.map}
             region={this.state.region}
@@ -78,15 +85,17 @@ class EventMap extends React.Component {
             )}
           )}
           </MapView>
-
-          <View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', top: 10, width: width,  padding: 20}}>
-            <Text>Find events here</Text>
-          </View>
         </Content>
       </Container>
     )
   }
 }
+
+/*
+<View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', top: 10, width: width,  padding: 20}}>
+  <Text>Find events here</Text>
+</View>
+*/
 
 const mapStateToProps = state => {
   return {
