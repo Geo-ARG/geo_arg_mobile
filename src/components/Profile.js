@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions, AsyncStorage } from 'react-native';
+import { View, Text, Dimensions, AsyncStorage, BackAndroid } from 'react-native';
 import { Container, Header, Left, Button, Title, Content, Footer, Body, Right, ListItem, Thumbnail } from 'native-base';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -24,7 +24,7 @@ class Profile extends React.Component {
 
   logout(){
     AsyncStorage.removeItem('dataUser')
-    this.props.navigator.popToTop()
+    this.props.navigator.resetTo({page: 'loading1'})
   }
 
   render () {

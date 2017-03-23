@@ -1,49 +1,8 @@
 import React from 'react';
-import { View, Text, Dimensions, Image } from 'react-native';
+import { View, Text, Dimensions, Image, BackAndroid } from 'react-native';
 import { Container, Header, Left, Right, Button, Title, Content } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const { height, width } = Dimensions.get('window');
-
-const styles = {
-  header: {
-    height: height * 0.1,
-    backgroundColor: '#cc6600'
-  },
-  content: {
-    height: height * 0.9
-  },
-  contentView: {
-    position: 'absolute',
-    alignSelf: 'center',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    width: width,
-    height: height
-  },
-  backgroundImg: {
-    width: width,
-    height: height
-  },
-  textView: {
-    marginRight: 25,
-    marginLeft: 25,
-    marginTop: 20
-  },
-  textStyle1: {
-    color: 'white', fontSize: 40, textAlign: 'center', fontWeight: 'bold', marginBottom: 20
-  },
-  textStyle2: {
-    color: 'white', fontSize: 25, textAlign: 'justify', marginBottom: 10, fontWeight: 'bold'
-  },
-  textStyle3: {
-    color: 'white', fontSize: 18, textAlign: 'justify'
-  },
-  textStyle4: {
-    color: 'white', fontSize: 18, textAlign: 'justify', fontWeight: 'bold'
-  },
-  textStyle5: {
-    color: 'white', fontSize: 24, textAlign: 'justify', marginTop: 10, marginBottom: 10, fontWeight: 'bold'
-  }
-}
 
 const styles = {
   header: {
