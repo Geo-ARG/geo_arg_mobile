@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux'
 import { StyleSheet, View, Image, Text, Dimensions, BackAndroid, TouchableHighlight, AsyncStorage } from 'react-native';
 import Carousel from 'react-native-looped-carousel'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Home from './'
 import { saveUserLogin, saveData } from '../actions'
 
@@ -29,12 +30,15 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   signInButton: {
-    backgroundColor: '#f2ffe6',
+    backgroundColor: '#cc6600',
     margin: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingRight: 30,
+    paddingLeft: 30
   },
   imgHome: {
     flex: 1,
@@ -130,10 +134,13 @@ class Login extends Component {
           />
           <TouchableHighlight
             style={styles.signInButton}
-            underlayColor='#f2ffe6'
+            underlayColor='#F4B350'
             onPress={this.loginForm}
           >
-            <Text style={{fontSize: 25, color: '#316600', fontWeight: 'bold'}}>START!</Text>
+            <View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
+              <Icon size={60} color="white" name="videogame-asset" />
+              <Text style={{fontSize: 25, color: 'white', fontWeight: 'bold'}}>PLAY!</Text>
+            </View>
           </TouchableHighlight>
         </View>
       </View>

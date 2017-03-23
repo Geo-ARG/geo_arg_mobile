@@ -52,7 +52,7 @@ var styles = {
   },
   header: {
     height: height * 0.1,
-    backgroundColor: '#F4B350'
+    backgroundColor: '#cc6600'
   },
   content: {
     height: height * 0.9
