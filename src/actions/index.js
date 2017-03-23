@@ -12,6 +12,18 @@ export const joinGame       = (eventData)       => ({type: SET_EVENT, payload: e
 export const showEventUser  = (resultEventUser) => ({type: EVENT_DATA_PROFILE, payload: resultEventUser})
 export const saveUserLogin  = (dataUserLogin)   => ({type: SAVE_USER_LOGIN, payload: dataUserLogin})
 
+export const createGame = (UserId, EventId) => {
+  return (dispatch) => {
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({UserId, EventId})
+    }).catch(error => {console.log('Request failed', error)});
+  }
+}
+
 export const saveData = (username, email) => {
   return (dispatch) => {
     if (username != "") {
@@ -31,13 +43,10 @@ export const saveData = (username, email) => {
 }
 
 export const checkAnswer = (userEventId, userAnswer) => {
-  let body =  {
-    userAnswer
-  }
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/${userEventId}/quests/useranswer`, {
       method: 'PUT',
-      body: JSON.stringify(body),
+      body: JSON.stringify({userAnswer}),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -51,21 +60,16 @@ export const checkAnswer = (userEventId, userAnswer) => {
 }
 
 export const scanNearby = (latitude, longitude) => {
-  let body =  {
-    latitude: latitude,
-    longitude: longitude
-  }
   return (dispatch) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/scan`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify({latitude, longitude})
       })
     .then(response => response.json())
     .then(nearby => {
-      console.log(nearby);
       return dispatch(updateNearby(nearby))
     })
     .catch(error => {console.log('Request failed', error)});
@@ -107,9 +111,7 @@ export const watchLocation = (coords, locationId) => {
       },
       body: JSON.stringify(body)
     })
-    .then(response => response.json())
-    .then(data => {console.log(data);})
-    .catch(err => {})
+    .catch(error => {console.log('Request failed', error)});
   }
 }
 

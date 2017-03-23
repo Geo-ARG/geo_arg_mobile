@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator, Alert } from 'react-native'
 import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId } from '../actions'
+import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame } from '../actions'
 
 const {height, width} = Dimensions.get('window');
 
@@ -17,32 +17,40 @@ class GameEvent extends React.Component {
       longitude: 0,
       error: '',
       answerMode: false,
-      currentEventId: '',
+      userEventId: '',
       userAnswer: '',
       progressCircle: true,
+      scanning: false,
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleScan = this.handleScan.bind(this)
   }
 
   handleSubmit(){
     this.setState({answerMode: false})
-    this.props.checkAnswer(this.state.currentEventId, this.state.userAnswer)
+    this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
   }
 
-  handleVerification(currentEvent){
-    switch (currentEvent.Quest.type) {
+  handleScan(){
+    this.props.scanNearby(this.state.latitude, this.state.longitude)
+    this.setState({scanning: true})
+    setTimeout(()=>{this.setState({scanning: false})}, 3000)
+  }
+
+  handleVerification(userEvent){
+    switch (userEvent.Quest.type) {
       case 'Text':
         this.setState({
           answerMode: true,
-          currentEventId: currentEvent.id
+          userEventId: userEvent.id
         })
         break;
       case 'Coordinate':
-          this.props.checkAnswer(currentEvent.id, this.props.location.locationId)
+          this.props.checkAnswer(userEvent.id, this.props.location.locationId)
         break;
       case 'Photo':
-        this.props.setCameraId(currentEvent.id)
+        this.props.setCameraId(userEvent.id)
         this.props.navigator.push({page: 'cameraon'})
         break;
       default:
@@ -50,11 +58,15 @@ class GameEvent extends React.Component {
     }
   }
 
+  componentWillMount(){
+    this.props.createGame(this.props.userId, this.props.currentEventId)
+  }
+
   componentDidMount(){
-    this.props.fetchQuestList(this.props.userId, this.props.eventId)
+    this.props.fetchQuestList(this.props.userId, this.props.currentEventId)
     setTimeout(() => {
       this.setState({progressCircle: false})
-    }, 1800)
+    }, 2000)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         if (this.props.location.locationId === 'Unknown'){
@@ -71,6 +83,17 @@ class GameEvent extends React.Component {
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
     );
+  }
+
+  componentWillReceiveProps(nextprops){
+    if(nextprops.progress === 1){
+      Alert.alert(
+        'Conglaturations',
+        'This Mission is Completed',
+        {text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})},
+        { cancelable: false }
+      )
+    }
   }
 
   componentWillUnmount(){
@@ -91,9 +114,12 @@ class GameEvent extends React.Component {
           </Left>
           <Right>
             <Button
-              onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
+              onPress={this.handleScan}
               style={{backgroundColor: '#00ccff', alignSelf: 'center', borderRadius: 8}}>
+              {this.state.scanning ?
+                <ActivityIndicator animating={true} style={{alignItems: 'center', justifyContent: 'center', padding: 8, height: 80}} size="large"/> :
                 <Text style={{ color: 'white', paddingLeft: 10, paddingRight: 10 }}>Scan Nearby Player</Text>
+              }
             </Button>
           </Right>
         </Header>
@@ -106,19 +132,19 @@ class GameEvent extends React.Component {
             <Text style={{marginBottom: 10}}>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}>User Nearby</Text>
-              <ScrollView>
-                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
-                  return nearby.Users[0].id === this.props.UserId ? null : (
-                    <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
-                  )
-                  })
-                }
-              </ScrollView>
-            <Text></Text>
+            <ScrollView>
+              {this.props.location.nearbyUser.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
+                if(typeof nearby.Users[0] === 'object')
+                return nearby.Users[0].id === this.props.UserId ? null : (
+                  <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
+                )
+                })
+              }
+            </ScrollView>
             <Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>Quest List</Text>
-              {this.props.currentEvent.length < 1 ? null : this.props.currentEvent.map((quest, index) => {
+              {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
                 let input
-                if (quest.id === this.state.currentEventId && this.state.answerMode){
+                if (quest.id === this.state.userEventId && this.state.answerMode){
                   input = (
                     <TextInput
                       style={{height: 40, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white'}}
@@ -157,18 +183,17 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.profileUser, state.eventData);
   return {
-    location     : state.location,
-    userId       : state.profileUser.id,
-    currentEvent    : state.currentEvent,
-    // progress  : state.currentEvent.length === 0 ? 0 : state.currentEvent.filter(x => x.completion).length / state.currentEvent.length,
-    eventId      : state.eventData
+    location : state.location,
+    userId : state.profileUser.userData.User.id,
+    currentEventId : state.currentEvent.id,
+    userEvent : state.userEvent,
+    progress  : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId}, dispatch)
+  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)
