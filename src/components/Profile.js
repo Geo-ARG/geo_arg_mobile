@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Dimensions, AsyncStorage } from 'react-native';
 import { Container, Header, Left, Button, Title, Content, Footer, Body, Right, ListItem, Thumbnail } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
-const {height, width} = Dimensions.get('window');
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { getUserEventByIdUser } from '../actions'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
+const { height, width } = Dimensions.get('window');
 
 class Profile extends React.Component {
   constructor (props) {
@@ -28,16 +28,20 @@ class Profile extends React.Component {
   }
 
   render () {
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1}}>
+        <Header style={{height: height * 0.1, backgroundColor: '#cc6600'}}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
           <Right>
@@ -45,7 +49,7 @@ class Profile extends React.Component {
               transparent
               onPress={() => this.logout()}>
               <Icon size={25} color={'white'} name='power-settings-new' />
-              <Title> Logout</Title>
+              <Title style={{fontSize: 25}}> Logout</Title>
             </Button>
           </Right>
         </Header>
@@ -91,7 +95,6 @@ class Profile extends React.Component {
       </Container>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

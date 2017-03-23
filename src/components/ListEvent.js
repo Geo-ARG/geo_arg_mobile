@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, ScrollView, Image, Dimensions, TouchableHighlight } from 'react-native'
-import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Title, Text, Button, Header, Footer, FooterTab} from 'native-base';
+import { View, Image, Dimensions } from 'react-native'
+import { Container, Content, Left, Right, Body, Title, Text, Button, Header } from 'native-base';
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 var styles = {
   container: {
     flex: 1, justifyContent: 'center',
   },
   header: {
-    height: height * 0.1
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
   },
   content: {
     height: height * 0.9, paddingTop: 0, marginTop: 0
@@ -50,7 +51,7 @@ var styles = {
     flex: 1, width: '100%', height: '100%', marginTop: 5
   },
   listEventView: {
-    alignItems: 'center', padding: 10, width: width, height: height * 0.35, marginTop: 0, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute', bottom: 60
+    alignItems: 'center', padding: 10, width: width, height: height, marginTop: 2, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
   },
   listEventTitle: {
     fontSize: 30, color: '#FFF'
@@ -74,8 +75,7 @@ class ListEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      size: { width, height },
-      month: ''
+      size: { width, height }
     }
   }
 
@@ -84,6 +84,10 @@ class ListEvent extends Component {
   }
 
   render () {
+    BackAndroid.addEventListener('hardwareBackPress', ()=> {
+      this.props.navigator.pop()
+      return true
+    })
     return (
       <Container>
         <Header style={styles.header}>
@@ -92,10 +96,13 @@ class ListEvent extends Component {
               transparent
               onPress={() => this.props.navigator.pop()}
             >
-              <Icon size={25} color={'white'} name='arrow-back' />
-              <Title> Back</Title>
+              <Icon size={35} color={'white'} name='arrow-back' />
+              <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Title style={{fontSize: 25}}>List of All Events</Title>
+          </Right>
         </Header>
         <View style={styles.content}>
           <Image
@@ -105,7 +112,7 @@ class ListEvent extends Component {
           <View>
             {this.props.events.length > 1
             ?
-            <View style={styles.swipeView}><Text style={styles.swipeText}>Swipe Events Left or Right</Text></View>
+            <View style={styles.swipeView}><Text style={styles.swipeText}>Swipe Left or Right</Text></View>
             :
             false}
             <Carousel
@@ -135,7 +142,6 @@ class ListEvent extends Component {
                         </Button>
                       </View>
                     </View>
-
                   )
                 })
               }

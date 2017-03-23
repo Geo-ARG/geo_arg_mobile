@@ -34,7 +34,6 @@ class CameraOn extends Component {
       return true
     })
     return (
-
       <View style={styles.container}>
         <Camera
           ref={(cam) => {
