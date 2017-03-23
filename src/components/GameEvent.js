@@ -87,12 +87,12 @@ class GameEvent extends React.Component {
 
   componentWillReceiveProps(nextprops){
     if(nextprops.progress === 1){
-      setTimeout(()=>{Alert.alert(
+      Alert.alert(
         'Conglaturations',
         'This Mission is Completed',
         {text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})},
         { cancelable: false }
-      )}, 1000)
+      )
     }
   }
 
