@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Dimensions, AsyncStorage } from 'react-native';
-import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Button, Title, Content, Footer, Body, Right, ListItem, Thumbnail } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
 const {height, width} = Dimensions.get('window');
@@ -14,17 +14,20 @@ class Profile extends React.Component {
     this.state={
       listUserLogin: ""
     }
+    this.logout = this.logout.bind(this)
   }
 
   componentWillMount(){
-      // var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
-      // console.log(idUserLogin);
-      // this.props.getUserEventByIdUser(idUserLogin)
+      var idUserLogin = this.props.listUserLogin.User.id
+      this.props.getUserEventByIdUser(idUserLogin)
+  }
+
+  logout(){
+    AsyncStorage.removeItem('dataUser')
+    this.props.navigator.popToTop()
   }
 
   render () {
-    // console.log(this.props.listEventUser);
-    // var hasil = JSON.parse(this.props.listUserLogin)
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
         <Header style={{height: height * 0.1}}>
@@ -37,10 +40,53 @@ class Profile extends React.Component {
               <Title> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Button
+              transparent
+              onPress={() => this.logout()}>
+              <Icon size={25} color={'white'} name='power-settings-new' />
+              <Title> Logout</Title>
+            </Button>
+          </Right>
         </Header>
+        <ListItem thumbnail>
+            <Left>
+                <Thumbnail square size={50} source={require('../assets/player.gif')} />
+            </Left>
+            <Body>
+                <Text>{this.props.listUserLogin.User.username}</Text>
+            </Body>
+            <Right>
+
+            </Right>
+        </ListItem>
         <Content style={{height: height * 0.9}}>
-          <View>
-          </View>
+          {this.props.listEventUser.length < 1 ? "" :
+            this.props.listEventUser.map((eventUser,index)=>{
+              return (
+                <ListItem key={index} thumbnail>
+                    <Left>
+                        { eventUser.completion ? <Thumbnail square size={80} source={require('../assets/harta.png')} /> :
+                          <Thumbnail square size={80} source={require('../assets/harta2.jpg')} />
+                        }
+
+                    </Left>
+                    <Body>
+                        <Text>At {eventUser.Event.place}</Text>
+                        <Text note>{eventUser.Quest.title}</Text>
+                    </Body>
+                    <Right>
+                        <Button transparent>
+                          {eventUser.completion ? <Text>Complete</Text> :
+                            <Text>UnComplete</Text>
+                          }
+                        </Button>
+                    </Right>
+                </ListItem>
+              )
+
+            })
+          }
         </Content>
       </Container>
     )
