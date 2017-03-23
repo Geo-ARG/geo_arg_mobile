@@ -9,6 +9,9 @@ const styles = {
     height: height * 0.1,
     backgroundColor: '#cc6600'
   },
+  content: {
+    height: height * 0.9
+  },
   contentView: {
     position: 'absolute',
     alignSelf: 'center',
@@ -61,7 +64,7 @@ export default class Help extends React.Component {
             </Button>
           </Left>
         </Header>
-        <Content style={{height: height * 0.9}}>
+        <Content style={styles.content}>
           <Image
             style={styles.backgroundImg}
             source={require('../assets/pokemonbg2.jpg')}
