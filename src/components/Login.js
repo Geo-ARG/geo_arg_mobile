@@ -63,9 +63,6 @@ class Login extends Component {
       this.setState({size: {width: layout.width, height: layout.height}})
    }
 
-  componentWillMount(){
-    AsyncStorage.removeItem('dataUser')
-  }
 
   loginForm(){
     AsyncStorage.getItem('dataUser', (err, result) => {
