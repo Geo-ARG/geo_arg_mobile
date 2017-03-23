@@ -6,6 +6,7 @@ import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3'
 import { bindActionCreators } from 'redux'
 import { updateAnswerPhoto } from  '../actions'
+require('dotenv').config()
 
 const styles = StyleSheet.create({
   container: {
