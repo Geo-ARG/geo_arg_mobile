@@ -35,7 +35,7 @@ export default class AppNavigator extends React.Component {
     return (
       <Provider store={store}>
         <Navigator
-          initialRoute={{page: 'game'}}
+          initialRoute={{page: 'login'}}
           renderScene= {this.sceneRender.bind(this)}
         />
       </Provider>

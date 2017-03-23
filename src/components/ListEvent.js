@@ -7,7 +7,10 @@ import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
 import bg1 from '../assets/pokemonbg2.jpg'
-import bg2 from '../assets/pokemon4.jpg'
+import eventBg1 from '../assets/pokemon4.jpg'
+import eventBg2 from '../assets/pokemon2.jpg'
+import eventBg3 from '../assets/pokemon3.jpg'
+import eventBg4 from '../assets/pokemon5.jpg'
 
 const { height, width } = Dimensions.get('window');
 
@@ -125,7 +128,11 @@ class ListEvent extends Component {
                   let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (
                     <View key={index} style={styles.eventsView}>
-                      <Image style={styles.eventsCardView} source={bg2} />
+                      { (index+1) % 2 === 0 ? (
+                        <Image style={styles.eventsCardView} source={eventBg1} />)
+                          :
+                        (<Image style={styles.eventsCardView} source={eventBg3} />)
+                      }
                       <View style={styles.listEventView}>
                         <Text style={styles.listEventTitle}>{listevent.title}</Text>
                         <Text style={styles.listEventDescription}>{listevent.description}</Text>

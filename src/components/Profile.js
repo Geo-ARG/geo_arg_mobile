@@ -63,14 +63,16 @@ class Profile extends React.Component {
             </Button>
           </Right>
         </Header>
-        <ListItem thumbnail>
-          <Left>
-            <Thumbnail square size={50} source={require('../assets/player.gif')} />
-          </Left>
-          <Body>
-            <Text>{this.props.listUserLogin.User.username}</Text>
-          </Body>
-          <Right></Right>
+        <ListItem style={{flexDirection: 'row', height: 80, borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0, 0.1)'}}>
+          <View style={{width: '5%'}}>
+            <Thumbnail square size={50} source={require('../assets/player.gif')} style={{resizeMode: 'contain'}} />
+          </View>
+          <View style={{width: '95%'}}>
+            <View style={{alignItems: 'center'}}>
+              <Text>Username</Text>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>{this.props.listUserLogin.User.username}</Text>
+            </View>
+          </View>
         </ListItem>
         <Content style={styles.content}>
           {this.props.listEventUser.length < 1 ? <Text></Text> :
@@ -92,7 +94,7 @@ class Profile extends React.Component {
                   <Right>
                     <Button transparent>
                       {eventUser.completion ? <Text>Complete</Text> :
-                        <Text>UnComplete</Text>
+                        <Text>Uncomplete</Text>
                       }
                     </Button>
                   </Right>

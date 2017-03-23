@@ -216,14 +216,11 @@ class GameEvent extends React.Component {
   }
 }
 
-// state.profileUser.userData.User.id
-// state.currentEvent.id
-
 const mapStateToProps = state => {
   return {
     location : state.location,
-    userId : 1,
-    currentEventId : 1,
+    userId : state.profileUser.userData.User.id,
+    currentEventId : state.currentEvent.id,
     currentEvent: state.currentEvent,
     userEvent : state.userEvent,
     progress  : state.userEvent.length === 0 ? 0 : state.userEvent.filter(x => x.completion).length / state.userEvent.length,
