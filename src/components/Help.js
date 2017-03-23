@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Dimensions, Image } from 'react-native';
-import { Container, Header, Left, Right, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Right, Button, Title, Content } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const styles = {
   header: {

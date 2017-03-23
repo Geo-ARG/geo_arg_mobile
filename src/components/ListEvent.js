@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, ScrollView, Image, Dimensions, TouchableHighlight } from 'react-native'
-import { Container, Content, Card, CardItem, Left, Right, Body, Thumbnail, Title, Text, Button, Header, Footer, FooterTab} from 'native-base';
+import { View, Image, Dimensions } from 'react-native'
+import { Container, Content, Left, Right, Body, Title, Text, Button, Header } from 'native-base';
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 var styles = {
   container: {
@@ -75,8 +75,7 @@ class ListEvent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      size: { width, height },
-      month: ''
+      size: { width, height }
     }
   }
 
@@ -98,7 +97,7 @@ class ListEvent extends Component {
             </Button>
           </Left>
           <Right>
-            <Title style={{fontSize: 25}}>List of all Events</Title>
+            <Title style={{fontSize: 25}}>List of All Events</Title>
           </Right>
         </Header>
         <View style={styles.content}>

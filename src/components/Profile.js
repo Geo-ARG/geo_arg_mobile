@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Dimensions, AsyncStorage } from 'react-native';
 import { Container, Header, Left, Button, Title, Content, Footer, Body, Right, ListItem, Thumbnail } from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
-const {height, width} = Dimensions.get('window');
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { getUserEventByIdUser } from '../actions'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
+const { height, width } = Dimensions.get('window');
 
 class Profile extends React.Component {
   constructor (props) {

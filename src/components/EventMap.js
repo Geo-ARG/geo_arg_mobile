@@ -64,7 +64,7 @@ class EventMap extends React.Component {
             </Button>
           </Left>
           <Right>
-            <Title style={{fontSize: 25}}>Events around you</Title>
+            <Title style={{fontSize: 25}}>Events Around You</Title>
           </Right>
         </Header>
         <Content style={styles.content}>

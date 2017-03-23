@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, BackAndroid, Dimensions } from 'react-native';
+import { View, Image, Text, BackAndroid, Dimensions } from 'react-native';
 import { Container, Header, Title, Content, Button, Left, Right, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 var styles = {
   button: {

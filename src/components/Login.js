@@ -3,7 +3,6 @@ import { connect} from 'react-redux'
 import { StyleSheet, View, Image, Text, Dimensions, BackAndroid, TouchableHighlight, AsyncStorage } from 'react-native';
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Home from './'
 import { saveUserLogin, saveData } from '../actions'
 
 const Auth0Lock = require('react-native-lock');
