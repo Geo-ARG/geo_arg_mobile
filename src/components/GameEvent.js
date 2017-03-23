@@ -20,14 +20,22 @@ class GameEvent extends React.Component {
       userEventId: '',
       userAnswer: '',
       progressCircle: true,
+      scanning: false,
     };
     this.handleVerification = this.handleVerification.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleScan = this.handleScan.bind(this)
   }
 
   handleSubmit(){
     this.setState({answerMode: false})
     this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)
+  }
+
+  handleScan(){
+    this.props.scanNearby(this.state.latitude, this.state.longitude)
+    this.setState({scanning: true})
+    setTimeout(()=>{this.setState({scanning: false})}, 5000)
   }
 
   handleVerification(userEvent){
@@ -58,7 +66,7 @@ class GameEvent extends React.Component {
     this.props.fetchQuestList(this.props.userId, this.props.currentEventId)
     setTimeout(() => {
       this.setState({progressCircle: false})
-    }, 1800)
+    }, 2000)
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         if (this.props.location.locationId === 'Unknown'){
@@ -95,7 +103,7 @@ class GameEvent extends React.Component {
           </Left>
           <Right>
             <Button
-              onPress={() => this.props.scanNearby(this.state.latitude, this.state.longitude)}
+              onPress={this.handleScan}
               style={{backgroundColor: '#00ccff', alignSelf: 'center', borderRadius: 8}}>
                 <Text style={{ color: 'white', paddingLeft: 10, paddingRight: 10 }}>Scan Nearby Player</Text>
             </Button>
@@ -110,15 +118,14 @@ class GameEvent extends React.Component {
             <Text style={{marginBottom: 10}}>Longitude: {this.state.longitude}</Text>
             {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
             <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}>User Nearby</Text>
-              <ScrollView>
-                {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
-                  return nearby.Users[0].id === this.props.UserId ? null : (
-                    <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
-                  )
-                  })
-                }
-              </ScrollView>
-            <Text></Text>
+            <ScrollView>
+              {this.props.location.length < 1 ? null : this.props.location.nearbyUser.map((nearby, index) => {
+                return nearby.Users[0].id === this.props.UserId ? null : (
+                  <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
+                )
+                })
+              }
+            </ScrollView>
             <Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>Quest List</Text>
               {this.props.userEvent.length < 1 ? null : this.props.userEvent.map((quest, index) => {
                 let input
@@ -161,7 +168,6 @@ class GameEvent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.userEvent);
   return {
     location : state.location,
     userId : state.profileUser.userData.User.id,

@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "input-moment": "^0.3.2",
     "native-base": "^2.0.12",
     "react": "15.4.2",
