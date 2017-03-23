@@ -22,7 +22,7 @@ const lock = new Auth0Lock({
   language: "en"
 });
 
-var styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container:{
     flex: 1,
     justifyContent: 'center',
@@ -139,7 +139,7 @@ class Login extends Component {
           />
           <TouchableHighlight
             style={styles.signInButton}
-            underlayColor='#F4B350'
+            underlayColor='#cc6600'
             onPress={this.loginForm}
           >
             <View style={styles.playView}>

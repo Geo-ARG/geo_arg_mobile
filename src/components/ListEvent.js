@@ -6,12 +6,12 @@ import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
-import bg2 from '../assets/pokemon6.jpg'
-import bg1 from '../assets/pokemonbg1.jpg'
+import bg1 from '../assets/pokemonbg2.jpg'
+import bg2 from '../assets/pokemon4.jpg'
 
 const { height, width } = Dimensions.get('window');
 
-var styles = {
+let styles = {
   container: {
     flex: 1, justifyContent: 'center',
   },
@@ -47,7 +47,7 @@ var styles = {
     height: 60, width: width, alignSelf: 'stretch', backgroundColor: 'rgb(138, 208, 49)', margin: 10, borderRadius: 5, justifyContent: 'center', alignItems: 'center'
   },
   eventsView: {
-    flex: 1, marginLeft:'0.2%', marginRight:'0.2%', marginBottom:'0.2%', height: '90%'
+    flex: 1, marginLeft:'0.3%', marginRight:'0.3%', marginBottom:'0.2%', height: '90%'
   },
   eventsCardView: {
     flex: 1, width: '100%', height: '100%', marginTop: 5
