@@ -6,8 +6,8 @@ import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
-import bg2 from '../assets/pokemon2.jpg'
-import bg1 from '../assets/pokemon2.jpg'
+import bg2 from '../assets/pokemon6.jpg'
+import bg1 from '../assets/pokemonbg1.jpg'
 
 const { height, width } = Dimensions.get('window');
 
