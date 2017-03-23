@@ -35,7 +35,7 @@ class GameEvent extends React.Component {
   handleScan(){
     this.props.scanNearby(this.state.latitude, this.state.longitude)
     this.setState({scanning: true})
-    setTimeout(()=>{this.setState({scanning: false})}, 3000)
+    setTimeout(()=>{this.setState({scanning: false})}, 2000)
   }
 
   handleVerification(userEvent){
@@ -87,12 +87,13 @@ class GameEvent extends React.Component {
 
   componentWillReceiveProps(nextprops){
     if(nextprops.progress === 1){
-      Alert.alert(
+      setTimeout(()=>{
+        Alert.alert(
         'Congratulations',
         'This Mission is Completed',
         [{text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})}],
         { cancelable: false }
-      )
+      )},2000)
     }
   }
 

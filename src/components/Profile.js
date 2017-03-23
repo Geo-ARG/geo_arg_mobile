@@ -61,7 +61,7 @@ class Profile extends React.Component {
             </Right>
         </ListItem>
         <Content style={{height: height * 0.9}}>
-          {this.props.listEventUser.length < 1 ? "" :
+          {this.props.listEventUser.length < 1 ? <Text></Text> :
             this.props.listEventUser.map((eventUser,index)=>{
               return (
                 <ListItem key={index} thumbnail>
