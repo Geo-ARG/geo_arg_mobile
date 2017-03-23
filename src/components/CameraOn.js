@@ -6,7 +6,7 @@ import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3'
 import { bindActionCreators } from 'redux'
 import { updateAnswerPhoto } from  '../actions'
-import config from '../../config'
+import config from '../../cameraOptionsConfig'
 
 const styles = StyleSheet.create({
   container: {
