@@ -90,9 +90,7 @@ class GameEvent extends React.Component {
       setTimeout(()=>{Alert.alert(
         'Conglaturations',
         'This Mission is Completed',
-        [{text: 'To My Profile', onPress: () => this.props.navigator.push({page: 'profile'})},
         {text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})},
-        {text: 'Join Another Event', onPress: () => this.props.navigator.push({page: 'event'})}],
         { cancelable: false }
       )}, 1000)
     }
