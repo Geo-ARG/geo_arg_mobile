@@ -7,33 +7,55 @@ const {height, width} = Dimensions.get('window');
 var styles = {
   button: {
     borderRadius:10,
-    backgroundColor: '#e6ffff',
+    backgroundColor: '#F4B350',
     marginTop: 20,
-    height: height * 0.1,
-    width: width * 0.8,
-    alignSelf: 'center'
+    height: height * 0.2,
+    width: width * 0.4,
+    alignSelf: 'center',
+    flexDirection: 'column',
+    padding: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  iconView: {
-    marginTop: 10,
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: width,
+    paddingLeft: width * 0.06,
+    paddingRight: width * 0.06,
   },
-  badge: {
+  buttonText: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
+  },
+  icon: {
     alignSelf: 'center',
     height: 169,
-    width: 151,
+    width: 151
   },
   headerIcon: {
     alignSelf: 'center',
-    height: 60,
-    width: 60
+    height: 70,
+    width: 70
   },
-  content: {
+  contentView: {
     position: 'absolute',
-    justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,.5)',
+    width: width,
+    height: height
   },
   backgroundImg: {
     width: width,
     height: height
+  },
+  header: {
+    height: height * 0.1,
+    backgroundColor: '#cc6600'
+  },
+  content: {
+    height: height * 0.9
   }
 }
 
@@ -48,7 +70,7 @@ export default class Home extends Component {
     })
     return (
       <Container style={{backgroundColor: '#F5F5F5'}}>
-        <Header style={{height: height * 0.1}}>
+        <Header style={styles.header}>
           <Left>
             <Image
               style={styles.headerIcon}
@@ -56,58 +78,62 @@ export default class Home extends Component {
             />
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title style={{fontSize: 25}}>Home</Title>
           </Body>
           <Right />
         </Header>
-        <Content style={{height: height * 0.9}}>
+        <Content style={styles.content}>
           <Image
             style={styles.backgroundImg}
-            source={require('../assets/pokemon12.jpg')}
+            source={require('../assets/pokemonbg2.jpg')}
           />
-          <View style={styles.content}>
-            <View style={styles.iconView}>
+          <View style={styles.contentView}>
+            <View style={{marginTop: 20}}>
               <Image
-                style={styles.badge}
+                style={styles.icon}
                 source={require('../assets/logo.png')}
               />
             </View>
-            <Button
-              block warning style={styles.button}
-              onPress={() => this.props.navigator.push({
-                page: 'event'
-              })}
-            >
-              <Text style={{fontSize: 20}}>Browse All Events </Text>
-              <Icon size={20} name="event" />
-            </Button>
-            <Button
-              block warning style={styles.button}
-              onPress={() => this.props.navigator.push({
-                page: 'map'
-              })}
-            >
-              <Text style={{fontSize: 20}}>Search Event Around You </Text>
-              <Icon size={20} name="add-location" />
-            </Button>
-            <Button
-              block warning style={styles.button}
-              onPress={() => this.props.navigator.push({
-                page: 'profile'
-              })}
-            >
-              <Text style={{fontSize: 20}}>My Profile </Text>
-              <Icon size={20} name="account-circle" />
-            </Button>
-            <Button
-              block warning style={styles.button}
-              onPress={() => this.props.navigator.push({
-                page: 'help'
-              })}
-            >
-              <Text style={{fontSize: 20}}>How to Play </Text>
-              <Icon size={20} name="help" />
-            </Button>
+            <View style={styles.buttonRow}>
+              <Button
+                block warning style={styles.button}
+                onPress={() => this.props.navigator.push({
+                  page: 'event'
+                })}
+              >
+                <Icon size={60} color="white" name="event" />
+                <Text style={styles.buttonText}>Browse All Events </Text>
+              </Button>
+              <Button
+                block warning style={styles.button}
+                onPress={() => this.props.navigator.push({
+                  page: 'map'
+                })}
+              >
+                <Icon size={60} color="white" name="add-location" />
+                <Text style={styles.buttonText}>Search Event Around You </Text>
+              </Button>
+            </View>
+            <View style={styles.buttonRow}>
+              <Button
+                block warning style={styles.button}
+                onPress={() => this.props.navigator.push({
+                  page: 'profile'
+                })}
+              >
+                <Icon size={60} color="white" name="account-circle" />
+                <Text style={styles.buttonText}>My Profile </Text>
+              </Button>
+              <Button
+                block warning style={styles.button}
+                onPress={() => this.props.navigator.push({
+                  page: 'help'
+                })}
+              >
+                <Icon size={60} color="white" name="help" />
+                <Text style={styles.buttonText}>How to Play </Text>
+              </Button>
+            </View>
           </View>
         </Content>
       </Container>

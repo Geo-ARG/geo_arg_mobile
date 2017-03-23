@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux'
 import { StyleSheet, View, Image, Text, Dimensions, BackAndroid, TouchableHighlight, AsyncStorage } from 'react-native';
 import Carousel from 'react-native-looped-carousel'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Home from './'
 import { saveUserLogin, saveData } from '../actions'
 
@@ -29,12 +30,15 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   signInButton: {
-    backgroundColor: '#f2ffe6',
+    backgroundColor: '#cc6600',
     margin: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingRight: 30,
+    paddingLeft: 30
   },
   imgHome: {
     flex: 1,
@@ -60,24 +64,27 @@ class Login extends Component {
    }
 
   componentWillMount(){
-    // AsyncStorage.getItem('dataUser', (err, result) => {
-    //   if (result) {
-    //     this.props.saveUserLogin(JSON.parse(result))
-    //     this.props.navigator.push({page: 'home'})
-    //   }
-    // });
+    AsyncStorage.removeItem('dataUser')
   }
 
   loginForm(){
-    lock.show({
-      closable: true
-    }, (err, profile, token) => {
-      if (err) {
-        console.log(err);
-        return;
+    AsyncStorage.getItem('dataUser', (err, result) => {
+      if (result) {
+        this.props.saveUserLogin(JSON.parse(result))
+        this.props.navigator.push({page: 'home'})
       }
-      this.props.saveData(profile.nickname, profile.email)
-      this.props.navigator.push({page: 'home'});
+      else {
+        lock.show({
+          closable: true
+        }, (err, profile, token) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          this.props.saveData(profile.nickname, profile.email)
+          this.props.navigator.push({page: 'home'});
+        });
+      }
     });
   }
 
@@ -116,22 +123,24 @@ class Login extends Component {
         <View
           style={{
             backgroundColor: 'rgba(0,0,0,.5)',
-            width: width * 0.9,
-            height: height * 0.5,
+            width: width,
+            height: height,
             alignItems: 'center',
             justifyContent: 'center',
-            position: 'absolute',
-            borderRadius: 15
+            position: 'absolute'
           }}>
           <Image
             source={require('../assets/logo.png')}
           />
           <TouchableHighlight
             style={styles.signInButton}
-            underlayColor='#f2ffe6'
+            underlayColor='#F4B350'
             onPress={this.loginForm}
           >
-            <Text style={{fontSize: 25, color: '#316600', fontWeight: 'bold'}}>START!</Text>
+            <View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
+              <Icon size={60} color="white" name="videogame-asset" />
+              <Text style={{fontSize: 25, color: 'white', fontWeight: 'bold'}}>PLAY!</Text>
+            </View>
           </TouchableHighlight>
         </View>
       </View>
