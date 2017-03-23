@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 import MapView from 'react-native-maps'
 import { fetchEvents } from '../actions'
-import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Right, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const {height, width} = Dimensions.get('window');
@@ -63,8 +63,10 @@ class EventMap extends React.Component {
               <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Title style={{fontSize: 25}}>Events around you</Title>
+          </Right>
         </Header>
-
         <Content style={styles.content}>
           <MapView
             style={styles.map}
@@ -81,7 +83,8 @@ class EventMap extends React.Component {
                 key={index}
                 coordinate={{latitude: coordinates[0], longitude: coordinates[1]}}
                 title={marker.title}
-                description={`${marker.place}, ${marker.description}`}/>
+                description={`${marker.place}, ${marker.description}`}
+              />
             )}
           )}
           </MapView>
@@ -90,12 +93,6 @@ class EventMap extends React.Component {
     )
   }
 }
-
-/*
-<View style={{position: 'absolute', backgroundColor: 'rgba(0,0,0,.5)', top: 10, width: width,  padding: 20}}>
-  <Text>Find events here</Text>
-</View>
-*/
 
 const mapStateToProps = state => {
   return {

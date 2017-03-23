@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, StyleSheet, ScrollView, Image, Dimensions, TouchableHighlight } from 'react-native'
-import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Title, Text, Button, Header, Footer, FooterTab} from 'native-base';
+import { Container, Content, Card, CardItem, Left, Right, Body, Thumbnail, Title, Text, Button, Header, Footer, FooterTab} from 'native-base';
 import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -97,6 +97,9 @@ class ListEvent extends Component {
               <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Title style={{fontSize: 25}}>List of all Events</Title>
+          </Right>
         </Header>
         <View style={styles.content}>
           <Image
@@ -106,7 +109,7 @@ class ListEvent extends Component {
           <View>
             {this.props.events.length > 1
             ?
-            <View style={styles.swipeView}><Text style={styles.swipeText}>Swipe Events Left or Right</Text></View>
+            <View style={styles.swipeView}><Text style={styles.swipeText}>Swipe Left or Right</Text></View>
             :
             false}
             <Carousel
@@ -136,7 +139,6 @@ class ListEvent extends Component {
                         </Button>
                       </View>
                     </View>
-
                   )
                 })
               }

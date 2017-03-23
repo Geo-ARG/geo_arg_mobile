@@ -111,7 +111,7 @@ export default class Home extends Component {
                 })}
               >
                 <Icon size={60} color="white" name="add-location" />
-                <Text style={styles.buttonText}>Search Event Around You </Text>
+                <Text style={styles.buttonText}>Search Events Around You </Text>
               </Button>
             </View>
             <View style={styles.buttonRow}>

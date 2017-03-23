@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Dimensions, Image } from 'react-native';
-import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Right, Button, Title, Content, Footer } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const {height, width} = Dimensions.get('window');
 
@@ -63,6 +63,9 @@ export default class Help extends React.Component {
               <Title style={{fontSize: 25}}> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Title style={{fontSize: 25}}>Game Guides</Title>
+          </Right>
         </Header>
         <Content style={styles.content}>
           <Image
