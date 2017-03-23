@@ -88,9 +88,9 @@ class GameEvent extends React.Component {
   componentWillReceiveProps(nextprops){
     if(nextprops.progress === 1){
       Alert.alert(
-        'Conglaturations',
+        'Congratulations',
         'This Mission is Completed',
-        {text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})},
+        [{text: 'Back To Home', onPress: () => this.props.navigator.push({page: 'home'})}],
         { cancelable: false }
       )
     }
