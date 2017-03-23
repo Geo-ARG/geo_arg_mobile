@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Dimensions, AsyncStorage } from 'react-native';
-import { Container, Header, Left, Button, Title, Content, Footer } from 'native-base';
+import { Container, Header, Left, Button, Title, Content, Footer, Body, Right, ListItem, Thumbnail } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux'
 const {height, width} = Dimensions.get('window');
@@ -14,12 +14,19 @@ class Profile extends React.Component {
     this.state={
       listUserLogin: ""
     }
+    this.logout = this.logout.bind(this)
   }
 
   componentWillMount(){
       // var idUserLogin = JSON.parse(this.props.listUserLogin).User.id
       // console.log(idUserLogin);
       // this.props.getUserEventByIdUser(idUserLogin)
+  }
+
+  logout(){
+    AsyncStorage.removeItem('dataUser')
+    this.props.navigator.popToTop()
+
   }
 
   render () {
@@ -37,10 +44,57 @@ class Profile extends React.Component {
               <Title> Back</Title>
             </Button>
           </Left>
+          <Right>
+            <Button
+              transparent
+              onPress={() => this.logout}>
+              <Icon size={25} color={'white'} name='power-settings-new' />
+              <Title> Logout</Title>
+            </Button>
+          </Right>
         </Header>
+        <ListItem thumbnail>
+            <Left>
+                <Thumbnail square size={50} source={require('../assets/player.gif')} />
+            </Left>
+            <Body>
+                <Text>@Username</Text>
+            </Body>
+            <Right>
+
+            </Right>
+        </ListItem>
         <Content style={{height: height * 0.9}}>
-          <View>
-          </View>
+                  <ListItem thumbnail>
+                      <Left>
+                          <Thumbnail square size={80} source={require('../assets/harta.png')} />
+                      </Left>
+                      <Body>
+                          <Text>@Event PIM</Text>
+                          <Text note>Dapatkan Foto Baliho Mall</Text>
+                      </Body>
+                      <Right>
+                          <Button transparent>
+                              <Text>Complete</Text>
+                          </Button>
+                      </Right>
+                  </ListItem>
+
+                  <ListItem thumbnail>
+                      <Left>
+                          <Thumbnail square size={80} source={require('../assets/harta2.jpg')} />
+                      </Left>
+                      <Body>
+                          <Text>@Event PIM</Text>
+                          <Text note>Dapatkan Foto Baliho Mall</Text>
+                      </Body>
+                      <Right>
+                          <Button transparent>
+                              <Text>UnComplete</Text>
+                          </Button>
+                      </Right>
+                  </ListItem>
+
         </Content>
       </Container>
     )
