@@ -9,7 +9,35 @@ const mockStore = configureStore(middlewares)
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <Provider store={mockStore([])}>
+    <Provider store={mockStore({
+      location: {
+        locationId: 1,
+        nearbyUser: [
+          {Users: []}
+        ]
+      },
+      profileUser: {
+        userData: {
+          id: 1,
+          username: 'syanmil'
+        },
+        userEvent: [
+          {QuestId: 1,
+            completion: false,
+            Quest: {
+              task: 'eat',
+              title: 'Go To Canteen',
+              type: 'photo'            }
+          }
+        ]
+      },
+      currentEvent: {
+        id: 1,
+        Quest: [],
+        Users: []
+      },
+      userEvent: [{id: 1}]
+    })}>
       <GameEvent />
     </Provider>
   ).toJSON();

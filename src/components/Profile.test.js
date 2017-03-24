@@ -12,12 +12,12 @@ const mockStore = configureStore(middlewares)
 it('renders correctly', () => {
   const tree = renderer.create(
     <Provider store={mockStore({
-        profileUser: [
-          {userEvent: []},
-          {userData: {
+        profileUser: {
+          userEvent: [],
+          userData: {
             User: {id: 1, username: 'syanmil'}
-          }}
-        ]
+          }
+        }
       })}>
       <Profile />
     </Provider>

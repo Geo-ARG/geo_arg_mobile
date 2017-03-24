@@ -9,7 +9,7 @@ const mockStore = configureStore(middlewares)
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <Provider store={mockStore({events: []})}}>
+    <Provider store={mockStore({events: []})}>
       <ListEvent />
     </Provider>
   ).toJSON();
