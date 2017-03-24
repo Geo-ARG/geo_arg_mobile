@@ -6,7 +6,7 @@ import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3'
 import { bindActionCreators } from 'redux'
 import { updateAnswerPhoto } from  '../actions'
-import config from '../../cameraOptionsConfig'
+// import config from '../../cameraOptionsConfig'
 
 const styles = StyleSheet.create({
   container: {
@@ -59,12 +59,11 @@ class CameraOn extends Component {
         type: 'image/jpeg'
       }
       const options = {
-        keyPrefix: config.keyPrefix,
-        bucket: config.bucket,
-        region: config.region,
-        accessKey: config.accessKey,
-        secretKey: config.secretKey,
-        successActionStatus: 201
+        keyPrefix : 'photos/',
+bucket : 'arg-images',
+region : 'ap-southeast-1',
+accessKey : 'AKIAIUDIQ74DSKRHRPRQ',
+secretKey : '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'
       }
       RNS3.put(file, options).then(response => {
         if (response.status !== 201) {
