@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native'
 import { SEND_LOCATION, SCAN, QUEST_LIST, VERIFY_QUEST, SELECT_QUEST, SET_EVENTS, CLEAR_EVENTS, SET_EVENT, EVENT_DATA_PROFILE, SAVE_USER_LOGIN } from '../constants'
+import store from '../store/storeConfig.js'
 
 export const updateLocation = (locationId)      => ({type: SEND_LOCATION, payload: locationId })
 export const updateNearby   = (nearby)          => ({type: SCAN, payload: nearby })
@@ -17,7 +18,8 @@ export const createGame = (UserId, EventId) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
       },
       body: JSON.stringify({UserId, EventId})
     }).catch(error => {console.log('Request failed', error)});
@@ -30,7 +32,7 @@ export const saveData = (username, email) => {
       fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/auth/users', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({username: username, email: email})
       }).then(res => res.json()).then(newDataUser => {
@@ -48,7 +50,8 @@ export const checkAnswer = (userEventId, userAnswer) => {
       method: 'PUT',
       body: JSON.stringify({userAnswer}),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
       },
     })
       .then(response => response.json())
@@ -64,7 +67,8 @@ export const scanNearby = (latitude, longitude) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/scan`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
       },
       body: JSON.stringify({latitude, longitude})
       })
@@ -86,7 +90,8 @@ export const sendLocation = (coords, userId) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token,
       },
       body: JSON.stringify(body)
       })
@@ -107,7 +112,8 @@ export const watchLocation = (coords, locationId) => {
     fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/locations/${locationId}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
       },
       body: JSON.stringify(body)
     })
@@ -117,7 +123,13 @@ export const watchLocation = (coords, locationId) => {
 
 export const fetchQuestList = (UserId, EventId) => {
   return (dispatch) => {
-    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`)
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/${UserId}/event/${EventId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
+      }
+    })
       .then(response => response.json())
       .then(quests => {
         return dispatch(setQuestList(quests))
@@ -128,7 +140,13 @@ export const fetchQuestList = (UserId, EventId) => {
 
 export const fetchEvents = () => {
   return (dispatch) => {
-    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/events`)
+    fetch(`http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/events`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
+      }
+    })
       .then(response => {
         return response.json()
       })
@@ -144,8 +162,11 @@ export const updateAnswerPhoto = (idevent, answeruser) => {
   return (dispatch) => {
     fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/'+idevent, {
       method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({userAnswer: answeruser})
+      headers: {
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
+      },
+      body: JSON.stringify({userAnswer: answeruser}),
     })
   }
 }
@@ -153,6 +174,11 @@ export const updateAnswerPhoto = (idevent, answeruser) => {
 export const getUserEventByIdUser = (idUserLogin) => {
   return (dispatch) => {
     fetch('http://geo-arg-server-dev.ap-southeast-1.elasticbeanstalk.com/api/userevents/user/'+idUserLogin, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': store.getState().profileUser.userData.token
+      }
     }).then(res => res.json())
     .then(resultEventUser => {
       dispatch(showEventUser(resultEventUser))

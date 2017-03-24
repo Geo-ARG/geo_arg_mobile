@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for geo_arg_mobile/src/components/GameEvent.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">geo_arg_mobile/src/components</a> GameEvent.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.84% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.35% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/50</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+import { View, Text, TouchableOpacity, TextInput, Dimensions, ScrollView, Image, ActivityIndicator, Alert } from 'react-native'
+import { Card, CardItem, Button, Content, Container, Header, Left, Right, ProgressBar, Title } from 'native-base'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame } from '../actions'
+&nbsp;
+const {height, width} = Dimensions.get('window');
+&nbsp;
+class GameEvent extends React.Component {
+<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
+<span class="cstat-no" title="statement not covered" >    super(props);</span>
+<span class="cstat-no" title="statement not covered" >    this.state = {</span>
+      latitude: 0,
+      longitude: 0,
+      error: '',
+      answerMode: false,
+      userEventId: '',
+      userAnswer: '',
+      progressCircle: true,
+      scanning: false,
+    };
+<span class="cstat-no" title="statement not covered" >    this.handleVerification = this.handleVerification.bind(this)</span>
+<span class="cstat-no" title="statement not covered" >    this.handleSubmit = this.handleSubmit.bind(this)</span>
+<span class="cstat-no" title="statement not covered" >    this.handleScan = this.handleScan.bind(this)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleSubmit(){
+<span class="cstat-no" title="statement not covered" >    this.setState({answerMode: false})</span>
+<span class="cstat-no" title="statement not covered" >    this.props.checkAnswer(this.state.userEventId, this.state.userAnswer)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleScan(){
+<span class="cstat-no" title="statement not covered" >    this.props.scanNearby(this.state.latitude, this.state.longitude)</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({scanning: true})</span>
+<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >this.setState({scanning: false})}</span>, 3000)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleVerification(userEvent){
+<span class="cstat-no" title="statement not covered" >    switch (userEvent.Quest.type) {</span>
+      case 'Text':
+<span class="cstat-no" title="statement not covered" >        this.setState({</span>
+          answerMode: true,
+          userEventId: userEvent.id
+        })
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case 'Coordinate':
+<span class="cstat-no" title="statement not covered" >          this.props.checkAnswer(userEvent.id, this.props.location.locationId)</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case 'Photo':
+<span class="cstat-no" title="statement not covered" >        this.props.setCameraId(userEvent.id)</span>
+<span class="cstat-no" title="statement not covered" >        this.props.navigator.push({page: 'cameraon'})</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      default:
+<span class="cstat-no" title="statement not covered" >        return</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillMount(){
+<span class="cstat-no" title="statement not covered" >    this.props.createGame(this.props.userId, this.props.currentEventId)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount(){
+<span class="cstat-no" title="statement not covered" >    this.props.fetchQuestList(this.props.userId, this.props.currentEventId)</span>
+<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({progressCircle: false})</span>
+    }, 2000)
+<span class="cstat-no" title="statement not covered" >    this.watchId = navigator.geolocation.watchPosition(</span>
+<span class="fstat-no" title="function not covered" >      (p</span>osition) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (this.props.location.locationId === 'Unknown'){</span>
+<span class="cstat-no" title="statement not covered" >          this.props.sendLocation(position.coords, this.props.userId)</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.props.watchLocation(position.coords, this.props.location.locationId)</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.setState({</span>
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+<span class="fstat-no" title="function not covered" >      (e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ error: error.message }),</span>
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+    );
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillReceiveProps(nextprops){
+<span class="cstat-no" title="statement not covered" >    if(nextprops.progress === 1){</span>
+<span class="cstat-no" title="statement not covered" >      Alert.alert(</span>
+        'Conglaturations',
+        'This Mission is Completed',
+        {text: 'Back To Home', onPress: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.props.navigator.push({page: 'home'})}</span>,
+        { cancelable: false }
+      )
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount(){
+<span class="cstat-no" title="statement not covered" >    navigator.geolocation.clearWatch(this.watchId);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nder(){
+<span class="cstat-no" title="statement not covered" >    return(</span>
+      &lt;Container style={{backgroundColor: '#F5F5F5'}}&gt;
+        &lt;Header style={{backgroundColor: '#2a3d8e', width: '100%', height:height * 0.1}}&gt;
+          &lt;Left&gt;
+            &lt;Button
+              transparent
+              onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.props.navigator.pop()}</span>&gt;
+              &lt;Icon size={25} color={'white'} name='arrow-back' /&gt;
+              &lt;Title&gt; Back&lt;/Title&gt;
+            &lt;/Button&gt;
+          &lt;/Left&gt;
+          &lt;Right&gt;
+            &lt;Button
+              onPress={this.handleScan}
+              style={{backgroundColor: '#00ccff', alignSelf: 'center', borderRadius: 8}}&gt;
+              {this.state.scanning ?
+                &lt;ActivityIndicator animating={true} style={{alignItems: 'center', justifyContent: 'center', padding: 8, height: 80}} size="large"/&gt; :
+                &lt;Text style={{ color: 'white', paddingLeft: 10, paddingRight: 10 }}&gt;Scan Nearby Player&lt;/Text&gt;
+              }
+            &lt;/Button&gt;
+          &lt;/Right&gt;
+        &lt;/Header&gt;
+        &lt;Content style={{height: height}}&gt;
+          &lt;View style={{alignItems: 'center', justifyContent: 'center', marginTop: 15, marginBottom: 35 }}&gt;
+            &lt;Text style={{ fontSize: 30, marginLeft: 10, fontWeight: 'bold'}}&gt;GAME EVENT&lt;/Text&gt;
+            &lt;Text style={{marginTop: 10}}&gt;Progress: &lt;/Text&gt;
+            &lt;Progress.Circle style={{marginBottom: 10, marginTop: 10}} progress={this.props.progress} size={80} showsText={true} indeterminate={this.state.progressCircle}/&gt;
+            &lt;Text&gt;Latitude: {this.state.latitude}&lt;/Text&gt;
+            &lt;Text style={{marginBottom: 10}}&gt;Longitude: {this.state.longitude}&lt;/Text&gt;
+            {this.state.error ? &lt;Text&gt;Error: {this.state.error}&lt;/Text&gt; : null}
+            &lt;Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}&gt;User Nearby&lt;/Text&gt;
+            &lt;ScrollView&gt;
+              {this.props.location.nearbyUser.length &lt; 1 ? null : this.props.location.nearbyUser.map(<span class="fstat-no" title="function not covered" >(n</span>earby, index) =&gt; {
+<span class="cstat-no" title="statement not covered" >                if(typeof nearby.Users[0] === 'object')</span>
+<span class="cstat-no" title="statement not covered" >                return nearby.Users[0].id === this.props.UserId ? null : (</span>
+                  &lt;Text key={index}&gt;ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}&lt;/Text&gt;
+                )
+                })
+              }
+            &lt;/ScrollView&gt;
+            &lt;Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}&gt;Quest List&lt;/Text&gt;
+              {this.props.userEvent.length &lt; 1 ? null : this.props.userEvent.map(<span class="fstat-no" title="function not covered" >(q</span>uest, index) =&gt; {
+                let input
+<span class="cstat-no" title="statement not covered" >                if (quest.id === this.state.userEventId &amp;&amp; this.state.answerMode){</span>
+<span class="cstat-no" title="statement not covered" >                  input = (</span>
+                    &lt;TextInput
+                      style={{height: 40, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white'}}
+                      onChangeText={<span class="fstat-no" title="function not covered" >us</span>erAnswer =&gt; <span class="cstat-no" title="statement not covered" >this.setState({userAnswer})}</span>
+                      value={this.state.userAnswer}
+                      maxLength={25}
+                      blurOnSubmit={true}
+                      autoFocus={true}
+                      onSubmitEditing={this.handleSubmit}
+                      onBlur={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.setState({answerMode: false})}</span>
+                      returnKeyType={'send'}
+                    /&gt;
+                  )
+                }
+                let complete = <span class="cstat-no" title="statement not covered" >quest.completion ? {color: '#4d6600', textAlign: 'center'} : {color: '#ecffb3', textAlign: 'center'}</span>
+<span class="cstat-no" title="statement not covered" >                return (</span>
+                  &lt;View key={index} style={{ backgroundColor: '#00cc99', marginTop: 10, width: width * 0.8, padding: 10, borderRadius: 8, borderBottomWidth: 1, borderBottomColor: '#222222'}}&gt;
+                    &lt;TouchableOpacity onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleVerification(quest)}</span> disabled={quest.completion}&gt;
+                      &lt;View style={{justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}&gt;
+                        &lt;View&gt;
+                          &lt;Text style={complete}&gt;{quest.Quest.title} &lt;/Text&gt;
+                          &lt;Text style={complete}&gt;{quest.Quest.task} &lt;/Text&gt;
+                          &lt;Text style={complete}&gt;Submit Type : {quest.Quest.type} &lt;/Text&gt;
+                        &lt;/View&gt;
+                      &lt;/View&gt;
+                    &lt;/TouchableOpacity&gt;
+                    {input}
+                  &lt;/View&gt;
+                )
+              })}
+          &lt;/View&gt;
+        &lt;/Content&gt;
+      &lt;/Container&gt;
+    );
+  }
+}
+&nbsp;
+const mapStateToProps = state =&gt; {
+  return {
+    location : state.location,
+    userId : state.profileUser.userData.User.id,
+    currentEventId : state.currentEvent.id,
+    userEvent : state.userEvent,
+    progress  : state.userEvent.length === 0 ? 0 : state.userEvent.filter(<span class="fstat-no" title="function not covered" >x </span>=&gt; <span class="cstat-no" title="statement not covered" >x.completion)</span>.length / state.userEvent.length,
+  }
+}
+&nbsp;
+const mapDispatchToProps = <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; {
+<span class="cstat-no" title="statement not covered" >  return bindActionCreators({sendLocation, watchLocation, scanNearby, fetchQuestList, checkAnswer, setCameraId, createGame}, dispatch)</span>
+}
+&nbsp;
+export default connect(mapStateToProps, mapDispatchToProps)(GameEvent)
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 23 2017 16:33:20 GMT+0700 (WIB)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

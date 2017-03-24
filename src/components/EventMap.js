@@ -50,7 +50,6 @@ class EventMap extends React.Component {
   }
 
   render(){
-    console.log(this.state.region);
     BackAndroid.addEventListener('hardwareBackPress', ()=> {
       this.props.navigator.pop()
       return true

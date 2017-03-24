@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1490261600301" clover="3.2.0">
+  <project timestamp="1490261600302" name="All files">
+    <metrics statements="284" coveredstatements="111" conditionals="84" coveredconditionals="14" methods="150" coveredmethods="34" elements="518" coveredelements="159" complexity="0" loc="284" ncloc="284" packages="8" files="25" classes="25">
+      <package name="geo_arg_mobile">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <file name="index.android.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/index.android.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+        </file>
+        <file name="index.ios.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/index.ios.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src">
+        <metrics statements="12" coveredstatements="3" conditionals="10" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <file name="AppNavigator.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/AppNavigator.js">
+          <metrics statements="12" coveredstatements="3" conditionals="10" coveredconditionals="1" methods="2" coveredmethods="2"/>
+          <line num="11" count="3" type="cond" truecount="1" falsecount="9"/>
+          <line num="13" count="3" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="35" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.actions">
+        <metrics statements="64" coveredstatements="20" conditionals="2" coveredconditionals="0" methods="52" coveredmethods="0"/>
+        <file name="index.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/actions/index.js">
+          <metrics statements="64" coveredstatements="20" conditionals="2" coveredconditionals="0" methods="52" coveredmethods="0"/>
+          <line num="4" count="9" type="stmt"/>
+          <line num="5" count="9" type="stmt"/>
+          <line num="6" count="9" type="stmt"/>
+          <line num="7" count="9" type="stmt"/>
+          <line num="8" count="9" type="stmt"/>
+          <line num="9" count="9" type="stmt"/>
+          <line num="10" count="9" type="stmt"/>
+          <line num="11" count="9" type="stmt"/>
+          <line num="12" count="9" type="stmt"/>
+          <line num="13" count="9" type="stmt"/>
+          <line num="15" count="9" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="27" count="9" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="45" count="9" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="62" count="9" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="79" count="9" type="stmt"/>
+          <line num="80" count="0" type="stmt"/>
+          <line num="85" count="0" type="stmt"/>
+          <line num="86" count="0" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+          <line num="95" count="0" type="stmt"/>
+          <line num="97" count="0" type="stmt"/>
+          <line num="101" count="9" type="stmt"/>
+          <line num="102" count="0" type="stmt"/>
+          <line num="106" count="0" type="stmt"/>
+          <line num="107" count="0" type="stmt"/>
+          <line num="114" count="0" type="stmt"/>
+          <line num="118" count="9" type="stmt"/>
+          <line num="119" count="0" type="stmt"/>
+          <line num="120" count="0" type="stmt"/>
+          <line num="121" count="0" type="stmt"/>
+          <line num="123" count="0" type="stmt"/>
+          <line num="125" count="0" type="stmt"/>
+          <line num="129" count="9" type="stmt"/>
+          <line num="130" count="0" type="stmt"/>
+          <line num="131" count="0" type="stmt"/>
+          <line num="133" count="0" type="stmt"/>
+          <line num="136" count="0" type="stmt"/>
+          <line num="143" count="9" type="stmt"/>
+          <line num="144" count="0" type="stmt"/>
+          <line num="145" count="0" type="stmt"/>
+          <line num="153" count="9" type="stmt"/>
+          <line num="154" count="0" type="stmt"/>
+          <line num="155" count="0" type="stmt"/>
+          <line num="156" count="0" type="stmt"/>
+          <line num="158" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.components">
+        <metrics statements="162" coveredstatements="54" conditionals="46" coveredconditionals="0" methods="81" coveredmethods="21"/>
+        <file name="CameraOn.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/CameraOn.js">
+          <metrics statements="22" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="3"/>
+          <line num="10" count="5" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="83" count="5" type="stmt"/>
+          <line num="84" count="1" type="stmt"/>
+          <line num="89" count="5" type="stmt"/>
+          <line num="90" count="1" type="stmt"/>
+        </file>
+        <file name="EventMap.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/EventMap.js">
+          <metrics statements="15" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="4"/>
+          <line num="10" count="5" type="stmt"/>
+          <line num="12" count="5" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="91" count="5" type="stmt"/>
+          <line num="92" count="1" type="stmt"/>
+          <line num="97" count="5" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+        </file>
+        <file name="GameEvent.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/GameEvent.js">
+          <metrics statements="50" coveredstatements="4" conditionals="28" coveredconditionals="0" methods="23" coveredmethods="1"/>
+          <line num="10" count="5" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="42" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="75" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+          <line num="100" count="0" type="stmt"/>
+          <line num="104" count="0" type="stmt"/>
+          <line num="110" count="0" type="stmt"/>
+          <line num="137" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="138" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="147" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="148" count="0" type="stmt"/>
+          <line num="151" count="0" type="stmt"/>
+          <line num="157" count="0" type="stmt"/>
+          <line num="162" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="163" count="0" type="stmt"/>
+          <line num="165" count="0" type="stmt"/>
+          <line num="185" count="5" type="stmt"/>
+          <line num="186" count="1" type="stmt"/>
+          <line num="191" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="195" count="5" type="stmt"/>
+          <line num="196" count="0" type="stmt"/>
+        </file>
+        <file name="Help.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/Help.js">
+          <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+          <line num="5" count="5" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+        </file>
+        <file name="Home.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/Home.js">
+          <metrics statements="10" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="2"/>
+          <line num="5" count="5" type="stmt"/>
+          <line num="7" count="5" type="stmt"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="68" count="1" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="71" count="1" type="stmt"/>
+          <line num="100" count="0" type="stmt"/>
+          <line num="109" count="0" type="stmt"/>
+          <line num="120" count="0" type="stmt"/>
+          <line num="129" count="0" type="stmt"/>
+        </file>
+        <file name="ListEvent.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/ListEvent.js">
+          <metrics statements="18" coveredstatements="9" conditionals="4" coveredconditionals="0" methods="11" coveredmethods="4"/>
+          <line num="10" count="5" type="stmt"/>
+          <line num="12" count="5" type="stmt"/>
+          <line num="75" count="1" type="stmt"/>
+          <line num="76" count="1" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+          <line num="118" count="0" type="stmt"/>
+          <line num="119" count="0" type="stmt"/>
+          <line num="131" count="0" type="stmt"/>
+          <line num="132" count="0" type="stmt"/>
+          <line num="150" count="5" type="stmt"/>
+          <line num="151" count="1" type="stmt"/>
+          <line num="156" count="5" type="stmt"/>
+          <line num="157" count="1" type="stmt"/>
+          <line num="158" count="0" type="stmt"/>
+          <line num="159" count="0" type="stmt"/>
+          <line num="160" count="0" type="stmt"/>
+        </file>
+        <file name="Login.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/Login.js">
+          <metrics statements="25" coveredstatements="10" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="3"/>
+          <line num="9" count="4" type="stmt"/>
+          <line num="10" count="4" type="stmt"/>
+          <line num="11" count="4" type="stmt"/>
+          <line num="26" count="4" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="74" count="0" type="stmt"/>
+          <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="78" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="81" count="0" type="stmt"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="89" count="1" type="stmt"/>
+          <line num="90" count="0" type="stmt"/>
+          <line num="92" count="1" type="stmt"/>
+          <line num="148" count="4" type="stmt"/>
+          <line num="149" count="0" type="stmt"/>
+          <line num="150" count="0" type="stmt"/>
+        </file>
+        <file name="Profile.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/Profile.js">
+          <metrics statements="16" coveredstatements="4" conditionals="6" coveredconditionals="0" methods="9" coveredmethods="1"/>
+          <line num="6" count="5" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="97" count="5" type="stmt"/>
+          <line num="98" count="1" type="stmt"/>
+          <line num="104" count="5" type="stmt"/>
+          <line num="105" count="0" type="stmt"/>
+        </file>
+        <file name="Quest.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/Quest.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.components.LoadingScreens">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <file name="Loading1.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/LoadingScreens/Loading1.js">
+          <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+          <line num="11" count="4" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="17" count="4" type="stmt"/>
+          <line num="25" count="5" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/components/LoadingScreens/index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.constants">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/constants/index.js">
+          <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="9" type="stmt"/>
+          <line num="2" count="9" type="stmt"/>
+          <line num="3" count="9" type="stmt"/>
+          <line num="4" count="9" type="stmt"/>
+          <line num="5" count="9" type="stmt"/>
+          <line num="6" count="9" type="stmt"/>
+          <line num="7" count="9" type="stmt"/>
+          <line num="8" count="9" type="stmt"/>
+          <line num="9" count="9" type="stmt"/>
+          <line num="10" count="9" type="stmt"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.reducers">
+        <metrics statements="26" coveredstatements="15" conditionals="24" coveredconditionals="12" methods="7" coveredmethods="6"/>
+        <file name="currentEventReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/currentEventReducer.js">
+          <metrics statements="3" coveredstatements="2" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="4" count="9" type="cond" truecount="1" falsecount="1"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="9" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/index.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="9" count="3" type="stmt"/>
+        </file>
+        <file name="listEventsReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/listEventsReducer.js">
+          <metrics statements="4" coveredstatements="2" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="4" count="9" type="cond" truecount="1" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="9" type="stmt"/>
+        </file>
+        <file name="locationReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/locationReducer.js">
+          <metrics statements="6" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="9" count="9" type="cond" truecount="1" falsecount="2"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="16" count="9" type="stmt"/>
+        </file>
+        <file name="profileUserReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/profileUserReducer.js">
+          <metrics statements="5" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="9" count="9" type="cond" truecount="1" falsecount="2"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="15" count="9" type="stmt"/>
+        </file>
+        <file name="questReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/questReducer.js">
+          <metrics statements="3" coveredstatements="2" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="4" count="9" type="cond" truecount="1" falsecount="1"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="9" type="stmt"/>
+        </file>
+        <file name="userEventReducer.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/reducers/userEventReducer.js">
+          <metrics statements="4" coveredstatements="2" conditionals="6" coveredconditionals="2" methods="2" coveredmethods="1"/>
+          <line num="4" count="9" type="cond" truecount="1" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="10" count="9" type="stmt"/>
+        </file>
+      </package>
+      <package name="geo_arg_mobile.src.store">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <file name="storeConfig.js" path="/Users/hacktiv8/Desktop/geo_arg_mobile/src/store/storeConfig.js">
+          <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="5" count="3" type="stmt"/>
+          <line num="6" count="3" type="cond" truecount="1" falsecount="1"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

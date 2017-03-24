@@ -6,12 +6,15 @@ import { fetchEvents, joinGame, clearEvents } from '../actions'
 import Carousel from 'react-native-looped-carousel'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import catImage from '../assets/loading.gif'
-import bg2 from '../assets/pokemon2.jpg'
-import bg1 from '../assets/pokemon2.jpg'
+import bg1 from '../assets/pokemonbg2.jpg'
+import eventBg1 from '../assets/pokemon4.jpg'
+import eventBg2 from '../assets/pokemon2.jpg'
+import eventBg3 from '../assets/pokemon3.jpg'
+import eventBg4 from '../assets/pokemon5.jpg'
 
 const { height, width } = Dimensions.get('window');
 
-var styles = {
+let styles = {
   container: {
     flex: 1, justifyContent: 'center',
   },
@@ -47,7 +50,7 @@ var styles = {
     height: 60, width: width, alignSelf: 'stretch', backgroundColor: 'rgb(138, 208, 49)', margin: 10, borderRadius: 5, justifyContent: 'center', alignItems: 'center'
   },
   eventsView: {
-    flex: 1, marginLeft:'0.2%', marginRight:'0.2%', marginBottom:'0.2%', height: '90%'
+    flex: 1, marginLeft:'0.3%', marginRight:'0.3%', marginBottom:'0.2%', height: '90%'
   },
   eventsCardView: {
     flex: 1, width: '100%', height: '100%', marginTop: 5
@@ -56,18 +59,18 @@ var styles = {
     alignItems: 'center', padding: 10, width: width, height: height, marginTop: 5, backgroundColor: 'rgba(0,0,0, .5)', position: 'absolute'
   },
   listEventTitle: {
-    fontSize: 30, color: '#FFF'
+    fontSize: 30, color: '#FFF', textAlign: 'center', marginBottom: 20,
   },
   listEventDescription: {
-    fontSize: 25, color: '#FFF', marginTop: 10
+    fontSize: 25, color: '#FFF', textAlign: 'center', marginBottom: 20
   },
   listEventDate: {
-    fontSize: 25, color: '#FFF'
+    fontSize: 25, color: '#FFF', textAlign: 'center'
   },
   listEventPlace: {
-    fontSize: 25, color: '#FFF', marginBottom: 15
+    fontSize: 25, color: '#FFF', marginBottom: 15, textAlign: 'center'
   },
-  listEventScore: {fontSize: 25, color: '#F5D76E', padding: 10, fontWeight: 'bold'}
+  listEventScore: {fontSize: 25, color: '#F5D76E', padding: 10, fontWeight: 'bold', textAlign: 'center'}
 }
 
 class ListEvent extends Component {
@@ -125,7 +128,11 @@ class ListEvent extends Component {
                   let formattedDate = new Date(listevent.date).toString().split(' ');
                   return (
                     <View key={index} style={styles.eventsView}>
-                      <Image style={styles.eventsCardView} source={bg2} />
+                      { (index+1) % 2 === 0 ? (
+                        <Image style={styles.eventsCardView} source={eventBg2} />)
+                          :
+                        (<Image style={styles.eventsCardView} source={eventBg4} />)
+                      }
                       <View style={styles.listEventView}>
                         <Text style={styles.listEventTitle}>{listevent.title}</Text>
                         <Text style={styles.listEventDescription}>{listevent.description}</Text>
