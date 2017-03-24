@@ -11,12 +11,11 @@ const {height, width} = Dimensions.get('window');
 
 let styles = {
   container: {flex: 1, justifyContent: 'center'},
-  content: {height: height * 0.9},
+  content: {},
   backgroundImg: {width: width, height: height},
   contentView: {
     alignSelf: 'center',
     width: width,
-    height: height,
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 40
@@ -170,7 +169,9 @@ class GameEvent extends React.Component {
               {this.props.location.nearbyUser.length < 1 ? <Text>No other user nearby</Text> : this.props.location.nearbyUser.map((nearby, index) => {
                 if(typeof nearby.Users[0] === 'object'){
                   return nearby.Users[0].id === this.props.userId ? null : (
-                    <Text key={index}>ID: {nearby.Users[0].id} Username : {nearby.Users[0].username}</Text>
+                    <View key={index} style={{padding: 5, width: width * 0.7, paddingLeft: 30, paddingRight: 30, backgroundColor: '#FFFFFF', borderRadius: 8, margin: 5}}>
+                      <Text>{nearby.Users[0].username}</Text>
+                    </View>
                   )
                 }
               })}

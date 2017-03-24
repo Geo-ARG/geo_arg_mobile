@@ -33,7 +33,6 @@ export const saveData = (username, email) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': store.getState().profileUser.userData.token,
         },
         body: JSON.stringify({username: username, email: email})
       }).then(res => res.json()).then(newDataUser => {

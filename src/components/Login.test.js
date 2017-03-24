@@ -3,9 +3,7 @@ import { Provider } from 'react-redux'
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import Login from './Login'
-import Camera from 'react-native-camera'
 
-jest.mock('react-native-camera', () => 'Camera')
 const middlewares = []
 const mockStore = configureStore(middlewares)
 
