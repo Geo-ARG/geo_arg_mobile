@@ -109,6 +109,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.profileUser);
   return {
     listEventUser: state.profileUser.userEvent,
     listUserLogin: state.profileUser.userData
