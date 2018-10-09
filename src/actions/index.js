@@ -71,7 +71,7 @@ export const scanNearby = (latitude, longitude) => {
         'token': store.getState().profileUser.userData.token
       },
       body: JSON.stringify({latitude, longitude})
-      })
+    })
     .then(response => response.json())
     .then(nearby => {
       return dispatch(updateNearby(nearby))
@@ -94,7 +94,7 @@ export const sendLocation = (coords, userId) => {
         'token': store.getState().profileUser.userData.token,
       },
       body: JSON.stringify(body)
-      })
+    })
     .then(response => response.json())
     .then(location => {
       return dispatch(updateLocation(location.Locations.id))
@@ -130,11 +130,11 @@ export const fetchQuestList = (UserId, EventId) => {
         'token': store.getState().profileUser.userData.token
       }
     })
-      .then(response => response.json())
-      .then(quests => {
-        return dispatch(setQuestList(quests))
-      })
-      .catch(error => {console.log('Request failed', error)});
+    .then(response => response.json())
+    .then(quests => {
+      return dispatch(setQuestList(quests))
+    })
+    .catch(error => {console.log('Request failed', error)});
   }
 }
 
@@ -147,13 +147,13 @@ export const fetchEvents = () => {
         'token': store.getState().profileUser.userData.token
       }
     })
-      .then(response => {
-        return response.json()
-      })
-      .then(resp => {
-        return dispatch(setEvents(resp))
-      })
-      .catch(err => {})
+    .then(response => {
+      return response.json()
+    })
+    .then(resp => {
+      return dispatch(setEvents(resp))
+    })
+    .catch(err => {})
   }
 }
 
@@ -179,7 +179,8 @@ export const getUserEventByIdUser = (idUserLogin) => {
         'Content-Type': 'application/json',
         'token': store.getState().profileUser.userData.token
       }
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(resultEventUser => {
       dispatch(showEventUser(resultEventUser))
     })
